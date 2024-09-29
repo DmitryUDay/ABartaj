@@ -1,0 +1,85 @@
+body h1{
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+    background-image: url('home_fone.png');
+
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* ########################################################################################################## */
+.Btn {border-radius: 12px;}
+.Btn{
+    background-image: linear-gradient(to right, #ef9ee1 0%, #f030a0 51%, #ef9e9e 100%);
+    transition: .5s;
+    border:none;
+}
+.Btn:hover{
+    background-image: linear-gradient(to right, #b87bad 0%, #991f66 51%, #865757 100%);
+}
+
+/* ########################################################################################################## */
+.BtnF {border-radius: 12px;}
+.BtnF{
+    background-image: linear-gradient(to right, #9eefa9 0%, #5df030 51%, #9eefa9 100%);
+    transition: .5s;
+    border:none;
+}
+.BtnF:hover{
+    background-image: linear-gradient(to right, #7bb88a 0%, #23991f 51%, #57865b 100%);
+}
+/* ########################################################################################################## */
+.BtnP {border-radius: 12px;}
+.BtnP{
+    background-image: linear-gradient(to right, #efee9e 0%, #ddf030 51%, #eaef9e 100%);
+    transition: .5s;
+    border:none;
+}
+.BtnP:hover{
+    background-image: linear-gradient(to right, #b8af7b 0%, #99971f 51%, #868357 100%);
+}
+/* ########################################################################################################## */
+.BtnA {border-radius: 12px;}
+.BtnA{
+    background-image: linear-gradient(to right, #9edcef 0%, #30b3f0 51%, #9ea3ef 100%);
+    transition: .5s;
+    border:none;
+}
+.BtnA:hover{
+    background-image: linear-gradient(to right, #7b9db8 0%, #1f5e99 51%, #577786 100%);
+}
+/* ########################################################################################################## */
+
+
+.BtnB {border-radius: 12px;}
+.BtnB{
+    background-image: linear-gradient(to right, #696465 0%, #3e484d 51%, #797979 100%);
+    transition: .5s;
+    border:none;
+}
+.BtnB:hover{
+    background-image: linear-gradient(to right, #4e4e4e 0%, #3f3f3f 51%, #3d3d3d 100%);
+}
+/* ########################################################################################################## */
+
+
+.BtnPromo {border-radius: 12px;}
+.BtnPromo{
+    background-image: linear-gradient(to right, #ef9e9e 0%, #f03030 51%, #ef9e9e 100%);
+    transition: .5s;
+    border:none;
+}
+.BtnPromo:hover{
+    background-image: linear-gradient(to right, #b87b7b 0%, #991f1f 51%, #865757 100%);
+}
+/* ########################################################################################################## */
+
+
+
+.Txt{
+    color: rgb(255, 255, 255);
+    font-family: 'Montserrat', sans-serif;
+}
+

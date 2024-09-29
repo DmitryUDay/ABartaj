@@ -1,0 +1,34 @@
+li {
+    list-style-type: none;
+    padding-left: 10px;
+    /* Убираем маркеры */
+}
+
+
+IMG.imag {
+    float: left; /* Обтекание картинки по левому краю */
+    padding-left: 0px; /*Отступ слева*/
+    padding-bottom: 10px; /*Отступ снизу*/
+}
+
+
+button {
+    outline: none; /* Для синий ободки */
+    border: 0;
+    background: transparent;
+    right: 200px;
+}
+
+
+.name_app{
+font-family: Gill Sans, sans-serif;
+    
+}
+
+
+.aftor{
+    font-family: Trebuchet MS, sans-serif;
+}
+.KLV{
+    font-family: Trebuchet MS, sans-serif;
+}
