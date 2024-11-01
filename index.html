@@ -1,0 +1,42 @@
+<h1 align="center">Добро пожаловать на офф сайт ABartaj</h1>
+<h4 align="center">Powered by UDay and Max228</h4>
+<div class="navbar">
+
+
+    <select id="categorySelect">
+        <option value="all">Выбрать категорию</option>
+        <option value="all">Игры</option>
+        <option value="electronics">Софт</option>
+        <option value="electronics">ПО</option>
+    </select>
+
+
+    <a href="index.html">Главная</a>
+    <a href="publick.html">Опубликовать свой проект</a>
+    
+    <input type="text" placeholder="Поиск по проектам" id="search">
+</div>
+
+
+<script>
+    document.getElementById('categorySelect').addEventListener('change', function() {
+        let selectedValue = this.value;
+        let outputContainer = document.getElementById('output');
+    
+        switch(selectedValue) {
+            case 'игры':
+                outputContainer.innerHTML = '<div class="message">Hello World!</div><img class="image" src="hello-world.jpg">';
+                break;
+            case 'ПО':
+                outputContainer.innerHTML = '<div class="message">Отображение по недоступно</div><img class="image" src="not-available.jpg">';
+                break;
+            default:
+                outputContainer.innerHTML = '';
+                break;
+        }
+    }) ;
+    </script>
+
+
+
+<link rel="stylesheet" href="style/homebar.css">
