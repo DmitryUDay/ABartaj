@@ -1,0 +1,92 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Comfortaa:wght@300..700&display=swap');
+    body{
+        background-color: #2C3E50;
+        font-family: "Balsamiq Sans", serif;
+    }
+    .elem{
+        color: white;
+        font-size: 40px;
+    }
+    .bb{
+        background-color: #ffd231;
+        font-size: 30px;
+        color: black;
+        border: none;
+        border-radius: 20px;
+        padding: 5px;
+        width: 100%;
+        transition: all 0.2s ease;
+    }
+
+    .boni {
+        animation: bounce 600ms ease-in-out;
+    }
+
+    @keyframes bounce {
+        /* 10% { transform: translateY(-8px); }
+        20% { transform: translateY(-6px); }
+        30% { transform: translateY(-4px); }
+        40% { transform: translateY(-2px); }
+        50% { transform: translateY(0px); }
+        60% { transform: translateY(2px); }
+        70% { transform: translateY(4px); }
+        80% { transform: translateY(6px); }
+        90% { transform: translateY(8px); }
+        100% { transform: translateY(10px); } */
+
+        33.333% {
+                transform: translateY(-30px);
+            }
+            66.666% {
+                transform: translateY(15px);
+            }
+            83.333% {
+                transform: translateY(-7.5px);
+            }
+            91.666% {
+                transform: translateY(3.75px);
+            }
+            95.833% {
+                transform: translateY(-1.875px);
+            }
+            98.4375% {
+                transform: translateY(0.9375px);
+            }
+            99.21875% {
+                transform: translateY(-0.46875px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+    }
+
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Что-то тут не так</title>
+</head>
+<body>
+    <div class="elem">
+        <h1 align="center">Ой!</h1>
+        <img src="server/nutMaksim.png" alt="Орехи не грузтятся :(" width="400px" style="display: block; margin: 0 auto;">
+        <h3 align="center">Максим съел все орехи, а за одно и эту страницу</h3>
+        <button class="bb">Назад</button>
+    </div>
+</body>
+</html>
+
+<script>
+    document.querySelector('.bb').addEventListener('click', function() {
+    this.classList.add('boni');
+
+    // Ждем окончания анимации и переходим на сайт
+    setTimeout(() => {
+        history.back();
+    }, 550); // Время ожидания должно соответствовать длительности анимации
+});
+</script>

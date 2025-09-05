@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Мореход сдать хату",
+    "autor": "UDay©",
+    "type": "Телеграм бот",
+    "descry": "Поможет быстро опубликовать объявление сдаче в аренду жилья",
+    "img": "server/projectImage/Morehod.png",
+    "link": "p1.html",
+    "button": "https://t.me/RUdolphu_saller_bot",
+    "tipy": "Чат",
+    "buttonGo": "Чат✈",
+    "screen1": "1.png",
+    "screen2": "2.png",
+    "screen3": "3.png",
+    "descryOpen": "МореходРУ.Создать объект - Отдельный бот для создания публикаций на платформу МореходРУ.Имеет свой личный кабинет и строгую проверку объявлений перед конечной публикацией",
+    "raiting": "15тыс.",
+    "star": "4,9",
+    "age": "12+",
+    "patch": "server/projectImage/morehod1/",
+    "": ""
+  }
+]

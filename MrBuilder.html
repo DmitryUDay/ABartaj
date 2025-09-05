@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="contents"></title>
+    <link rel="stylesheet" href="protoStyle.css">
+    <script src="server/js/scroller.js"></script>
+</head>
+<body>
+    <a href="project.html"><button id="BBack">&lt;Назад</button></a>
+
+    <div id="fScreen" onclick="hideImg()">
+        <div id="imgFull"></div>
+        <button onclick="hideImg()" id="bClose">X</button>
+    </div>
+    
+    <div class="cont">
+        <img src="server/ava.png" alt="" width="50px" height="50px" style="position: fixed; right: 0px; top: 0px; padding: 5px;">
+        <div id="userData">
+            <h3 align=center>Аккаунт Guest</h3>
+            <div style="background-color: rgb(49, 49, 49); padding: 5px; border-radius: 5px;"><h4>Гуест Гуестович</h4><h4>example@gmail.com</h4></div>
+            <h4>Баланс: 100₽</h4>
+            <h4>Рейтинг: 4,8⭐️</h4>
+            <h4>Подписки: 3</h4>
+            <h4>Подписчики: 1k</h4>
+        </div>
+    </div>
+
+    </div>
+
+
+    <br>
+    <br>
+
+    <div>
+        <br>
+        <div class="text-element" id="nameApp">ExampleNameAPP</div>
+        <p style="margin-top: 60px; margin-left: 30px;" id="getKatalog"></p>
+    </div>
+
+    <div class="container">
+        <div style="font-size: 10px; line-height: 1; margin-bottom: 0;">
+            <div style="display: flex; display: flex; justify-content: center;">
+                <!-- твой блок с картинкой -->
+                <div class="contentImg">
+                    <div id="imaga" onclick="viewFullIMG()"></div>
+                    <button onclick="bck()" id="b">&lt;</button>
+                    <button onclick="nxt()" id="n">&gt;</button>
+                </div>
+
+                <!-- модалка -->
+                <div id="fScreen" class="fullscreen">
+                    <span class="close" onclick="hideImg()">&times;</span>
+                    <img id="fullImage" alt="Просмотр изображения">
+                </div>
+
+                <div style="background-color: #435e7a; width: 400px; padding-left: 40px; padding-right: 40px; border-radius: 3px;">
+                    <div style="display: flex; justify-content: center; height: 100px; padding-top: 5px;"><img id="IconApp" alt="Приложение" width="100px" style="border-radius: 20px; object-fit: cover;"></div>
+                    <hr style="margin-left: 20px; margin-right: 20px;">
+                    <p style="font-size: 15px;" id="desys">ExampleDescription</p>
+                    
+                    <div style="display: flex; justify-content: space-between;">
+                        <a target="_blank" id="contentButton"><button id="buttonType"></button></a>
+                        <button onclick="getPos()"><div id="posFav"></div></button>
+                    </div>
+
+
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <br>
+    <table>
+        <tr>
+            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px;"><h3 id="kalivanRaiting"></h3><h1 id="starKalivan"></h1></td>
+            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px;"><h3>Возраст</h3><span id="ageKalivan" style="color: gray; font-size: 20px;"></span></td>
+            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px"><h3>Разработчик</h3><img src="server/projectImage/develooper.png" alt="" width="50px" style="display: block; margin-left: auto;margin-right: auto;"><a id="selfDeveloop"><p id="developer"  style="color: gray;" ></p></a></td>
+            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px"><h3>Язык</h3><h1 id="defoultLanguage"></h1><p id="dopingLanguage" style="color: gray; font-size: 20px;"></p></td>
+            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px"><h3>Тип</h3><p id="tipy" style="color: gray; font-size: 20px;"></p></td>
+            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px"><h3>Версия</h3><p id="getVersionApp" style="color: gray; font-size: 20px;"></p></td>
+            <td style="line-height: 0.5; margin-bottom: 0;"><h3>Размер</h3><p id="sizess" style="color: gray; font-size: 20px;"></p></td>
+        </tr>
+    </table>
+
+    <br>
+    <div class="container2">
+        <hr>
+        <br>
+        <div style="line-height: 0.5; margin-bottom: 0;">
+            <h1>Что нового ></h1>
+            <div style="display: flex; gap: 150px; color: gray;">
+                <p id="getVersionAppDublicate1">Версия не указана</p>
+                <p id="dateUpdate">Загрузка</p>
+            </div>
+            <div style="width: 300px; margin-bottom: 0; line-height: 1; display: flex;">
+                <h3 id="contentUpdates">Загрузка элемента</h3>
+            </div>
+        </div>
+    
+        <br>
+    
+        <div class="devHov">
+            <hr>
+            <div style="display: flex; justify-content: space-between;">
+                <h2 style="color: #ffd231; margin-left: 10%" id="developerDublicate1"></h2>
+                <h2 style="color: rgb(182, 182, 182); margin-right: 10%;">></h2>
+            </div>
+            <h2 style="color: rgb(182, 182, 182); margin-left: 10%; line-height: 1px;">Разработчик</h2>
+            <hr>
+        </div>
+    
+        <br>
+    
+    
+        <div style="margin-bottom: 0; line-height: 0.5;">
+            <h2 style="cursor: pointer;">Рейтинг и отзывы ></h2>
+            <div style="display: flex; align-items: center; margin-bottom: 5px; gap: 20px; font-size: 20px;">
+                <h1 style="font-size: 60px;" id="starKalivanDublicate1"></h1>
+                <div>
+                    <div style="display: inline-flex; margin-left: 10px;">
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>★</p>
+                    </div>
+                    <h3 style="margin-top: -5px;" id="kalivanRaitingDublicate1"></h3>
+                </div>
+                
+            </div>
+        </div>
+
+        <h3>Отобраны полезные отзывы</h3>
+
+        <div style="display: flex; gap: 30px;">
+            <div id="cardKall">
+                <h2 style="line-height: 20px; margin-bottom: 0;"><b>Хороший бот</b></h2>
+    
+                <div style="display: flex; align-items: center; gap: 10px; line-height: 20px; margin-bottom: 0;">
+                    <div style="display: inline-flex; margin-left: 10px; line-height: 20px; margin-bottom: 0;">
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                    </div>
+                    <p style="font-size: 15px; color: rgb(182, 182, 182); line-height: 20px; margin-bottom: 0;">2 дня назад ● Kosmodurack</p>
+                </div>
+                <p style="width: 400; height: 50px; display: block; overflow: hidden; text-overflow: ellipsis;">Хороший бот. Мгновенно опубликовали объявление. Поддержка помогла быстро раскрутить его. Вообщем доволен на все 100%😁</p>
+            </div>
+            <div id="cardKall">
+                <h2 style="line-height: 20px; margin-bottom: 0;"><b>Супер! Буду продолжать пользоваться</b></h2>
+    
+                <div style="display: flex; align-items: center; gap: 10px; line-height: 20px; margin-bottom: 0;">
+                    <div style="display: inline-flex; margin-left: 10px; line-height: 20px; margin-bottom: 0;">
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>★</p>
+                    </div>
+                    <p style="font-size: 15px; color: rgb(182, 182, 182); line-height: 20px; margin-bottom: 0;">1 год назад ● ThunderGrate</p>
+                </div>
+                <p style="width: 400; height: 50px; display: block; overflow: hidden; text-overflow: ellipsis;">Ну в принципе я доволен. Быстро опубликовал и нашел арендатора</p>
+            </div>
+            <div id="cardKall">
+                <h2 style="line-height: 20px; margin-bottom: 0;"><b>Хороший бот</b></h2>
+    
+                <div style="display: flex; align-items: center; gap: 10px; line-height: 20px; margin-bottom: 0;">
+                    <div style="display: inline-flex; margin-left: 10px; line-height: 20px; margin-bottom: 0;">
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                    </div>
+                    <p style="font-size: 15px; color: rgb(182, 182, 182); line-height: 20px; margin-bottom: 0;">9 месяцев назад ● NiteHunter123</p>
+                </div>
+                <p style="width: 400; height: 50px; display: block; overflow: hidden; text-overflow: ellipsis;">Все супер! Быстро, легко, дешево💵</p>
+            </div>
+        </div>
+
+        <br>
+
+        <h3 align="center">Коснитесь, чтобы оценить</h3>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <div style="display: flex; gap: 5px; cursor: pointer;">
+                <span id="star1" onclick="cickc(1)">☆</span>
+                <span id="star2" onclick="cickc(2)">☆</span>
+                <span id="star3" onclick="cickc(3)">☆</span>
+                <span id="star4" onclick="cickc(4)">☆</span>
+                <span id="star5" onclick="cickc(5)">☆</span>
+            </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 20px; margin-bottom: 0;">
+            <button style="background-color: #ffd231; color: #000000; width: 500px;">Написать отзыв</button>
+            <br>
+            <br>
+            <button style="background-color: #ffd231; color: #000000; width: 500px;">Поддержка устройств</button>
+        </div>
+
+        
+        <!-- <div style="margin-left: auto; margin-right: auto; background-color: #ffd231;">
+            <div style="display: inline-block; text-align: center;">
+                <img src="server/userIcon.png" alt="" width="50px">
+                <h1>Конфиденциальность пользователя</h1>
+            </div>
+                
+
+        </div> -->
+        <br>
+        <br>
+        <div style="background-color: #2C3E50; box-shadow: 0 0 10px #000000; width: 700px; height: auto; margin-right: auto; margin-left: auto; padding: 20px; border-radius: 30px; text-align: center;">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <img src="server/userIcon.png" alt="" width="50px" height="50px" style="margin: 0 auto;">
+                <h1 style="text-align: center; margin-top: 10px;">Связанные с вами данные</h1>
+                <p style="text-align: center; margin-top: 5px;">Просмотрите, какие данные использует или собирает Morehod</p>
+                
+                <div style="margin-top: 20px; width: 100%;">
+                    <div style="display: flex; justify-content: center; gap: 40px;">
+                        <div>
+                            <div style="display: flex; align-items: center; margin-bottom: 15px;"><img src="server/locatorIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Локация</p></div>
+                            <div style="display: flex; align-items: center; margin-bottom: 15px;"><img src="server/contentIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Контент</p></div>
+                            <div style="display: flex; align-items: center; margin-bottom: 15px;"><img src="server/inditificatorIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Идентификация</p></div>
+                            <div style="display: flex; align-items: center;"><img src="server/optionIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Параметры</p></div>
+                        </div>
+        
+                        <div>
+                            <div style="display: flex; align-items: center; margin-bottom: 15px;"><img src="server/networkIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Сеть и интернет</p></div>
+                            <div style="display: flex; align-items: center; margin-bottom: 15px;"><img src="server/searchIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Поиск</p></div>
+                            <div style="display: flex; align-items: center; margin-bottom: 15px;"><img src="server/lightInfoIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Информация</p></div>
+                            <div style="display: flex; align-items: center;"><img src="server/shumadanIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Покупки</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="width: 80%; margin-right: auto; margin-left: auto;text-align: center;">
+            <h1>Информация</h1>
+            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Разработчики</h3><h3 style="float: right; margin-right: 20px;" id="developerDublicate2"></h3></div>
+            <hr id="hrr">
+            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Категория</h3><h3 style="float: right; margin-right: 20px;" id="category"></h3></div>
+            <hr id="hrr">
+            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Совместимость</h3><h3 style="float: right; margin-right: 20px;" id="deviTY"></h3></div>
+            <hr id="hrr">
+            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Языки</h3><h3 style="float: right; margin-right: 20px;" id="lana"></h3></div>
+            <hr id="hrr">
+            <div style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleMenu()" id="purcache"><h3>Внутренние покупки</h3><h3 style="float: right; margin-right: 20px;" id="dada"  id="getSubs">▼</h3></div>
+            <ul id="dropdown" style="display:none; list-style:none; padding:0; margin:0;">
+                <h1>Подписки (навсегда)</h1>
+                <li>Мореход плюс - 199₽</li>
+                <li>Мореход про - 299₽</li>
+                <li>Дополнение - 100₽</li>
+              </ul>
+            <hr id="hrr">
+            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Патент</h3><h3 style="float: right; margin-right: 20px;" id="patente"></h3></div>
+            <hr id="hrr">
+            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Сертификаты защиты</h3><h3 style="float: right; margin-right: 20px;" id="sertificate"></h3></div>
+            <hr id="hrr">
+
+            <a  style="display: flex; justify-content: space-between; align-items: center; color: #ffd231;" id="selfDeveloopDublicate1" style="color: #ffd231;">Сайт разработчика<img src="server/yandexIcon.png" style="float: right; margin-right: 20px; padding: 10px;" width="30px"></a>
+            <hr id="hrr">
+            <a style="display: flex; justify-content: space-between; align-items: center; color: #ffd231;" href="https://example.com">Политика Конфиденциальность<img src="server/privacyIcon.png" style="float: right; margin-right: 20px; padding: 10px;" width="30px"></a>
+            <hr id="hrr">
+            <a style="display: flex; justify-content: space-between; align-items: center; color: #ffd231;" href="helpModer.html">Сообщить о проблеме<img src="server/warningIcon.png" style="float: right; margin-right: 20px; padding: 10px;" width="30px"></a>
+            <hr id="hrr">
+
+        </div>
+
+
+
+
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <div style="display: flex; gap: 20px; align-items: center;">
+            <a href="index.html"><img src="server/ABADark.png" alt="" width="80px"></a>
+            <p style="color: #b4b4b4;">ABartaj - project UDay©</p>
+            <p style="color: #b4b4b4; cursor: pointer;" onclick="showCook()">Файлы куки</p>
+            <a href="defaultSelf.html" style="color: #b4b4b4; text-decoration: none;">UDay</a>
+            <p style="color: #b4b4b4;">Безопасность</p>
+            <a href="udayService.html" style="color: #b4b4b4; text-decoration: none;">Сервисы</a>
+            <a href="maksim.html" style="color: #b4b4b4; text-decoration: none;">Правила поведения в режиме разработчика</a>
+            <a href="accDash.html" style="color: #b4b4b4; text-decoration: none;">Аккаунт</a>
+            <p style="color: #b4b4b4;">Контакт</p>
+        </div>
+    </div>
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+let menuState = 'close';
+let ptc = 0; // индекс текущего изображения
+let imgPatch = []; // сюда загрузятся пути картинок
+let ptch = ''; // базовый путь, если нужен
+
+// --- Меню ---
+function toggleMenu() {
+    const menuElement = document.getElementById("dropdown");
+    if (menuState === 'close') {
+        document.getElementById('dada').textContent = 'Да⯅';
+        menuElement.style.display = "block";
+        menuState = 'open';
+    } else {
+        document.getElementById('dada').textContent = 'Да⯆';
+        menuElement.style.display = "none";
+        menuState = 'close';
+    }
+}
+
+// --- Получаем параметры из URL ---
+const params = new URLSearchParams(window.location.search);
+const name = params.get("name");
+
+// --- Загружаем JSON ---
+fetch("app.json")
+    .then(res => res.json())
+    .then(data => {
+        const app = data.find(a => a.name === name);
+        if (app) {
+            ptch = app.patch;
+            imgPatch = [app.img1, app.img2, app.img3]; // глобально
+
+            // Заполняем элементы
+            document.getElementById("nameApp").textContent = app.name;
+            document.getElementById("contents").textContent = app.name;
+            document.getElementById("buttonType").textContent = app.buttonType;
+            document.getElementById("IconApp").src = app.icon;
+            document.getElementById("kalivanRaiting").textContent = `${app.otziv} Оценок`;
+            document.getElementById("kalivanRaitingDublicate1").textContent = `${app.otziv} отзывов`;
+            document.getElementById("starKalivan").textContent = `★${app.star}`;
+            document.getElementById("starKalivanDublicate1").textContent = `${app.star}`;
+            document.getElementById("ageKalivan").textContent = app.age;
+            document.getElementById("developer").textContent = app.developer;
+            document.getElementById("developerDublicate1").textContent = app.developer;
+            document.getElementById("developerDublicate2").textContent = app.developer;
+            document.getElementById("defoultLanguage").textContent = app.language;
+            document.getElementById("dopingLanguage").textContent = app.languageKalivan;
+            document.getElementById("getKatalog").textContent = app.patching;
+            document.getElementById("tipy").textContent = app.types;
+            document.getElementById("getVersionApp").textContent = app.version;
+            document.getElementById("getVersionAppDublicate1").textContent = `Версия: ${app.version}`;
+            document.getElementById("sizess").textContent = app.size;
+            document.getElementById("dateUpdate").textContent = app.updated;
+            document.getElementById("contentUpdates").textContent = app.updateText;
+            document.getElementById("desys").textContent = app.description;
+            document.getElementById("category").textContent = app.kategory;
+            document.getElementById("deviTY").textContent = app.deviceTy;
+            document.getElementById("patente").textContent = app.patent;
+            document.getElementById("sertificate").textContent = app.sertificate;
+            document.getElementById("lana").textContent = `${app.language} ${app.languageKalivan}`;
+            document.getElementById("selfDeveloop").href = app.siteDeveloper;
+            document.getElementById("selfDeveloopDublicate1").href = app.siteDeveloper;
+            document.getElementById("contentButton").href = app.content;
+
+            // показываем первый скриншот
+            setimg(imgPatch[ptc]);
+        }
+    });
+
+// --- Кнопка "Отслеживать" ---
+document.getElementById("posFav").innerText = '🤍Отслеживать';
+let pos = 'False';
+function getPos() {
+    if (pos === 'False') {
+        pos = 'True';
+        document.getElementById("posFav").innerText = '❤ Отмена';
+        alert('Уведомление\n\nТеперь события будут приходить в push-уведомлениях.');
+    } else {
+        pos = 'False';
+        document.getElementById("posFav").innerText = '🤍Отслеживать';
+    }
+}
+
+// --- Картинки ---
+function viewFullIMG(){
+    const container = document.getElementById("fScreen");
+    const fullImage = document.getElementById("fullImage");
+
+    fullImage.src = imgPatch[ptc]; // текущая картинка
+    container.style.display = "flex"; // показываем модалку
+    document.body.style.overflow = "hidden"; // блокируем прокрутку
+}
+
+function hideImg(){
+    document.getElementById("fScreen").style.display = "none";
+    document.body.style.overflow = "auto"; // возвращаем прокрутку
+}
+
+function setimg(src){
+    const container = document.getElementById("imaga");
+    container.innerHTML = "";
+
+    const newImg = document.createElement("img");
+    newImg.src = src;
+    newImg.alt = "Превью";
+    newImg.style.width = "100%";
+    newImg.style.height = "100%";
+    newImg.style.objectFit = "cover"; // обрезаем, а не растягиваем
+    container.appendChild(newImg);
+}
+
+function nxt() {
+    ptc = (ptc + 1) % imgPatch.length;
+    setimg(imgPatch[ptc]);
+}
+
+function bck() {
+    ptc = (ptc - 1 + imgPatch.length) % imgPatch.length;
+    setimg(imgPatch[ptc]);
+}
+
+// --- Звезды рейтинга ---
+function cickc(indi) {
+    const stars = [
+        document.getElementById('star1'),
+        document.getElementById('star2'),
+        document.getElementById('star3'),
+        document.getElementById('star4'),
+        document.getElementById('star5')
+    ];
+    stars.forEach(star => star.textContent = '☆');
+    for (let i = 0; i < indi; i++) stars[i].textContent = '★';
+}
+</script>
+
+</html>

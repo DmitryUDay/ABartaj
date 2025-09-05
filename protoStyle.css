@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Comfortaa:wght@300..700&display=swap');
+
+*{
+    text-decoration: none;
+    font-family: "Balsamiq Sans", serif;
+}
+
+
+body{
+    background-color: #2C3E50;
+    margin: 0;
+    padding: 0;
+}
+
+h1,h2,h3,h4,h5,h6,p,ul{
+    color: white;
+}
+
+button{
+    color: black;
+    background-color: #ffd231;
+    border: none;
+    font-size: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.container{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.container2{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+table{
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgb(196, 195, 195);
+}
+
+td{
+    border: 2px solid black;
+    text-align: center;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-color: rgb(206, 206, 206);
+    border-style: solid;
+    padding: 5px;
+    width: 150px;
+}
+
+td h3{
+    vertical-align: middle;
+    text-align: center;
+}
+
+.cont:hover #userData{
+    display: block;
+}
+
+#userData{
+    width: 300px;
+    height: auto;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(99, 99, 99);
+    position: fixed;
+    top: 70px;
+    right: 10px;
+    display: none;
+}
+
+.contentImg {
+    position: relative;
+    display: inline-block;
+}
+
+.contentImg #imaga {
+    display: inline-block;
+    margin: 0 40px;
+    width: 450px;
+    height: 338px;
+    overflow: hidden;
+    position: relative;
+}
+
+.contentImg #imaga img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* Модальное окно */
+.contentImg {
+    position: relative;
+    display: inline-block;
+}
+
+.contentImg #imaga {
+    display: inline-block;
+    margin: 0 40px;
+    width: 450px;
+    height: 338px;
+    overflow: hidden;
+    position: relative;
+}
+
+.contentImg #imaga img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* Модалка */
+/* модалка */
+.fullscreen {
+    display: none; /* скрыта по умолчанию */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center; /* центрируем */
+    align-items: center;
+}
+
+/* крестик */
+.fullscreen .close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* картинка внутри модалки */
+#fullImage {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain; /* чтобы полностью влезала */
+    display: block;
+}
+
+
+
+
+
+
+
+.contentImg #b,
+.contentImg #n {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+    height: 338px;
+    width: 20px; /* для удобства клика */
+    z-index: 10;
+}
+
+.contentImg #b {
+    left: 40px; /* слева от блока imaga */
+}
+
+.contentImg #n {
+    right: 20px; /* справа от блока imaga */
+}
+
+.contentImg #b:hover,
+.contentImg #n:hover {
+    background-color: rgba(75, 75, 75, 0.418);
+    border-radius: 5px;
+}
+
+
+#purcashe:hover{
+    background-color: rgb(88, 88, 255);
+    cursor: pointer;
+}
+
+#purcashe{
+    width: auto;
+    height: auto;
+    align-items: center;
+}
+
+
+#fScreen{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+#imgFull{
+    /* display: flex; */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#bClose{
+    position: absolute;
+    right: 50px;
+    top: 10px;
+    /* margin: 10px; */
+}
+
+#bClose:hover{
+    background-color: #a18621;
+    cursor: pointer;
+}
+
+.devHov:hover{
+    background-color: gray;
+    cursor: pointer;
+}
+
+#cardKall{
+    width: 400px;
+    height: 200px;
+
+    background-color: #2C3E50;
+    box-shadow: 0 0 10px #000000;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 0; line-height: 20px;
+
+}
+
+
+span{
+    font-size: 50px;
+    color: #ffd231;
+}
+
+
+#BBack{
+    position: fixed;
+    top: 5px;
+    color: rgb(73, 73, 253);
+    border: none;
+    background: none;
+    padding: 10px;
+}
+
+#BBack:hover{
+    color: rgb(91, 91, 182);
+}
+
+.centere{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#hrr{
+    margin: 0; border: none; border-top: 1px solid rgb(255, 255, 255);
+}
+
+
+
+
+
+
+.text-element {
+    position: fixed;
+    top: 50px;
+    font-size: 30px;
+    color: white;
+    font-family: "Balsamiq Sans", serif;
+    left: 20px;
+    transition: all 0.5s ease;
+    padding: 10px;
+    z-index: 100;
+}
+
+.scrolled .text-element {
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%); /* Только горизонтальное центрирование */
+    background-color: #ffd231;
+    color: black;
+    width: auto;
+    height: auto;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px #ffd231;
+}
+
+.scrolled .text-element:hover {
+    animation: jump 1.2s ease-in-out infinite;
+}
+
+@keyframes jump {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0); /* Сохраняем центрирование по X */
+    }
+    50% {
+        transform: translateX(-50%) translateY(-20px); /* Добавляем прыжок по Y */
+    }
+}

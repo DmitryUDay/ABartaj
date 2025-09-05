@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUGA</title>
+    <link rel="stylesheet" href="protoStyle.css">
+    <script src="server/js/scroller.js"></script>
+</head>
+<body>
+    <a href="project.html"><button id="BBack">&lt;Назад</button></a>
+    <div id="fScreen" onclick="hideImg()">
+        <div id="imgFull"></div>
+        <button onclick="hideImg()" id="bClose">X</button>
+    </div>
+
+
+
+
+    <div class="cont">
+        <img src="server/ava.png" alt="" width="50px" height="50px" style="position: fixed; right: 0px; top: 0px; padding: 5px;">
+        <div id="userData">
+            <h3 align=center>Аккаунт Guest</h3>
+            <div style="background-color: rgb(49, 49, 49); padding: 5px; border-radius: 5px;"><h4>Гуест Гуестович</h4><h4>example@gmail.com</h4></div>
+            <h4>Баланс: 100₽</h4>
+            <h4>Рейтинг: 4,8⭐️</h4>
+            <h4>Подписки: 3</h4>
+            <h4>Подписчики: 1k</h4>
+        </div>
+    </div>
+
+
+
+    <div class="text-element">DUGA</div>
+    <p style="margin-top: 100px; margin-left: 30px;">Все проекты > игры > хоррор > DUGA</p>
+    <br><br><br>
+    <div class="container">
+        <div style="font-size: 10px; line-height: 1; margin-bottom: 0;">
+            <div style="display: flex; display: flex; justify-content: center;">
+                <div class="contentImg">
+                    <div id="imaga" style="margin-right: 20px;" onclick="viewFullIMG()"></div>
+                    <button onclick="bck()" id="b">&lt;</button>
+                    <button onclick="nxt()" id="n">&gt;</button>
+                </div>
+                <div style="background-color: #435e7a; width: 400px; padding-left: 40px; padding-right: 40px; border-radius: 3px;">
+                    <div style="display: flex; justify-content: center; height: 100px;"><img src="server/projectImage/DUGA.png" alt="" width="100px"></div>
+                    <hr style="margin-left: 20px; margin-right: 20px;">
+                    <p style="font-size: 15px;">Проект DUGA - хоррор игра-пародист на вселенную фнаф со своей механикой и сюжетом.</p>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <a href="server\projectImage\DUGA\DUGA_betta1.12.rar" download="DUGA_betta1.12.rar"><button id="purcashe" style="display: flex;">Скачать <img src="server/download.png" alt="" width="30px" height="30px"></button></a>
+                        <button onclick="getPos()"><div id="posFav"></div></button>
+                    </div>
+
+
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <br>
+    <table>
+        <tr>
+            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px;"><h1>★4,7</h1>10тыс.оценок</td>
+            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px;"><h3>Возраст</h3>16+</td>
+            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px"><h3>Разработчик</h3><img src="server/projectImage/develooper.png" alt="" width="50px" style="display: block; margin-left: auto;margin-right: auto;"><a href="defaultSelf.html" style="color: gray;">UDay corporation©</a></td>
+            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px"><h3>Язык</h3><h1>RU</h1>+2 других</td>
+            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px"><h3>Тип</h3>Игра</td>
+            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px"><h3>Версия</h3>1.12</td>
+            <td style="line-height: 0.5; margin-bottom: 0;"><h3>Размер</h3>23,6МБ</td>
+        </tr>
+    </table>
+
+
+    <div class="container2">
+        <div style="line-height: 0.5; margin-bottom: 0;">
+            <h1>Что нового ></h1>
+            <div style="display: flex; gap: 150px; color: gray;">
+                <p>Версия 1.12</p>
+                <p>30.05.2024</p>
+            </div>
+            <div style="width: 300px; margin-bottom: 0; line-height: 1; display: flex;">
+                <h3>Исправленна большая часть баггов. Добавлен транслит на английский во всей игре</h3>
+            </div>
+        </div>
+    
+        <br>
+    
+        <div class="devHov">
+            <hr>
+            <div style="display: flex; margin-left: 10%;line-height: 18px;">
+                <h2 style="color: #ffd231;line-height: 1px;">UDay©</h2>
+                <h2 style="color: rgb(182, 182, 182); margin-left: 80%; line-height: 1px;">></h2>
+            </div>
+            <h2 style="color: rgb(182, 182, 182); margin-left: 10%; line-height: 1px;">Разработчик</h2>
+            <hr>
+        </div>
+    
+        <br>
+    
+    
+        <div style="margin-bottom: 0; line-height: 0.5;">
+            <h2>Рейтинг и отзывы ></h2>
+            <div style="display: flex; align-items: center; margin-bottom: 5px; gap: 20px; font-size: 20px;">
+                <h1 style="font-size: 60px;">4.7</h1>
+                <div>
+                    <div style="display: inline-flex; margin-left: 10px;">
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>★</p>
+                    </div>
+                    <h3 style="margin-top: -5px;">10 тыс. оценок</h3>
+                </div>
+                
+            </div>
+        </div>
+
+        <h3>Отобраны полезные отзывы</h3>
+
+        <div style="display: flex; gap: 30px;">
+            <div id="cardKall">
+                <h2 style="line-height: 20px; margin-bottom: 0;"><b>Хороший ремейк!</b></h2>
+    
+                <div style="display: flex; align-items: center; gap: 10px; line-height: 20px; margin-bottom: 0;">
+                    <div style="display: inline-flex; margin-left: 10px; line-height: 20px; margin-bottom: 0;">
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                    </div>
+                    <p style="font-size: 15px; color: rgb(182, 182, 182); line-height: 20px; margin-bottom: 0;">10 дней назад ● thunderlord</p>
+                </div>
+                <p style="width: 400; height: 50px; display: block; overflow: hidden; text-overflow: ellipsis;">Напугался от души. А так прям реально хорошая пародия</p>
+            </div>
+            <div id="cardKall">
+                <h2 style="line-height: 20px; margin-bottom: 0;"><b>СБуду продолжать играть</b></h2>
+    
+                <div style="display: flex; align-items: center; gap: 10px; line-height: 20px; margin-bottom: 0;">
+                    <div style="display: inline-flex; margin-left: 10px; line-height: 20px; margin-bottom: 0;">
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                    </div>
+                    <p style="font-size: 15px; color: rgb(182, 182, 182); line-height: 20px; margin-bottom: 0;">9 месяцев назад ● redianThruider</p>
+                </div>
+                <p style="width: 400; height: 50px; display: block; overflow: hidden; text-overflow: ellipsis;">👍</p>
+            </div>
+            <div id="cardKall">
+                <h2 style="line-height: 20px; margin-bottom: 0;"><b>Хороший бот</b></h2>
+    
+                <div style="display: flex; align-items: center; gap: 10px; line-height: 20px; margin-bottom: 0;">
+                    <div style="display: inline-flex; margin-left: 10px; line-height: 20px; margin-bottom: 0;">
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                        <p>⭐️</p>
+                    </div>
+                    <p style="font-size: 15px; color: rgb(182, 182, 182); line-height: 20px; margin-bottom: 0;">6 месяцев назад ● StartWonder</p>
+                </div>
+                <p style="width: 400; height: 50px; display: block; overflow: hidden; text-overflow: ellipsis;">Круто, красиво, а главное бесплатно!</p>
+            </div>
+        </div>
+
+        <br>
+
+        <h3 align="center">Коснитесь, чтобы оценить</h3>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <div style="display: flex; gap: 5px; cursor: pointer;">
+                <span id="star1" onclick="cickc(1)">☆</span>
+                <span id="star2" onclick="cickc(2)">☆</span>
+                <span id="star3" onclick="cickc(3)">☆</span>
+                <span id="star4" onclick="cickc(4)">☆</span>
+                <span id="star5" onclick="cickc(5)">☆</span>
+            </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 20px; margin-bottom: 0;">
+            <button style="background-color: rgba(139, 139, 139, 0.658); color: #ffd231; width: 500px;">Написать отзыв</button>
+            <br>
+            <br>
+            <button style="background-color: rgba(139, 139, 139, 0.658); color: #ffd231; width: 500px;">Поддержка устройств</button>
+        </div>
+
+        
+        <!-- <div style="margin-left: auto; margin-right: auto; background-color: #ffd231;">
+            <div style="display: inline-block; text-align: center;">
+                <img src="server/userIcon.png" alt="" width="50px">
+                <h1>Конфиденциальность пользователя</h1>
+            </div>
+                
+
+        </div> -->
+        <br>
+        <br>
+        <div style="background-color: #2C3E50; box-shadow: 0 0 10px #000000; width: 700px; height: auto; margin-right: auto; margin-left: auto; padding: 20px; border-radius: 30px; text-align: center;">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <img src="server/userIcon.png" alt="" width="50px" height="50px" style="margin: 0 auto;">
+                <h1 style="text-align: center; margin-top: 10px;">Связанные с вами данные</h1>
+                <p style="text-align: center; margin-top: 5px;">Просмотрите, какие данные использует или собирает DUGA</p>
+                
+                <div style="margin-top: 20px; width: 100%;">
+                    <div style="display: flex; justify-content: center; gap: 40px;">
+                        <div>
+                            <!-- <div style="display: flex; align-items: center; margin-bottom: 15px;"><img src="server/locatorIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Локация</p></div> -->
+                            <!-- <div style="display: flex; align-items: center; margin-bottom: 15px;"><img src="server/contentIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Контент</p></div> -->
+                            <div style="display: flex; align-items: center; margin-bottom: 15px;"><img src="server/inditificatorIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Идентификация</p></div>
+                            <div style="display: flex; align-items: center;"><img src="server/optionIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Параметры</p></div>
+                        </div>
+        
+                        <div>
+                            <div style="display: flex; align-items: center; margin-bottom: 15px;"><img src="server/networkIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Сеть и интернет</p></div>
+                            <!-- <div style="display: flex; align-items: center; margin-bottom: 15px;"><img src="server/searchIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Поиск</p></div> -->
+                            <!-- <div style="display: flex; align-items: center; margin-bottom: 15px;"><img src="server/lightInfoIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Информация</p></div> -->
+                            <div style="display: flex; align-items: center;"><img src="server/shumadanIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Покупки</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="width: 80%; margin-right: auto; margin-left: auto;text-align: center;">
+            <h1>Информация</h1>
+            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Разработчики</h3><h3 style="float: right; margin-right: 20px;">UDay-game</h3></div>
+            <hr id="hrr">
+            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Категория</h3><h3 style="float: right; margin-right: 20px;">Игры и развлечения</h3></div>
+            <hr id="hrr">
+            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Совместимость с тек. устройством</h3><h3 style="float: right; margin-right: 20px;">Да</h3></div>
+            <hr id="hrr">
+            <div style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleMenuhard()"><h3>Системные требования</h3><h3 style="float: right; margin-right: 20px;">Минимальные</h3></div>
+            <ul id="dropdownHar" style="display:none; list-style:none; padding:0; margin:0;">
+                <h1>Минимальные требования</h1>
+                <li>Дисплей - 1920/700</li>
+                <li>Процессор - i3(1.90GHz)</li>
+                <li>Система - 64Бит</li>
+                <li>О.Память - 1Гб</li>
+                <li>Память - 23,6мб</li>
+              </ul>
+            <hr id="hrr">
+            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Устройства</h3><h3 style="float: right; margin-right: 20px;">mac/linux/windows</h3></div>
+            <hr id="hrr">
+            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Языки</h3><h3 style="float: right; margin-right: 20px;">Русский и еще +2</h3></div>
+            <hr id="hrr">
+            <div style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleMenu()"><h3>Внутренние покупки</h3><h3 style="float: right; margin-right: 20px;" id="dada">Да ▼</h3></div>
+            <ul id="dropdown" style="display:none; list-style:none; padding:0; margin:0;">
+                <h1>Подписки (навсегда)</h1>
+                <li>Мореход плюс - 199₽</li>
+                <li>Мореход про - 299₽</li>
+                <li>Дополнение - 100₽</li>
+              </ul>
+            <hr id="hrr">
+            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Патент</h3><h3 style="float: right; margin-right: 20px;">UDay©</h3></div>
+            <hr id="hrr">
+            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Сертификаты защиты</h3><h3 style="float: right; margin-right: 20px;">Да</h3></div>
+            <hr id="hrr">
+
+            <a  style="display: flex; justify-content: space-between; align-items: center; color: #ffd231;" href="https://example.com" style="color: #ffd231;">Сайт разработчика<img src="server/yandexIcon.png" style="float: right; margin-right: 20px; padding: 10px;" width="30px"></a>
+            <hr id="hrr">
+            <a style="display: flex; justify-content: space-between; align-items: center; color: #ffd231;" href="https://example.com">Политика Конфиденциальность<img src="server/privacyIcon.png" style="float: right; margin-right: 20px; padding: 10px;" width="30px"></a>
+            <hr id="hrr">
+            <a style="display: flex; justify-content: space-between; align-items: center; color: #ffd231;" href="helpModer.html">Сообщить о проблеме<img src="server/warningIcon.png" style="float: right; margin-right: 20px; padding: 10px;" width="30px"></a>
+            <hr id="hrr">
+
+        </div>
+
+
+
+
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="display: flex; justify-content: center; margin-right: 10px; margin-left: 10px;">
+        <div style="display: flex; gap: 10px; align-items: center; align-items: center;">
+            <a href="index.html"><img src="server/ABADark.png" alt="" width="80px"></a>
+            <p style="color: #b4b4b4;">ABartaj - project UDay©</p>
+            <p style="color: #b4b4b4;">Файлы куки</p>
+            <a href="defaultSelf.html" style="color: #b4b4b4;">UDay</a>
+            <p style="color: #b4b4b4;">Безопасность</p>
+            <a href="udayService.html" style="color: #b4b4b4;">Сервисы</a>
+            <a href="maksim.html" style="color: #b4b4b4;">Правила поведения в режиме разработчика</a>
+            <p style="color: #b4b4b4;">Аккаунт</p>
+            <button onclick="bDeveloper()" style="color: #b4b4b4; background: none; border: none; font-size: 15px;">Разработчики</button>
+            <p style="color: #b4b4b4;">Контакт</p>
+        </div>
+    </div>
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    let menuState = 'close'; // переименовали переменную состояния
+    let menuState1 = 'close';
+
+    function toggleMenu() {
+        var menuElement = document.getElementById("dropdown"); // отдельная переменная для элемента
+        if (menuState == 'close') {
+            document.getElementById('dada').textContent = 'Да⯅';
+            menuElement.style.display = "block";
+            menuState = 'open';
+        } else if (menuState == 'open') {
+            document.getElementById('dada').textContent = 'Да⯆';
+            menuElement.style.display = "none";
+            menuState = 'close';
+        }
+    }
+    function toggleMenuhard() {
+        var menuElement = document.getElementById("dropdownHar"); // отдельная переменная для элемента
+        if (menuState1 == 'close') {
+            menuElement.style.display = "block";
+            menuState1 = 'open';
+        } else if (menuState1 == 'open') {
+            menuElement.style.display = "none";
+            menuState1 = 'close';
+        }
+    }
+
+
+
+    document.getElementById("posFav").innerText = '🤍Отслеживать'
+    var pos = 'False';
+    let ptch = 'server/projectImage/DUGA/'
+    const imgPatch = [`${ptch}1.png`,`${ptch}2.png`, `${ptch}3.png`]
+    ptc = 0
+
+    function hideImg(){
+        document.getElementById('fScreen').style.display = 'none';
+    }
+
+    function viewFullIMG(){
+        const SW = screen.width;
+        const SH = screen.height;
+
+        const element = document.getElementById("fScreen");
+        element.style.display = "block";
+
+        var container = document.getElementById("imgFull");
+        container.innerHTML = "";
+
+        chitalovo = w/h;
+        chi1 = SH*Math.round(chitalovo)
+
+        var newImg = document.createElement("img");
+        newImg.src = imgPatch[ptc];
+        newImg.style.width = String(chi1);
+        newImg.style.height = String(SH);
+        container.appendChild(newImg);
+    }
+
+    function getPos(){
+        if (pos == 'False'){
+            pos = 'True';
+            document.getElementById("posFav").innerText = '❤ Отмена';
+            alert('Уведомление\n\nТеперь события МореходРУ.Создать объект будут приходить в push-уведомлениях.')
+        }else{
+            pos = 'False';
+            document.getElementById("posFav").innerText = '🤍Отслеживать';
+        }
+
+    }
+
+    let w = 450;
+    let h = 338;
+
+    chetN = w-25;
+
+    document.getElementById('n').style.left = `${chetN}px`;
+    document.getElementById('b').style.left = '0px';
+
+    // var container = document.getElementById("imaga");
+    // var newImg = document.createElement("img");
+    // newImg.src = `${ptch}1.png`;
+    // newImg.width = w;
+    // newImg.height = h;
+    // container.appendChild(newImg);
+    setimg(imgPatch[0]);
+    
+    function setimg(ptch){
+        var container = document.getElementById("imaga");
+        container.innerHTML = ""; // Очищаем контейнер
+
+        var newImg = document.createElement("img");
+        newImg.src = ptch;
+        
+        // Устанавливаем фиксированные размеры контейнера
+        container.style.width = w + "px";
+        container.style.height = h + "px";
+        container.style.overflow = "hidden"; // Обрезаем всё, что выходит за границы
+        
+        // Настройки изображения
+        newImg.style.width = "100%"; // Заполняет ширину контейнера
+        newImg.style.height = "100%"; // Заполняет высоту контейнера
+        newImg.style.objectFit = "cover"; // Обрезает изображение, сохраняя пропорции
+        
+        container.appendChild(newImg);
+    }
+
+    function nxt(){
+        if (ptc == 2){
+            ptc = 0
+            
+        }else{
+            ptc = ptc+1
+        }
+        setimg(imgPatch[ptc])
+    }
+
+    function bck(){
+        if (ptc == 0){
+            ptc = 2
+            
+        }else{
+            ptc = ptc-1
+        }
+        setimg(imgPatch[ptc])
+    }
+
+    function cickc(indi){
+        const element1 = document.getElementById('star1');
+        const element2 = document.getElementById('star2');
+        const element3 = document.getElementById('star3');
+        const element4 = document.getElementById('star4');
+        const element5 = document.getElementById('star5');
+        
+        function defo(){
+            element1.textContent = '☆';
+            element2.textContent = '☆';
+            element3.textContent = '☆';
+            element4.textContent = '☆';
+            element5.textContent = '☆';
+        }
+
+        if(indi == 1){
+            defo();
+            element1.textContent = '★';
+        }else if(indi == 2){
+            defo();
+            element1.textContent = '★';
+            element2.textContent = '★';
+        }else if(indi == 3){
+            defo();
+            element1.textContent = '★';
+            element2.textContent = '★';
+            element3.textContent = '★';
+        }else if(indi == 4){
+            defo();
+            element1.textContent = '★';
+            element2.textContent = '★';
+            element3.textContent = '★';
+            element4.textContent = '★';
+        }else if(indi == 5){
+            defo();
+            element1.textContent = '★';
+            element2.textContent = '★';
+            element3.textContent = '★';
+            element4.textContent = '★';
+            element5.textContent = '★';
+        }
+    }
+
+
+</script>
+
+</html>

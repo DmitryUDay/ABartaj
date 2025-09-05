@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Comfortaa:wght@300..700&display=swap');
+body{
+    background-color: #2C3E50;
+    font-family: "Balsamiq Sans", serif;
+}
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#blacki{
+    width: 90%;
+    height: auto;
+    padding: 10px;
+    border: 4px solid black;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 5px;
+    background-color: white;
+}
+
+#controlP{
+    display: flex;
+    flex-direction: column; /* Элементы будут расположены вертикально */
+    align-items: center;    /* Центрируем контент по горизонтали */
+    text-decoration: none;
+    color: black;
+}
+
+
+#goto{
+    font-size: 30px;
+    border: none;
+    border-radius: 30px;
+    background-color: #1faee9;
+    color: white;
+    padding: 10px;
+    display: inline-flex;
+    
+}

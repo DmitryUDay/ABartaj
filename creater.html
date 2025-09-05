@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новый проект</title>
+    <link rel="stylesheet" href="cr.css">
+</head>
+<body>
+
+
+    
+    
+    <div style="position: sticky; top: 0; z-index: 1000; display: flex; width: 100%; height: 50px; background-color: #ffd231; padding: 5px;">
+        <a href="index.html"><img src="ABA.png" width="120px" alt="" style="padding-left: 10px; position: absolute;"></a>
+        <!-- <h1 style="position: absolute; left: 35%; color: black;">Добавление нового проекта</h1> -->
+        <h1 style="margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto; color: black;">Добавление нового проекта</h1>
+    </div>
+
+    <div id="alertSuces">
+        <h1 align="center" style="color: rgb(255, 166, 0);">На проверке</h1>
+        <div style="margin-right: 100px; margin-left: 100px;">
+            <p id="namaPro" style="font-size: 25px;"></p>
+        </div>
+
+        <a href="index.html"><button class="closeBtn">Закрыть</button></a>
+    </div>
+    
+    <br>
+    
+    <div style="margin-right: 250px; margin-left: 250px;">
+        <h1>Название проекта</h1>
+        <p>Напишите ниже название вашего приложения как его будут видеть пользователи</p>
+        <br>
+        <hr>
+        <br>
+        <input type="text" id="proro" name="name" required class="marga" style="width: 300px; height: 5px;">
+        <br>
+
+        <div style="display: flex; align-items: center;">
+            <div>
+                <p>Разработчик/студия</p>
+                <input type="text" id="studio" style="width: 250px; height: 40px; border-radius: 5px;" class="proTy">
+            </div>
+            <h1 style="margin-left: 20px; margin-top: 20px;">/</h1>
+            <div style="margin-left: 20px;">
+                <p>Версия проекта</p>
+                <input type="text" id="versus" style="width: 250px; height: 40px; border-radius: 5px;" class="proTy">
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div style="display: flex; align-items: center;">
+            <h1>Описание</h1>
+            <p style="margin-left: 5px; color: #B6B6B6;">(не обязательно)</p>
+        </div>
+        <input type="text" id="project-name" name="name" required class="marga" style="display: block; border-radius: 5px; height: 3px;">
+
+        <br>
+        <br>
+        <hr>
+        <br>
+
+        <h1>Укажите тип</h1>
+        <p>Укажите тип вашей публикации для точного описания и помощи умному фильтру</p>
+        <select id="proType" name="type" required style="width: 300px;" class="marga">
+            <option value="">...</option>
+            <option value="game">Игра</option>
+            <option value="game">ПО</option>
+            <option value="game">Телеграм сервис</option>
+            <option value="game">Прошивка</option>
+            <option value="game">ОС</option>
+            <option value="other">Веб приложения или сайты</option>
+            <option value="other">Базы данных</option>
+            <option value="other">Машинное обучение</option>
+            <option value="other">Исполняемые файлы</option>
+            <option value="other">Плагины или дополнения</option>
+            <option value="other">Другое</option>
+        </select>
+
+        <br>
+        <br>
+        <br>
+
+
+        <div style="display: flex;">
+            <input type="checkbox" style="width: 50px; height: 50px;">
+            <div style="margin-left: 20px;">
+                <h2>Добавить README</h2>
+                <p>Создать ридми файл. Его можно будет изменить только после успешной публикации проекта</p>
+            </div>
+        </div>
+        
+        <br>
+        <br>
+
+        <h2>Добавьте файл лицензии</h2>
+        <p>Загрузите файл с лицензией для права использования продукта</p>
+        <br>
+
+        <input type="file" accept=".txt,.doc,.docx" style="display:none;" id="fileInput">
+        <div style="display: flex; align-items: center;">
+            <button onclick="document.getElementById('fileInput').click();" id="loadLicenze"><img src="server/download.png" alt="" style="margin-right: 10px;"> Выбрать лицензию</button>
+            <p id="filename" style="margin-left: 10px;"></p>
+        </div>
+
+        <br>
+        <br>
+
+        <h2>Загрузить проект</h2>
+        <p>Запакуйте ваше творение в любой формат архивов и нажмите кнопку опубликовать</p>
+        <br>
+
+        <input type="file" accept=".rar,.zip,.7z,.tar" style="display:none;" id="projInputFile">
+        <div style="display: flex; align-items: center;">
+            <button onclick="document.getElementById('projInputFile').click();" id="loadLicenze"><img src="server/loadArchive.png" alt="" style="margin-right: 10px;">Загрузить архив</button>
+            <p id="projName" style="margin-left: 10px;"></p>
+        </div>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <p style="color: #a4a4a4; display: flex; align-items: center;"><img src="server/info.png" alt="" width="30px">При обнаружении нарушений мы в полном праве заморозить ваш аккаунт навсегда</p>
+        <br>
+        <hr>
+        <br>
+        <button onclick="sender()" style="float: right; font-size: 25px; padding: 3px; border: none; color: black; background-color: #ffd231; border-radius: 5px;">Отправить на проверку</button>
+
+        <br>
+        <br>
+    </div>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <div style="display: flex; gap: 20px; align-items: center;">
+            <a href="index.html"><img src="server/ABADark.png" alt="" width="80px"></a>
+            <p style="color: #b4b4b4;">ABartaj - project UDay©</p>
+            <p style="color: #b4b4b4; cursor: pointer;" onclick="showCook()">Файлы куки</p>
+            <a href="defaultSelf.html" style="color: #b4b4b4; text-decoration: none;">UDay</a>
+            <p style="color: #b4b4b4;">Безопасность</p>
+            <a href="udayService.html" style="color: #b4b4b4; text-decoration: none;">Сервисы</a>
+            <a href="maksim.html" style="color: #b4b4b4; text-decoration: none;">Правила поведения в режиме разработчика</a>
+            <a href="accDash.html" style="color: #b4b4b4; text-decoration: none;">Аккаунт</a>
+            <p style="color: #b4b4b4;">Контакт</p>
+        </div>
+    </div>
+        
+    
+
+
+    
+
+    <script>
+
+    function sender(){
+        document.getElementById('alertSuces').style.display = 'block';
+        // let outpuut = document.getElementById("namaPro").inputElement.value;
+
+        const outpuut = document.getElementById("namaPro").value;
+        const develop = document.getElementById("studio").value;
+        const versia = document.getElementById("versus").value;
+
+
+
+
+        
+        // document.getElementById("namaPro").innerHTML = ```Мы отправили на проверку ${outpuut}. Вы получите пуш уведомление после конечной проверки```;
+        document.getElementById("namaPro").innerHTML = "Мы отправили на проверку '" + outpuut + "' от разработчика/студии " + develop + " . Вы получите пуш уведомление после конечной проверки. Версия " + versia;
+    }
+    document.getElementById('filename').style.display = 'none';
+    document.getElementById('projName').style.display = 'none';
+
+    document.getElementById("fileInput").onchange = () => {
+        let filename = document.getElementById("fileInput").value.split("\\").pop();
+        document.getElementById('filename').style.display = 'block';
+        document.getElementById("filename").innerHTML = filename ? 'Файл ' + filename + ' используется как документ лицензии': '';
+    };
+
+
+    document.getElementById("projInputFile").onchange = () => {
+        let filename = document.getElementById("projInputFile").value.split("\\").pop();
+        document.getElementById('projName').style.display = 'block';
+        document.getElementById("projName").innerHTML = filename ? 'Архив ' + filename + ' будет распакован и проверен модерацией UDay': '';
+    };
+
+
+
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Comfortaa:wght@300..700&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Balsamiq Sans", serif;
+    background-color: #2C3E50;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+button{
+    font-family: "Balsamiq Sans", serif;
+}
+
+a[name],
+[id] {
+    scroll-margin-top: 100px;
+}
+
+
+.LN{
+    background-color: #7331ff;
+    width: 300px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding-left: 10px;
+}
+
+.LN:hover{
+    color: #7331ff;
+    background-color: #ffd231;
+}
+
+.LN a{
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+}
+
+h1{
+    color: white;
+}
+
+
+.act{
+    color: rgb(172, 172, 172);
+}
+
+#cont{
+    display: flex;
+    color: red;
+}
+
+.contNavi{
+    position: fixed;
+    float: left;
+}
+
+#gBackABA{
+    padding-left: 10px;
+}
+
+
+
+.naviBr{
+    display: flex;
+    position: sticky;
+    align-items: center;
+    top: 0; /* важно задать смещение от верха */
+    z-index: 1000; /* убедитесь, что меню находится поверх другого содержимого */
+    background-color: #ffd231;
+    width: 100%;
+    height: 50px;
+    color: black;
+    padding-top: 20px;
+    padding-bottom: 20px;  
+
+}
+
+.blockData{
+    display: flex;
+    color: black;
+    background-color: #ffd231;
+    border-radius: 50px;
+    padding-left: 20px;
+}
+
+.photoUser{
+    background-color: #ffd231;
+    padding: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+}
+
+.cardH{
+    width: 50%;
+    height: auto;
+    background-color: #ffd231;
+    padding-left: 20px;
+    border-radius: 20px;
+}
+
+.cardDevice{
+    background-color: #7331ff;
+    color: white;
+    width: 300px;
+    border-radius: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+.GETED{
+    border: none;
+    font-size: 20px;
+    background-color: #7331ff;
+    color: white;
+
+    padding: 10px;
+    border-radius: 20px;
+    display: block; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th,td{
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ffffff;
+    color: white;
+    font-size: 15px;
+}
+
+th{
+    font-size: 20px;
+}
