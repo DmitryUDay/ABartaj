@@ -16,13 +16,21 @@ h1,h2,h3,h4,h5,h6,p,ul{
     color: white;
 }
 
-button{
-    color: black;
+
+
+.buttonSas {
+    font-size: 15px;
     background-color: #ffd231;
-    border: none;
-    font-size: 30px;
-    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.buttonSas:hover {
     cursor: pointer;
+    color: #fff;
+    background-color: #7331ff;
 }
 
 
@@ -75,48 +83,49 @@ td h3{
     display: none;
 }
 
+
 .contentImg {
-    position: relative;
+    position: relative; /* важно для абсолютного позиционирования кнопок */
     display: inline-block;
 }
 
-.contentImg #imaga {
-    display: inline-block;
-    margin: 0 40px;
-    width: 450px;
+#imaga {
+    width: 470px;
     height: 338px;
     overflow: hidden;
+    background-color: #000;
     position: relative;
 }
 
-.contentImg #imaga img {
+#imaga img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    cursor: pointer;
 }
 
-/* Модальное окно */
-.contentImg {
-    position: relative;
-    display: inline-block;
+.loader {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #ffd231;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
 }
 
-.contentImg #imaga {
-    display: inline-block;
-    margin: 0 40px;
-    width: 450px;
-    height: 338px;
-    overflow: hidden;
-    position: relative;
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-.contentImg #imaga img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    cursor: pointer;
-}
 
 /* Модалка */
 /* модалка */
@@ -157,29 +166,42 @@ td h3{
 
 
 
-
+/* Кнопки навигации */
 .contentImg #b,
 .contentImg #n {
-    position: absolute;
+    position: absolute; /* поверх контейнера */
     top: 50%;
     transform: translateY(-50%);
-    background-color: transparent;
+    background-color: rgba(0,0,0,0.3);
     border: none;
     color: white;
-    font-size: 2em;
+    font-size: 3em; /* увеличил для ПК */
     cursor: pointer;
-    height: 338px;
-    width: 20px; /* для удобства клика */
     z-index: 10;
+    height: 100%; /* чтобы удобно было кликать */
+    width: 60px;  /* ширина кнопки */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+.contentImg #b:hover,
+.contentImg #n:hover {
+    background-color: rgba(75, 75, 75, 0.7);
 }
 
 .contentImg #b {
-    left: 40px; /* слева от блока imaga */
+    left: 0;
 }
 
 .contentImg #n {
-    right: 20px; /* справа от блока imaga */
+    right: 0;
 }
+
+
+
 
 .contentImg #b:hover,
 .contentImg #n:hover {
@@ -260,6 +282,7 @@ span{
     border: none;
     background: none;
     padding: 10px;
+    z-index: 1000;
 }
 
 #BBack:hover{
@@ -319,4 +342,31 @@ span{
     50% {
         transform: translateX(-50%) translateY(-20px); /* Добавляем прыжок по Y */
     }
+}
+
+
+table{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+
+/* На ПК (от 768px и выше) увеличиваем */
+@media (min-width: 768px) {
+    .buttonSas {
+        font-size: 18px;
+        padding: 14px 22px;
+    }
+}
+
+/* На очень больших экранах (от 1200px) ещё больше */
+@media (min-width: 1200px) {
+    .buttonSas {
+        font-size: 20px;
+        padding: 16px 28px;
+    }
+    #imaga{
+        width: 400px;
+    }
+    
 }

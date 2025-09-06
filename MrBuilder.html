@@ -40,8 +40,8 @@
     </div>
 
     <div class="container">
-        <div style="font-size: 10px; line-height: 1; margin-bottom: 0;">
-            <div style="display: flex; display: flex; justify-content: center;">
+        <div style="font-size: 10px; margin-bottom: 0;">
+            <div style="display: flex; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
                 <!-- твой блок с картинкой -->
                 <div class="contentImg">
                     <div id="imaga" onclick="viewFullIMG()"></div>
@@ -61,8 +61,8 @@
                     <p style="font-size: 15px;" id="desys">ExampleDescription</p>
                     
                     <div style="display: flex; justify-content: space-between;">
-                        <a target="_blank" id="contentButton"><button id="buttonType"></button></a>
-                        <button onclick="getPos()"><div id="posFav"></div></button>
+                        <a target="_blank" id="contentButton" style="text-decoration: none; color: black;"><div id="buttonType" class="buttonSas"></div></a>
+                        <div id="posFav" class="buttonSas" onclick="getPos()"></div>
                     </div>
 
 
@@ -74,7 +74,7 @@
     <br>
     <table>
         <tr>
-            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px;"><h3 id="kalivanRaiting"></h3><h1 id="starKalivan"></h1></td>
+            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px;"><h1 id="starKalivan"></h1><h3 id="kalivanRaiting" style="color: gray;"></h3></td>
             <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px;"><h3>Возраст</h3><span id="ageKalivan" style="color: gray; font-size: 20px;"></span></td>
             <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px"><h3>Разработчик</h3><img src="server/projectImage/develooper.png" alt="" width="50px" style="display: block; margin-left: auto;margin-right: auto;"><a id="selfDeveloop"><p id="developer"  style="color: gray;" ></p></a></td>
             <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px"><h3>Язык</h3><h1 id="defoultLanguage"></h1><p id="dopingLanguage" style="color: gray; font-size: 20px;"></p></td>
@@ -86,11 +86,10 @@
 
     <br>
     <div class="container2">
-        <hr>
         <br>
         <div style="line-height: 0.5; margin-bottom: 0;">
             <h1>Что нового ></h1>
-            <div style="display: flex; gap: 150px; color: gray;">
+            <div style="display: flex; gap: 40px; color: gray;">
                 <p id="getVersionAppDublicate1">Версия не указана</p>
                 <p id="dateUpdate">Загрузка</p>
             </div>
@@ -101,15 +100,17 @@
     
         <br>
     
-        <div class="devHov">
-            <hr>
-            <div style="display: flex; justify-content: space-between;">
-                <h2 style="color: #ffd231; margin-left: 10%" id="developerDublicate1"></h2>
-                <h2 style="color: rgb(182, 182, 182); margin-right: 10%;">></h2>
+        <a id="developerDublicate3">
+            <div class="devHov">
+                <hr>
+                <div style="display: flex; justify-content: space-between;">
+                    <h2 style="color: #ffd231; margin-left: 10%" id="developerDublicate1"></h2>
+                    <h2 style="color: rgb(182, 182, 182); margin-right: 10%;">></h2>
+                </div>
+                <h2 style="color: rgb(182, 182, 182); margin-left: 10%; line-height: 1px;">Разработчик</h2>
+                <hr>
             </div>
-            <h2 style="color: rgb(182, 182, 182); margin-left: 10%; line-height: 1px;">Разработчик</h2>
-            <hr>
-        </div>
+        </a>
     
         <br>
     
@@ -363,7 +364,7 @@ fetch("app.json")
             document.getElementById("getVersionApp").textContent = app.version;
             document.getElementById("getVersionAppDublicate1").textContent = `Версия: ${app.version}`;
             document.getElementById("sizess").textContent = app.size;
-            document.getElementById("dateUpdate").textContent = app.updated;
+            document.getElementById("dateUpdate").textContent = `Последнее обновление ${app.updated}`;
             document.getElementById("contentUpdates").textContent = app.updateText;
             document.getElementById("desys").textContent = app.description;
             document.getElementById("category").textContent = app.kategory;
@@ -373,6 +374,7 @@ fetch("app.json")
             document.getElementById("lana").textContent = `${app.language} ${app.languageKalivan}`;
             document.getElementById("selfDeveloop").href = app.siteDeveloper;
             document.getElementById("selfDeveloopDublicate1").href = app.siteDeveloper;
+            document.getElementById("developerDublicate3").href = app.siteDeveloper;
             document.getElementById("contentButton").href = app.content;
 
             // показываем первый скриншот
@@ -411,16 +413,30 @@ function hideImg(){
 
 function setimg(src){
     const container = document.getElementById("imaga");
-    container.innerHTML = "";
+    container.innerHTML = ""; // очищаем контейнер
 
+    // Создаем спиннер
+    const loader = document.createElement("div");
+    loader.classList.add("loader");
+    container.appendChild(loader);
+
+    // Создаем изображение
     const newImg = document.createElement("img");
     newImg.src = src;
     newImg.alt = "Превью";
-    newImg.style.width = "100%";
-    newImg.style.height = "100%";
-    newImg.style.objectFit = "cover"; // обрезаем, а не растягиваем
+    newImg.style.opacity = "0"; // прячем пока не загрузится
+    newImg.style.transition = "opacity 0.5s ease";
+
+    // Когда изображение загрузилось
+    newImg.onload = () => {
+        loader.remove(); // убираем спиннер
+        newImg.style.opacity = "1"; // показываем картинку
+    }
+
     container.appendChild(newImg);
 }
+
+
 
 function nxt() {
     ptc = (ptc + 1) % imgPatch.length;

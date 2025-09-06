@@ -28,7 +28,8 @@
     "patent":"UDay©",
     "sertificate":"Да",
     "siteDeveloper":"https://dmitryuday.github.io/UDay/",
-    "policy":"https://example.com"
+    "policy":"https://example.com",
+    "alternatives": "мореход ру. сдать объект, мореход сдать, мореход, мареход мариход"
   },
 
   {
@@ -60,7 +61,8 @@
     "patent":"UDay©",
     "sertificate":"Да",
     "siteDeveloper":"https://dmitryuday.github.io/UDay/",
-    "policy":"https://example.com"
+    "policy":"https://example.com",
+    "alternatives": "рудольф, рудик, аи, AI, рудольфик, rudolphu, rudolph,adolph"
   },
   {
     "name":"DUGA",
@@ -91,7 +93,40 @@
     "patent":"UDay©",
     "sertificate":"Да",
     "siteDeveloper":"https://dmitryuday.github.io/UDay/",
-    "policy":"https://example.com"
+    "policy":"https://example.com",
+    "alternatives": "duga, DUGA, дуга, ДУГА"
+  },
+  {
+    "name":"RuGO",
+    "patching":"Все проекты > софт > телеграм приложения и боты > RUdolphu",
+    "description":"Прсотой заработок на простых заданиях. Подписывайтесь на каналы, приглашайте друзей, активируйте промокоды и получайте виртульную валюту UCoin, в последующем которую вы сможете вывести как на банковскую карту так и в виде звезд телеграм",
+    "descriptionMini":"Зарабатывайте на заданиях в телеграм",
+    "icon":"https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/RuGOIcon.jpg",
+    "img1":"https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/rugo1.png",
+    "img2":"https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/rugo2.png",
+    "img3":"https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/rugo3.png",
+    "buttonType":"Чат✈",
+    "otziv":"500",
+    "star":"4,7",
+    "content":"https://t.me/ZRU_GO_bot",
+    "age":"12+",
+    "developer":"UDay corporation©",
+    "language":"RU",
+    "languageKalivan":"+1 другой",
+    "types":"Чат бот",
+    "version":"4.1",
+    "size":"Онлайн",
+    "updated":"30.07.2025",
+    "updateText":"Добавлена функция подписки, добавки платежных систем и отключения уведомлений",
+    "datasSecurity":"location, internet, content, search, inditifacator, info, options, buy",
+    "kategory":"Бизнес, заработок",
+    "deviceTy":"Все устройства с Telegram",
+    "subsi":"Да",
+    "patent":"UDay©",
+    "sertificate":"Да",
+    "siteDeveloper":"https://dmitryuday.github.io/UDay/",
+    "policy":"https://clck.ru/3NNhtC",
+    "alternatives": "руго,rugo"
   }
 
 

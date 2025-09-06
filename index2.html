@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABartaj</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stKUKA.css">
+    <!-- <script src="server/js/sendToServerSearch.js"></script> -->
+</head>
+<body>
+    <div class="homebrew">
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <div class="menu-btn" id="menu-open">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <a href="index2.html"><h1>ABartaj</h1></a>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <div style="display: flex; gap: 20px;">
+                <a href="creater.html"><div class="btnNAVI">+</div></a>
+                <a href="#"><div class="btnNAVI"><img src="https://cdn-icons-png.flaticon.com/512/1827/1827347.png" alt="" width="20px"></div></a>
+                <a href="#"><div class="btnNAVI"><img src="https://cdn-icons-png.flaticon.com/512/25/25333.png" alt="" width="20px"></div></a>
+
+            </div>        
+            
+            
+            <div class="client">
+                <img src="server/ava.png" alt="" width="50px" height="50px">
+                <h3>Гость</h3>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <nav class="side-menu" id="side-menu">
+        <!-- Кнопка-крестик -->
+        <div class="closeMenu" id="menu-close">
+            ✕
+        </div>
+        <br>
+        <ul>
+            <li><a href="index2.html" class="underline-hover">Домашняя стриица</a></li>
+            <li><a href="project.html" class="underline-hover">Проекты</a></li>
+            <li><a href="#" class="underline-hover">Недавние действия</a></li>
+            <li><a href="#" class="underline-hover">Обсуждения</a></li>
+            <hr>
+            <li><a href="#" class="underline-hover">Ваши репозитории</a></li>
+            <li><a href="#" class="underline-hover">Подписки</a></li>
+            <li><a href="#" class="underline-hover">Моя библиотека</a></li>
+
+        </ul>
+    </nav>
+    <div style="height: 60px; padding: 10px;"></div>
+
+    <br>
+    <br>
+
+    <h2 style="color: white;" align="center">Поиск проектов</h2>
+    <div class="search-wrapper" style="position: relative; max-width: 500px; margin: 0 auto;">
+        <input type="text" id="searchInput" enterkeyhint="search">
+        <div id="searchResults"></div>
+    </div>
+
+
+    <div class="havka">
+        <h1 style="width: 300px;" align="center">Получите статус разработчик в ABartaj прямо сейчас!</h1>
+    </div>
+    <br>
+    <div class="abaHaba">
+        <h2>Что такое ABartaj</h2>
+        <p style="color: rgb(210, 210, 210);">ABartaj — это хранилище инди-проектов и открытых исходников, где разработчики делятся своими играми, приложениями и экспериментальными идеями. Здесь можно найти полностью бесплатные и безопасные проекты без вирусов, изучать исходный код и вдохновляться чужими решениями.</p>
+    </div>
+
+    <br>
+    <hr>
+    <br>
+    <h1 style="color: white;">Все проекты</h1>
+
+
+    <div class="projects-wrapper">
+        <div id="projectsContainer" class="projects-grid"></div>
+        <button id="loadMoreBtn" style="display:none;">Показать ещё</button>
+    </div>
+
+
+
+
+
+
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+    // --- Меню ---
+    const openBtn = document.getElementById('menu-open');
+    const closeBtn = document.getElementById('menu-close');
+    const sideMenu = document.getElementById('side-menu');
+
+    if (openBtn && closeBtn && sideMenu) {
+        openBtn.addEventListener('click', () => {
+            sideMenu.classList.add('active');
+        });
+        closeBtn.addEventListener('click', () => {
+            sideMenu.classList.remove('active');
+        });
+    }
+
+    // --- Подсказки с эффектом печати ---
+    const searchInput = document.getElementById("searchInput");
+    if (!searchInput) return;
+
+    const phrases = [
+        "Что будем искать?",
+        "Преокт Дуга",
+        "Мореход",
+        "Бот рудольф",
+        "Аккаунт UCloud",
+        "Мои подписки",
+        "Репозиторий UDay",
+        "Сайты"
+    ];
+    let index = 0;
+    let charIndex = 0;
+    let typingSpeed = 100;
+    let delayBetweenPhrases = 1500;
+
+    function typePhrase() {
+        const currentPhrase = phrases[index];
+        if (!searchInput.value) searchInput.placeholder = currentPhrase.substring(0, charIndex);
+        charIndex++;
+        if (charIndex <= currentPhrase.length) {
+            setTimeout(typePhrase, typingSpeed);
+        } else {
+            setTimeout(erasePhrase, delayBetweenPhrases);
+        }
+    }
+    function erasePhrase() {
+        const currentPhrase = phrases[index];
+        charIndex--;
+        if (!searchInput.value) searchInput.placeholder = currentPhrase.substring(0, charIndex);
+        if (charIndex > 0) {
+            setTimeout(erasePhrase, typingSpeed / 2);
+        } else {
+            index = (index + 1) % phrases.length;
+            setTimeout(typePhrase, typingSpeed);
+        }
+    }
+    typePhrase();
+
+    // --- Подгрузка карточек ---
+    let allApps = [];
+let visibleCount = 6;
+const increment = 10;
+
+const container = document.getElementById("projectsContainer");
+const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+// Загружаем JSON
+fetch("app.json")
+  .then(res => res.json())
+  .then(data => {
+    allApps = data;
+    renderCards();
+  });
+
+// Функция для отображения карточек
+function renderCards() {
+    container.innerHTML = "";
+    const appsToShow = allApps.slice(0, visibleCount);
+
+    appsToShow.forEach(app => {
+        const card = document.createElement("div");
+        card.className = "project-card";
+        card.innerHTML = `
+            <a href="MrBuilder.html?name=${app.name}">
+                <img src="${app.icon}" alt="${app.name}" style="">
+                <h3>${app.name}</h3>
+                <p>${app.descriptionMini}</p>
+                <div class="project-info">
+                    <span>${app.developer}</span>
+                    <span>${app.age}</span>
+                    <span>⭐ ${app.star}</span>
+                </div>
+            </a>
+        `;
+        container.appendChild(card);
+    });
+
+    // Проверяем нужно ли показывать кнопку
+    if (visibleCount < allApps.length) {
+        loadMoreBtn.style.display = "block";
+    } else {
+        loadMoreBtn.style.display = "none";
+    }
+}
+
+// Обработчик кнопки "Показать ещё"
+loadMoreBtn.addEventListener("click", () => {
+    visibleCount += increment;
+    renderCards();
+});
+
+    // --- Поиск ---
+    const searchResultsContainer = document.getElementById("searchResults");
+
+searchInput.addEventListener("input", () => {
+    const query = searchInput.value.trim().toLowerCase();
+    searchResultsContainer.innerHTML = "";
+
+    if (!query) {
+        searchResultsContainer.style.display = "none";
+        return;
+    }
+
+    // Фильтруем проекты с учетом alternatives
+    const matchedApps = allApps.filter(app => {
+        const options = app.alternatives
+            ? app.alternatives.split(",").map(s => s.trim().toLowerCase())
+            : [];
+        options.push(app.name.toLowerCase());
+        return options.some(opt => opt.includes(query));
+    });
+
+    const limit = 4;
+
+    if (matchedApps.length === 0) {
+        searchResultsContainer.innerHTML = `<p style="color:black;">Не нашлось подходящих результатов</p>`;
+    } else {
+        matchedApps.slice(0, limit).forEach(app => {
+            const resultItem = document.createElement("div");
+            resultItem.className = "search-result-item";
+
+            resultItem.innerHTML = `
+                <div class="result-inner">
+                    <img src="${app.icon}" alt="${app.name}" class="result-icon">
+                    <span class="result-text">${app.name}</span>
+                </div>
+            `;
+
+            resultItem.addEventListener("click", () => {
+                window.location.href = `MrBuilder.html?name=${encodeURIComponent(app.name)}`;
+            });
+
+            searchResultsContainer.appendChild(resultItem);
+        });
+
+        if (matchedApps.length > limit) {
+            const remaining = matchedApps.length - limit;
+            const showMoreBtn = document.createElement("button");
+            showMoreBtn.textContent = `Показать ещё +${remaining}`;
+            showMoreBtn.addEventListener("click", () => {
+                searchResultsContainer.innerHTML = "";
+                matchedApps.forEach(app => {
+                    const resultItem = document.createElement("div");
+                    resultItem.className = "search-result-item";
+
+                    resultItem.innerHTML = `
+                        <div class="result-inner">
+                            <img src="${app.icon}" alt="${app.name}" class="result-icon">
+                            <span class="result-text">${app.name}</span>
+                        </div>
+                    `;
+
+                    resultItem.addEventListener("click", () => {
+                        window.location.href = `MrBuilder.html?name=${encodeURIComponent(app.name)}`;
+                    });
+
+                    searchResultsContainer.appendChild(resultItem);
+                });
+            });
+            searchResultsContainer.appendChild(showMoreBtn);
+        }
+    }
+
+    searchResultsContainer.style.display = "block";
+});
+
+});
+
+    </script>
+
+
+
+
+
+
+    
+</body>
+</html>
