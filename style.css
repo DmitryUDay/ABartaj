@@ -375,3 +375,84 @@ div > #searchInput {
 #loadMoreBtn:hover {
     background-color: #333;
 }
+
+
+.top-developers {
+    text-align: center;
+    background-color: #ffd231;
+    border-radius: 20px;
+    padding: 20px;
+    color: rgb(0, 0, 0);
+}
+
+.top-developers p {
+    color: white;
+}
+.cards-scroll {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* горизонтальный скролл */
+    padding-bottom: 10px; /* чтобы не обрезался контент на скролле */
+    -webkit-overflow-scrolling: touch; /* плавная прокрутка на iOS */
+    scrollbar-width: none; /* Firefox */
+}
+
+.cards-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+
+
+
+
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* перенос карточек на новую строку */
+}
+
+.card {
+    flex: 0 0 150px; /* ширина карточки */
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    color: black;
+    position: relative;
+}
+
+.card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px 0;
+}
+
+.card .place {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    background-color: #fff;
+    color: black;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Адаптив для телефонов */
+@media (max-width: 600px) {
+    .cards {
+        gap: 10px;
+        justify-content: center;
+    }
+    .card {
+        flex: 0 0 45%; /* примерно две карточки в ряд */
+        margin-bottom: 15px;
+    }
+}

@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="contents"></title>
     <link rel="stylesheet" href="protoStyle.css">
-    <script src="server/js/scroller.js"></script>
+    <script src="server/js/imager.js"></script>
 </head>
 <body>
-    <a href="project.html"><button id="BBack">&lt;Назад</button></a>
+    <button id="BBack" onclick="goBack()" style="cursor: pointer;">&lt;Назад</button>
 
     <div id="fScreen" onclick="hideImg()">
         <div id="imgFull"></div>
@@ -44,15 +44,13 @@
             <div style="display: flex; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
                 <!-- твой блок с картинкой -->
                 <div class="contentImg">
-                    <div id="imaga" onclick="viewFullIMG()"></div>
+                    <div id="imaga" class="zoomable"></div>
                     <button onclick="bck()" id="b">&lt;</button>
                     <button onclick="nxt()" id="n">&gt;</button>
                 </div>
 
-                <!-- модалка -->
-                <div id="fScreen" class="fullscreen">
-                    <span class="close" onclick="hideImg()">&times;</span>
-                    <img id="fullImage" alt="Просмотр изображения">
+                <div id="zoomModal">
+                    <img id="zoomImage" src="">
                 </div>
 
                 <div style="background-color: #435e7a; width: 400px; padding-left: 40px; padding-right: 40px; border-radius: 3px;">
@@ -72,24 +70,46 @@
         </div>
     </div>
     <br>
-    <table>
-        <tr>
-            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px;"><h1 id="starKalivan"></h1><h3 id="kalivanRaiting" style="color: gray;"></h3></td>
-            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px;"><h3>Возраст</h3><span id="ageKalivan" style="color: gray; font-size: 20px;"></span></td>
-            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px"><h3>Разработчик</h3><img src="server/projectImage/develooper.png" alt="" width="50px" style="display: block; margin-left: auto;margin-right: auto;"><a id="selfDeveloop"><p id="developer"  style="color: gray;" ></p></a></td>
-            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px"><h3>Язык</h3><h1 id="defoultLanguage"></h1><p id="dopingLanguage" style="color: gray; font-size: 20px;"></p></td>
-            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px"><h3>Тип</h3><p id="tipy" style="color: gray; font-size: 20px;"></p></td>
-            <td style="line-height: 0.5; margin-bottom: 0; border-right-width: 0px"><h3>Версия</h3><p id="getVersionApp" style="color: gray; font-size: 20px;"></p></td>
-            <td style="line-height: 0.5; margin-bottom: 0;"><h3>Размер</h3><p id="sizess" style="color: gray; font-size: 20px;"></p></td>
-        </tr>
-    </table>
+    <div class="info-scroll" id="infoScroll">
+        <div class="info-block">
+            <h3>Рейтинг</h3>
+            <p id="starKalivan">★4.8</p>
+            <p id="kalivanRaiting" class="gray">200 отзывов</p>
+        </div>
+        <div class="info-block">
+            <h3>Возраст</h3>
+            <p id="ageKalivan" class="gray">12+</p>
+        </div>
+        <div class="info-block">
+            <h3>Разработчик</h3>
+            <img src="server/develooper.png" width="50">
+            <a id="selfDeveloop"><p id="developer" class="gray"></p></a>
+        </div>
+        <div class="info-block">
+            <h3>Язык</h3>
+            <p id="defoultLanguage">RU</p>
+            <p id="dopingLanguage" class="gray">EN</p>
+        </div>
+        <div class="info-block">
+            <h3>Тип</h3>
+            <p id="tipy" class="gray"></p>
+        </div>
+        <div class="info-block">
+            <h3>Версия</h3>
+            <p id="getVersionApp" class="gray"></p>
+        </div>
+        <div class="info-block">
+            <h3>Размер</h3>
+            <p id="sizess" class="gray"></p>
+        </div>
+    </div>
 
     <br>
     <div class="container2">
         <br>
-        <div style="line-height: 0.5; margin-bottom: 0;">
+        <div>
             <h1>Что нового ></h1>
-            <div style="display: flex; gap: 40px; color: gray;">
+            <div style="display: flex; color: gray; justify-content: space-between; width: 300px;">
                 <p id="getVersionAppDublicate1">Версия не указана</p>
                 <p id="dateUpdate">Загрузка</p>
             </div>
@@ -135,58 +155,45 @@
 
         <h3>Отобраны полезные отзывы</h3>
 
-        <div style="display: flex; gap: 30px;">
-            <div id="cardKall">
-                <h2 style="line-height: 20px; margin-bottom: 0;"><b>Хороший бот</b></h2>
-    
-                <div style="display: flex; align-items: center; gap: 10px; line-height: 20px; margin-bottom: 0;">
-                    <div style="display: inline-flex; margin-left: 10px; line-height: 20px; margin-bottom: 0;">
-                        <p>⭐️</p>
-                        <p>⭐️</p>
-                        <p>⭐️</p>
-                        <p>⭐️</p>
-                        <p>⭐️</p>
-                    </div>
-                    <p style="font-size: 15px; color: rgb(182, 182, 182); line-height: 20px; margin-bottom: 0;">2 дня назад ● Kosmodurack</p>
+        <div class="reviews">
+            <div class="review-card">
+                <h2><b>Хороший бот</b></h2>
+                <div class="review-meta">
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p class="meta-text">2 дня назад ● Kosmodurack</p>
                 </div>
-                <p style="width: 400; height: 50px; display: block; overflow: hidden; text-overflow: ellipsis;">Хороший бот. Мгновенно опубликовали объявление. Поддержка помогла быстро раскрутить его. Вообщем доволен на все 100%😁</p>
+                <p class="review-text">
+                    Хороший бот. Мгновенно опубликовали объявление. Поддержка помогла быстро раскрутить его. Вообщем доволен на все 100%😁
+                </p>
             </div>
-            <div id="cardKall">
-                <h2 style="line-height: 20px; margin-bottom: 0;"><b>Супер! Буду продолжать пользоваться</b></h2>
-    
-                <div style="display: flex; align-items: center; gap: 10px; line-height: 20px; margin-bottom: 0;">
-                    <div style="display: inline-flex; margin-left: 10px; line-height: 20px; margin-bottom: 0;">
-                        <p>⭐️</p>
-                        <p>⭐️</p>
-                        <p>⭐️</p>
-                        <p>⭐️</p>
-                        <p>★</p>
-                    </div>
-                    <p style="font-size: 15px; color: rgb(182, 182, 182); line-height: 20px; margin-bottom: 0;">1 год назад ● ThunderGrate</p>
+
+            <div class="review-card">
+                <h2><b>Супер! Буду продолжать пользоваться</b></h2>
+                <div class="review-meta">
+                    <div class="stars">⭐️⭐️⭐️⭐️★</div>
+                    <p class="meta-text">1 год назад ● ThunderGrate</p>
                 </div>
-                <p style="width: 400; height: 50px; display: block; overflow: hidden; text-overflow: ellipsis;">Ну в принципе я доволен. Быстро опубликовал и нашел арендатора</p>
+                <p class="review-text">
+                    Ну в принципе я доволен. Быстро опубликовал и нашел арендатора
+                </p>
             </div>
-            <div id="cardKall">
-                <h2 style="line-height: 20px; margin-bottom: 0;"><b>Хороший бот</b></h2>
-    
-                <div style="display: flex; align-items: center; gap: 10px; line-height: 20px; margin-bottom: 0;">
-                    <div style="display: inline-flex; margin-left: 10px; line-height: 20px; margin-bottom: 0;">
-                        <p>⭐️</p>
-                        <p>⭐️</p>
-                        <p>⭐️</p>
-                        <p>⭐️</p>
-                        <p>⭐️</p>
-                    </div>
-                    <p style="font-size: 15px; color: rgb(182, 182, 182); line-height: 20px; margin-bottom: 0;">9 месяцев назад ● NiteHunter123</p>
+
+            <div class="review-card">
+                <h2><b>Хороший бот</b></h2>
+                <div class="review-meta">
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p class="meta-text">9 месяцев назад ● NiteHunter123</p>
                 </div>
-                <p style="width: 400; height: 50px; display: block; overflow: hidden; text-overflow: ellipsis;">Все супер! Быстро, легко, дешево💵</p>
+                <p class="review-text">
+                    Все супер! Быстро, легко, дешево💵
+                </p>
             </div>
         </div>
 
         <br>
 
         <h3 align="center">Коснитесь, чтобы оценить</h3>
-        <div style="display: flex; justify-content: center; align-items: center;">
+        <div style="display: flex; justify-content: center; align-items: center;" onclick="alertErrors()">
             <div style="display: flex; gap: 5px; cursor: pointer;">
                 <span id="star1" onclick="cickc(1)">☆</span>
                 <span id="star2" onclick="cickc(2)">☆</span>
@@ -196,29 +203,25 @@
             </div>
         </div>
 
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 20px; margin-bottom: 0;">
-            <button style="background-color: #ffd231; color: #000000; width: 500px;">Написать отзыв</button>
+        <div style="margin-left: 30px; margin-right: 30px;">
+            <div style="align-items: center; display: flex; gap: 10px; background-color: #ffd231; justify-content: center; border-radius: 30px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/59/59203.png" alt="" width="50px">
+                <p style="color: black; font-size: 20px;">Написать отзыв</p>
+            </div>
             <br>
-            <br>
-            <button style="background-color: #ffd231; color: #000000; width: 500px;">Поддержка устройств</button>
+            <div style="align-items: center; display: flex; gap: 10px; background-color: #ffd231; justify-content: center; border-radius: 30px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/25/25333.png" alt="" width="50px">
+                <p style="color: black; font-size: 20px;">Задать вопрос</p>
+            </div>
         </div>
 
-        
-        <!-- <div style="margin-left: auto; margin-right: auto; background-color: #ffd231;">
-            <div style="display: inline-block; text-align: center;">
-                <img src="server/userIcon.png" alt="" width="50px">
-                <h1>Конфиденциальность пользователя</h1>
-            </div>
-                
-
-        </div> -->
         <br>
         <br>
-        <div style="background-color: #2C3E50; box-shadow: 0 0 10px #000000; width: 700px; height: auto; margin-right: auto; margin-left: auto; padding: 20px; border-radius: 30px; text-align: center;">
+        <div class="data-card" style="background-color: #2C3E50; box-shadow: 0 0 10px #000000; width: 100%; height: auto; justify-content: center; padding: 20px; border-radius: 30px; text-align: center;">
             <div style="display: flex; flex-direction: column; align-items: center;">
                 <img src="server/userIcon.png" alt="" width="50px" height="50px" style="margin: 0 auto;">
                 <h1 style="text-align: center; margin-top: 10px;">Связанные с вами данные</h1>
-                <p style="text-align: center; margin-top: 5px;">Просмотрите, какие данные использует или собирает Morehod</p>
+                <p style="text-align: center; margin-top: 5px;">Просмотрите, какие данные использует или собирает <p id="nameAppDublicate"></p></p>
                 
                 <div style="margin-top: 20px; width: 100%;">
                     <div style="display: flex; justify-content: center; gap: 40px;">
@@ -228,7 +231,7 @@
                             <div style="display: flex; align-items: center; margin-bottom: 15px;"><img src="server/inditificatorIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Идентификация</p></div>
                             <div style="display: flex; align-items: center;"><img src="server/optionIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Параметры</p></div>
                         </div>
-        
+
                         <div>
                             <div style="display: flex; align-items: center; margin-bottom: 15px;"><img src="server/networkIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Сеть и интернет</p></div>
                             <div style="display: flex; align-items: center; margin-bottom: 15px;"><img src="server/searchIcon.png" alt="" width="30px"><p style="margin: 0; margin-left: 10px;">Поиск</p></div>
@@ -240,59 +243,40 @@
             </div>
         </div>
 
-        <div style="width: 80%; margin-right: auto; margin-left: auto;text-align: center;">
-            <h1>Информация</h1>
-            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Разработчики</h3><h3 style="float: right; margin-right: 20px;" id="developerDublicate2"></h3></div>
-            <hr id="hrr">
-            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Категория</h3><h3 style="float: right; margin-right: 20px;" id="category"></h3></div>
-            <hr id="hrr">
-            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Совместимость</h3><h3 style="float: right; margin-right: 20px;" id="deviTY"></h3></div>
-            <hr id="hrr">
-            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Языки</h3><h3 style="float: right; margin-right: 20px;" id="lana"></h3></div>
-            <hr id="hrr">
-            <div style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleMenu()" id="purcache"><h3>Внутренние покупки</h3><h3 style="float: right; margin-right: 20px;" id="dada"  id="getSubs">▼</h3></div>
-            <ul id="dropdown" style="display:none; list-style:none; padding:0; margin:0;">
-                <h1>Подписки (навсегда)</h1>
-                <li>Мореход плюс - 199₽</li>
-                <li>Мореход про - 299₽</li>
-                <li>Дополнение - 100₽</li>
-              </ul>
-            <hr id="hrr">
-            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Патент</h3><h3 style="float: right; margin-right: 20px;" id="patente"></h3></div>
-            <hr id="hrr">
-            <div style="display: flex; justify-content: space-between; align-items: center;"><h3>Сертификаты защиты</h3><h3 style="float: right; margin-right: 20px;" id="sertificate"></h3></div>
-            <hr id="hrr">
-
-            <a  style="display: flex; justify-content: space-between; align-items: center; color: #ffd231;" id="selfDeveloopDublicate1" style="color: #ffd231;">Сайт разработчика<img src="server/yandexIcon.png" style="float: right; margin-right: 20px; padding: 10px;" width="30px"></a>
-            <hr id="hrr">
-            <a style="display: flex; justify-content: space-between; align-items: center; color: #ffd231;" href="https://example.com">Политика Конфиденциальность<img src="server/privacyIcon.png" style="float: right; margin-right: 20px; padding: 10px;" width="30px"></a>
-            <hr id="hrr">
-            <a style="display: flex; justify-content: space-between; align-items: center; color: #ffd231;" href="helpModer.html">Сообщить о проблеме<img src="server/warningIcon.png" style="float: right; margin-right: 20px; padding: 10px;" width="30px"></a>
-            <hr id="hrr">
-
+        <h1 align="center">Информация</h1>
+        <div style="margin-left: 20px; margin-right: 20px;" class="infofo">
+            <div style="display: flex; justify-content: space-between;"><h3>Разработчики</h3> <h3 id="developerDublicate2"></h3></div>
+            <hr>
+            <div style="display: flex; justify-content: space-between;"><h3>Категория</h3> <h3 id="category"></h3></div>
+            <hr>
+            <div style="display: flex; justify-content: space-between;"><h3>Совместимость</h3> <h3 id="deviTY"></h3></div>
+            <hr>
+            <div style="display: flex; justify-content: space-between;"><h3>Языки</h3> <h3 id="lana"></h3></div>
+            <hr>
+            <div style="display: flex; justify-content: space-between;"><h3>Патент</h3> <h3 id="patente"></h3></div>
+            <hr>
+            <div style="display: flex; justify-content: space-between;"><h3>Сертификаты защиты</h3> <h3 id="sertificate"></h3></div>
+            <hr>
+            <a id="selfDeveloopDublicate1" style="display: flex; justify-content: space-between; text-decoration: none; align-items: center;"><h3>Сайт разработчика</h3> <img src="server/yandexIcon.png" alt="" width="40px" height="40px"></a>
+            <hr>
+            <a id="polyci" style="display: flex; justify-content: space-between; text-decoration: none; align-items: center;"><h3>Политика конфиндециальности</h3> <img src="server/privacyIcon.png" alt="" width="40px" height="40px"></a>
+            <hr>
+            <a style="display: flex; justify-content: space-between; text-decoration: none; align-items: center;" href="https://example.com"><h3>Сообщить о проблеме</h3> <img src="server/warningIcon.png" alt="" width="40px" height="40px"></a>
         </div>
 
-
-
-
-
-    </div>
-
     <br>
     <br>
     <br>
     <br>
-    <div style="display: flex; justify-content: center; width: 100%;">
-        <div style="display: flex; gap: 20px; align-items: center;">
+    <div style="display: flex; gap: 20px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; width: 100%;">
+        <div>
             <a href="index.html"><img src="server/ABADark.png" alt="" width="80px"></a>
+        </div>
+        <div style="display: flex; align-items: center; flex-wrap: wrap;">
             <p style="color: #b4b4b4;">ABartaj - project UDay©</p>
-            <p style="color: #b4b4b4; cursor: pointer;" onclick="showCook()">Файлы куки</p>
-            <a href="defaultSelf.html" style="color: #b4b4b4; text-decoration: none;">UDay</a>
+            <a href="https://dmitryuday.github.io/UDay/" style="color: #b4b4b4; text-decoration: none;">UDay</a>
             <p style="color: #b4b4b4;">Безопасность</p>
-            <a href="udayService.html" style="color: #b4b4b4; text-decoration: none;">Сервисы</a>
-            <a href="maksim.html" style="color: #b4b4b4; text-decoration: none;">Правила поведения в режиме разработчика</a>
-            <a href="accDash.html" style="color: #b4b4b4; text-decoration: none;">Аккаунт</a>
-            <p style="color: #b4b4b4;">Контакт</p>
+            <a href="accDash.html" style="color: #b4b4b4; text-decoration: none;">Права пользователя</a>
         </div>
     </div>
 
@@ -346,6 +330,7 @@ fetch("app.json")
 
             // Заполняем элементы
             document.getElementById("nameApp").textContent = app.name;
+            document.getElementById("nameAppDublicate").textContent = app.name;
             document.getElementById("contents").textContent = app.name;
             document.getElementById("buttonType").textContent = app.buttonType;
             document.getElementById("IconApp").src = app.icon;
@@ -376,6 +361,7 @@ fetch("app.json")
             document.getElementById("selfDeveloopDublicate1").href = app.siteDeveloper;
             document.getElementById("developerDublicate3").href = app.siteDeveloper;
             document.getElementById("contentButton").href = app.content;
+            document.getElementById("polyci").href = app.polyci;
 
             // показываем первый скриншот
             setimg(imgPatch[ptc]);
@@ -383,59 +369,88 @@ fetch("app.json")
     });
 
 // --- Кнопка "Отслеживать" ---
-document.getElementById("posFav").innerText = '🤍Отслеживать';
+document.getElementById("posFav").innerText = '🤍';
 let pos = 'False';
 function getPos() {
     if (pos === 'False') {
         pos = 'True';
-        document.getElementById("posFav").innerText = '❤ Отмена';
+        document.getElementById("posFav").innerText = '❤';
         alert('Уведомление\n\nТеперь события будут приходить в push-уведомлениях.');
     } else {
         pos = 'False';
-        document.getElementById("posFav").innerText = '🤍Отслеживать';
+        document.getElementById("posFav").innerText = '🤍';
     }
 }
 
 // --- Картинки ---
-function viewFullIMG(){
-    const container = document.getElementById("fScreen");
-    const fullImage = document.getElementById("fullImage");
+const modal = document.getElementById("zoomModal");
+const modalImg = document.getElementById("zoomImage");
 
-    fullImage.src = imgPatch[ptc]; // текущая картинка
-    container.style.display = "flex"; // показываем модалку
-    document.body.style.overflow = "hidden"; // блокируем прокрутку
+/* открывает модалку с заданным src */
+function openZoom(src) {
+  modalImg.src = src;
+  modal.style.display = "flex";
+
+  // триггерим анимацию через класс
+  requestAnimationFrame(() => {
+    modal.classList.add("show");
+  });
+
+  document.body.style.overflow = "hidden";
 }
 
-function hideImg(){
-    document.getElementById("fScreen").style.display = "none";
-    document.body.style.overflow = "auto"; // возвращаем прокрутку
-}
+/* закрывает модалку при клике на фон или на само изображение */
+modal.addEventListener("click", (e) => {
+  if (e.target === modal || e.target === modalImg) {
+    modal.classList.remove("show"); // убираем класс
+
+    setTimeout(() => {
+      modal.style.display = "none";
+      modalImg.src = "";
+      document.body.style.overflow = "auto";
+    }, 300); // ждём пока завершится transition
+  }
+});
+
 
 function setimg(src){
     const container = document.getElementById("imaga");
-    container.innerHTML = ""; // очищаем контейнер
 
-    // Создаем спиннер
-    const loader = document.createElement("div");
-    loader.classList.add("loader");
-    container.appendChild(loader);
-
-    // Создаем изображение
-    const newImg = document.createElement("img");
-    newImg.src = src;
-    newImg.alt = "Превью";
-    newImg.style.opacity = "0"; // прячем пока не загрузится
-    newImg.style.transition = "opacity 0.5s ease";
-
-    // Когда изображение загрузилось
-    newImg.onload = () => {
-        loader.remove(); // убираем спиннер
-        newImg.style.opacity = "1"; // показываем картинку
+    // Проверяем, есть ли уже картинка
+    let newImg = container.querySelector("img");
+    if (!newImg) {
+        newImg = document.createElement("img");
+        newImg.alt = "Превью";
+        newImg.style.opacity = "0";
+        newImg.style.transform = "scale(0.8)";
+        newImg.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+        newImg.classList.add('zoomable');
+        newImg.style.cursor = 'pointer';
+        newImg.addEventListener('click', () => openZoom(newImg.src));
+        container.appendChild(newImg);
     }
 
-    container.appendChild(newImg);
-}
+    // Создаем спиннер
+    let loader = container.querySelector(".loader");
+    if (!loader) {
+        loader = document.createElement("div");
+        loader.classList.add("loader");
+        container.appendChild(loader);
+    }
 
+    // Ставим новую картинку
+    newImg.style.opacity = "0";
+    newImg.style.transform = "scale(0.8)";
+    newImg.src = src;
+
+    newImg.onload = () => {
+        loader.remove(); // убираем спиннер
+        requestAnimationFrame(() => {
+            newImg.style.opacity = "1";
+            newImg.style.transform = "scale(1)";
+        });
+    };
+}
 
 
 function nxt() {
@@ -460,6 +475,89 @@ function cickc(indi) {
     stars.forEach(star => star.textContent = '☆');
     for (let i = 0; i < indi; i++) stars[i].textContent = '★';
 }
+
+
+
+
+document.querySelectorAll(".review-card").forEach(card => {
+    card.addEventListener("click", () => {
+        card.classList.toggle("expanded");
+    });
+});
+
+function alertErrors(){
+    alert('Прстите, вы не можете пока оставлять отзывы')
+}
+
+
+let scale = 1;
+let startDistance = 0;
+
+// колёсико мыши
+modalImg.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  scale += e.deltaY * -0.001; // скорость зума
+  scale = Math.min(Math.max(1, scale), 4); // ограничиваем от 1x до 4x
+  modalImg.style.transform = `scale(${scale})`;
+});
+
+// сенсорные жесты (pinch)
+modalImg.addEventListener("touchstart", (e) => {
+  if (e.touches.length === 2) {
+    const dx = e.touches[0].pageX - e.touches[1].pageX;
+    const dy = e.touches[0].pageY - e.touches[1].pageY;
+    startDistance = Math.hypot(dx, dy);
+  }
+}, { passive: false });
+
+modalImg.addEventListener("touchmove", (e) => {
+  if (e.touches.length === 2) {
+    e.preventDefault();
+    const dx = e.touches[0].pageX - e.touches[1].pageX;
+    const dy = e.touches[0].pageY - e.touches[1].pageY;
+    const newDistance = Math.hypot(dx, dy);
+    const diff = newDistance - startDistance;
+
+    scale += diff * 0.005; // чувствительность
+    scale = Math.min(Math.max(1, scale), 4);
+    modalImg.style.transform = `scale(${scale})`;
+
+    startDistance = newDistance;
+  }
+}, { passive: false });
+
+
+window.addEventListener('load', () => {
+    const scrollContainer = document.getElementById('infoScroll');
+    scrollContainer.scrollLeft = 0; // прокручиваем к левому краю
+});
+
+
+function goBack() {
+    // Добавляем класс анимации
+    document.body.classList.add('slide-out');
+
+    // Через полсекунды (длительность анимации) выполняем переход
+    setTimeout(() => {
+        if (document.referrer) {
+            window.history.back();
+        } else {
+            window.location.href = "index.html";
+        }
+    }, 500); // время должно совпадать с transition
+}
+
+const textEl = document.getElementById('nameApp');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) { // когда проскроллили больше 50px
+        document.body.classList.add('scrolled');
+    } else {
+        document.body.classList.remove('scrolled');
+    }
+});
+
+
+
 </script>
 
 </html>

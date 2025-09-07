@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Comfortaa:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
 *{
     text-decoration: none;
-    font-family: "Balsamiq Sans", serif;
+    font-family: "Comfortaa", sans-serif;
 }
 
 
@@ -90,17 +90,16 @@ td h3{
 }
 
 #imaga {
-    width: 470px;
-    height: 338px;
+    width: 100%;
+    max-width: 470px;   /* базовый размер (для телефонов) */
+    aspect-ratio: 4 / 3;
     overflow: hidden;
     background-color: #000;
     position: relative;
+    border-radius: 10px;
 }
 
 #imaga img {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -187,6 +186,13 @@ td h3{
     transition: background 0.3s;
 }
 
+.contentImg #b,
+.contentImg #n {
+    width: 15%;       /* кнопки занимают часть ширины контейнера */
+    min-width: 40px;  /* не меньше, чтобы можно было нажать */
+    font-size: 2em;   /* уменьшаем на телефоне */
+}
+
 .contentImg #b:hover,
 .contentImg #n:hover {
     background-color: rgba(75, 75, 75, 0.7);
@@ -256,16 +262,62 @@ td h3{
     cursor: pointer;
 }
 
-#cardKall{
-    width: 400px;
-    height: 200px;
+.reviews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
 
-    background-color: #2C3E50;
-    box-shadow: 0 0 10px #000000;
-    padding: 10px;
-    border-radius: 20px;
-    margin-bottom: 0; line-height: 20px;
+.review-card {
+    width: 350px;
+    background: #2C3E50;
+    color: white;
+    padding: 15px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
 
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.review-card h2 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.review-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.stars {
+    margin-left: 5px;
+}
+
+.meta-text {
+    color: #bbb;
+}
+
+.review-text {
+    max-height: 60px; /* текст обрезан */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+    transition: max-height 0.4s ease;
+}
+
+/* при раскрытии */
+.review-card.expanded .review-text {
+    max-height: 500px; /* открытый текст */
 }
 
 
@@ -283,6 +335,7 @@ span{
     background: none;
     padding: 10px;
     z-index: 1000;
+    font-size: 30px;
 }
 
 #BBack:hover{
@@ -310,7 +363,6 @@ span{
     top: 50px;
     font-size: 30px;
     color: white;
-    font-family: "Balsamiq Sans", serif;
     left: 20px;
     transition: all 0.5s ease;
     padding: 10px;
@@ -345,28 +397,222 @@ span{
 }
 
 
-table{
-    margin-left: 100px;
-    margin-right: 100px;
+
+
+.info-scroll {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;         /* скролл влево-вправо */
+    padding: 10px;
+    justify-content: center;  /* на ПК — центр */
+    -ms-overflow-style: none; /* IE/Edge скрыть скролл */
+    scrollbar-width: none;    /* Firefox скрыть скролл */
+}
+
+.info-scroll::-webkit-scrollbar {
+    display: none; /* Chrome/Safari скрыть скролл */
 }
 
 
-/* На ПК (от 768px и выше) увеличиваем */
-@media (min-width: 768px) {
-    .buttonSas {
-        font-size: 18px;
-        padding: 14px 22px;
+
+
+
+
+
+.info-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; /* плавная прокрутка на iOS */
+    justify-content: flex-start; /* вместо center */
+}
+
+.info-scroll::-webkit-scrollbar {
+    display: none; 
+}
+
+.info-block {
+    flex: 0 0 auto;
+    min-width: 120px;
+    text-align: center;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;  /* для линии */
+}
+
+/* вертикальные линии */
+.info-block:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;   /* теперь растягивается на всю высоту блока */
+    background: rgba(200,200,200,0.5);
+}
+
+.info-block h3 {
+    font-size: 18px;
+    margin: 5px 0;
+    font-weight: 600;
+}
+
+.info-block p {
+    font-size: 16px;
+    margin: 3px 0;
+}
+
+.info-block img {
+    margin: 5px auto;
+    display: block;
+}
+
+.gray {
+    color: gray;
+}
+
+
+
+
+
+
+
+
+
+.btnRevrite{
+    background-color: #ffd231;
+    color: #000000;
+    width: 500px;
+    font-size: 25px;
+    
+
+}
+
+
+
+/* карточка */
+.data-card {
+    width: 100%;
+    max-width: 700px; /* ограничение на ПК */
+    margin: 0 auto; /* центрируем */
+    box-sizing: border-box; /* чтобы padding не ломал ширину */
+}
+
+/* все элементы внутри карточки не будут выходить за пределы */
+.data-card * {
+    max-width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word; /* длинные слова переносим */
+}
+
+
+
+
+
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 5px 0;
+}
+
+
+.infofo div,a{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+
+
+#zoomModal {
+  display: none;
+  position: fixed;
+  z-index: 12000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#zoomModal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.6);
+  cursor: zoom-out;
+
+  transform: scale(0.8);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#zoomModal.show img {
+  transform: scale(1);
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+/* ТЕЛЕФОНЫ */
+@media (max-width: 600px) {
+    #imaga {
+        max-width: 100%;  /* картинка всегда влезает */
     }
+    .contentImg #b,
+    .contentImg #n {
+        font-size: 1.5em;
+        width: 20%;   /* кнопки чуть шире */
+    }
+    .infofo h3 {
+        font-size: 15px; /* уменьшаем шрифт для маленьких экранов */
+    }
+
+    .infofo img {
+        width: 30px; /* уменьшаем иконки */
+        height: 30px;
+    }
+
+    .infofo div h3, .infofo a h3 {
+        margin-bottom: 5px;
+    }
+
+    .infofo div{
+        gap: 30px;
+    }
+    .table-container {
+        display: block;       /* убираем flex */
+        justify-content: unset;
+        margin-left: 0;
+        -ms-overflow-style: none;  /* IE и Edge */
+        scrollbar-width: none;     /* Firefox */
+    }
+
+    /* Chrome, Safari, Opera */
+    .table-container::-webkit-scrollbar {
+        display: none;
+    }
+
 }
 
-/* На очень больших экранах (от 1200px) ещё больше */
+/* ПК */
 @media (min-width: 1200px) {
     .buttonSas {
         font-size: 20px;
         padding: 16px 28px;
     }
-    #imaga{
-        width: 400px;
+    #imaga {
+        max-width: 500px; /* увеличиваем блок */
     }
     
 }
