@@ -8,7 +8,7 @@
     "img1":"https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/morehod1-Dubl.png",
     "img2":"https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/morehod2-Dubl.png",
     "img3":"https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/morehod3-Dubl.png",
-    "buttonType":"Чат",
+    "buttonType":"Открыть",
     "otziv":"15тыс.",
     "star":"4,9",
     "content":"https://t.me/Morehod_buy_bot",
@@ -29,7 +29,8 @@
     "sertificate":"Да",
     "siteDeveloper":"https://dmitryuday.github.io/UDay/",
     "policy":"https://example.com",
-    "alternatives": "мореход ру. сдать объект, мореход сдать, мореход, мареход мариход"
+    "alternatives": "мореход ру. сдать объект, мореход сдать, мореход, мареход мариход",
+    "fava": "location,search,info,shop,network"
   },
 
   {
@@ -41,7 +42,7 @@
     "img1":"https://raw.githubusercontent.com/DmitryUDay/SneakerStoreImage/main/1.png",
     "img2":"https://raw.githubusercontent.com/DmitryUDay/SneakerStoreImage/main/2.png",
     "img3":"https://raw.githubusercontent.com/DmitryUDay/SneakerStoreImage/main/3.png",
-    "buttonType":"Чат",
+    "buttonType":"Открыть",
     "otziv":"200",
     "star":"4,7",
     "content":"https://t.me/NeuroRUdolphuUDay_bot",
@@ -62,7 +63,9 @@
     "sertificate":"Да",
     "siteDeveloper":"https://dmitryuday.github.io/UDay/",
     "policy":"https://example.com",
-    "alternatives": "рудольф, рудик, аи, AI, рудольфик, rudolphu, rudolph,adolph"
+    "alternatives": "рудольф, рудик, аи, AI, рудольфик, rudolphu, rudolph,adolph",
+    "fava": "search,info,inditificator,network"
+    
   },
   {
     "name":"DUGA",
@@ -94,7 +97,8 @@
     "sertificate":"Да",
     "siteDeveloper":"https://dmitryuday.github.io/UDay/",
     "policy":"https://example.com",
-    "alternatives": "duga, DUGA, дуга, ДУГА"
+    "alternatives": "duga, DUGA, дуга, ДУГА",
+    "fava": "dataFiles,options"
   },
   {
     "name":"RuGO",
@@ -105,7 +109,7 @@
     "img1":"https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/rugo1.png",
     "img2":"https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/rugo2.png",
     "img3":"https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/rugo3.png",
-    "buttonType":"Чат",
+    "buttonType":"Открыть",
     "otziv":"500",
     "star":"4,7",
     "content":"https://t.me/ZRU_GO_bot",
@@ -126,7 +130,8 @@
     "sertificate":"Да",
     "siteDeveloper":"https://dmitryuday.github.io/UDay/",
     "policy":"https://clck.ru/3NNhtC",
-    "alternatives": "руго,rugo"
+    "alternatives": "руго,rugo",
+    "fava": "search,info,shop,network"
   }
 
 

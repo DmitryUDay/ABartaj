@@ -20,6 +20,8 @@ h1,h2,h3,h4,h5,h6,p,ul{
 
 .buttonSas {
     font-size: 15px;
+    justify-content: center;
+    display: flex;
     background-color: #ffd231;
     padding: 10px 15px;
     margin-bottom: 5px;
@@ -523,6 +525,39 @@ hr {
     margin-right: 20px;
 }
 
+.infofo div {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* чтобы длинный текст мог переноситься вниз */
+    gap: 10px; /* твой отступ */
+}
+
+
+/* левый столбец фиксированный */
+.infofo h3.label {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+/* правый столбец — растягивается */
+.infofo h3.value {
+    flex: 1 1 auto;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+/* развернутое состояние */
+.infofo h3.value.expanded {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    word-break: break-word; /* чтобы длинные слова тоже переносились */
+}
+
+
 
 
 
@@ -560,10 +595,6 @@ hr {
 
 
 
-
-
-
-
 /* ТЕЛЕФОНЫ */
 @media (max-width: 600px) {
     #imaga {
@@ -587,9 +618,6 @@ hr {
         margin-bottom: 5px;
     }
 
-    .infofo div{
-        gap: 30px;
-    }
     .table-container {
         display: block;       /* убираем flex */
         justify-content: unset;

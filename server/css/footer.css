@@ -1,0 +1,21 @@
+.gaga {
+    display: flex;
+    flex-wrap: nowrap;       /* все в одну линию */
+    gap: 40px;               /* расстояние между блоками */
+    justify-content: center;
+    text-align: center;
+    width: auto;
+}
+
+@media (max-width: 600px){
+    .gaga {
+        flex-wrap: wrap;      /* разрешаем перенос */
+        gap: 20px;            /* уменьшаем расстояние */
+        justify-content: center;
+    }
+    .gaga-item {
+        flex: 1 1 45%;        /* блоки занимают около половины ширины экрана */
+        min-width: 120px;     /* минимальная ширина, чтобы не сжималось слишком сильно */
+        box-sizing: border-box;
+    }
+}

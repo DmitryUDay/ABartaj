@@ -271,7 +271,14 @@ div > #searchInput {
     align-items: center;
     text-align: center;
     gap: 10px;
+    transition: transform 0.3s ease;
 }
+
+.havka:hover{
+    transform: scale(1.05);
+}
+
+
 
 .havka h1 {
     margin: 0;
@@ -455,4 +462,13 @@ div > #searchInput {
         flex: 0 0 45%; /* примерно две карточки в ряд */
         margin-bottom: 15px;
     }
+}
+
+
+@keyframes jump {
+    0%   { transform: translateY(0); }
+    25%  { transform: translateY(-50px); }
+    50%  { transform: translateY(0); }
+    75%  { transform: translateY(-25px); }
+    100% { transform: translateY(0); }
 }
