@@ -543,18 +543,10 @@ hr {
 .infofo h3.value {
     flex: 1 1 auto;
     text-align: right;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
     cursor: pointer;
-}
-
-/* развернутое состояние */
-.infofo h3.value.expanded {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
-    word-break: break-word; /* чтобы длинные слова тоже переносились */
 }
 
 
