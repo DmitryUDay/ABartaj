@@ -170,30 +170,21 @@ div > #searchInput {
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     padding: 10px;
     box-sizing: border-box;
-    display: none;      /* скрыт по умолчанию */
+    display: none;
 }
 
-/* Каждая карточка результата */
-.search-result-item {
-    background-color: #b19328;
-    padding: 10px 15px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s;
-    color: white;
-}
-
-.search-result-item:hover {
-    background-color: #7331ff;
-}
-
-/* Внутренняя обёртка для flex */
 .result-inner {
     display: flex;
     align-items: center;
-    gap: 10px; /* расстояние между иконкой и текстом */
+    gap: 10px;
+    transition: all 0.4s;
 }
+.result-inner:hover{
+    background-color: #b99925;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
 
 /* Иконка приложения */
 .result-icon {
@@ -371,17 +362,40 @@ div > #searchInput {
     display: block;
     margin: 20px auto 0 auto;
     padding: 10px 20px;
-    background-color: #1c1c1c;
-    color: #ffd231;
+    color: #ffffff;
+    background-color: #7331ff;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
+    transition: all 0.3s;
 }
 
 #loadMoreBtn:hover {
-    background-color: #333;
+    background-color: #ffd231;
+    color: #000000;
 }
+
+.show-more-btn{
+    display: block;
+    margin: 20px auto 0 auto;
+    padding: 10px 20px;
+    color: #ffffff;
+    background-color: #7331ff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.show-more-btn:hover {
+    background-color: #b99925;
+    color: #ffffff;
+}
+
+
+
 
 
 .top-developers {

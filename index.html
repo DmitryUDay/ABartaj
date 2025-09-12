@@ -198,8 +198,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- Подгрузка карточек ---
     let allApps = [];
-let visibleCount = 6;
-const increment = 10;
+let visibleCount = 4;
+const increment = 1;
 
 const container = document.getElementById("projectsContainer");
 const loadMoreBtn = document.getElementById("loadMoreBtn");
@@ -297,6 +297,7 @@ searchInput.addEventListener("input", () => {
             const remaining = matchedApps.length - limit;
             const showMoreBtn = document.createElement("button");
             showMoreBtn.textContent = `Показать ещё +${remaining}`;
+            showMoreBtn.classList.add("show-more-btn");
             showMoreBtn.addEventListener("click", () => {
                 searchResultsContainer.innerHTML = "";
                 matchedApps.forEach(app => {
@@ -325,52 +326,7 @@ searchInput.addEventListener("input", () => {
 });
 
 });
-
-
-Пример:
-
-function renderCards() {
-    container.innerHTML = "";
-    const appsToShow = allApps.slice(0, visibleCount);
-
-    appsToShow.forEach(app => {
-        const card = document.createElement("div");
-        card.className = "project-card";
-        card.innerHTML = `
-            <a href="MrBuilder.html?name=${app.name}">
-                <img src="${app.icon}" alt="${app.name}">
-                <h3>${app.name}</h3>
-                <p>${app.descriptionMini}</p>
-                <div class="project-info">
-                    <span>${app.developer}</span>
-                    <span>${app.age}</span>
-                    <span>⭐ ${app.star}</span>
-                </div>
-            </a>
-        `;
-
-        // Добавляем клик на анимацию
-        const link = card.querySelector('a');
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            card.style.animation = 'jump 1.5s ease';
-            setTimeout(() => {
-                window.location.href = this.href;
-            }, 1500);
-        });
-
-        container.appendChild(card);
-    });
-
-    // Проверяем кнопку
-    if (visibleCount < allApps.length) {
-        loadMoreBtn.style.display = "block";
-    } else {
-        loadMoreBtn.style.display = "none";
-    }
-}
-
-    </script>
+</script>
 
 
 

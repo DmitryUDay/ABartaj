@@ -331,7 +331,8 @@ fetch("app.json")
         const app = data.find(a => a.name === name);
         if (app) {
             ptch = app.patch;
-            imgPatch = [app.img1, app.img2, app.img3]; // глобально
+            imgPatch = app.imgScreen.split(",").map(item => item.trim());
+            
 
             // Заполняем элементы
             document.getElementById("nameApp").textContent = app.name;
