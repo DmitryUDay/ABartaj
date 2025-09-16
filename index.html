@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABartaj</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="stKUKA.css">
     <link rel="stylesheet" href="server/css/footer.css">
 </head>
 <body>
@@ -21,7 +20,7 @@
 
         <div style="display: flex; align-items: center; gap: 20px;">
             <div style="display: flex; gap: 20px;">
-                <a href="creater.html"><div class="btnNAVI">+</div></a>
+                <a href="creater.html" id="btnADD"><div class="btnNAVI">+</div></a>
                 <a href="#"><div class="btnNAVI"><img src="https://cdn-icons-png.flaticon.com/512/1827/1827347.png" alt="" width="20px"></div></a>
                 <a href="#"><div class="btnNAVI"><img src="https://cdn-icons-png.flaticon.com/512/25/25333.png" alt="" width="20px"></div></a>
 
@@ -46,13 +45,13 @@
         <br>
         <ul>
             <li><a href="index.html" class="underline-hover">Домашняя стриица</a></li>
-            <li><a href="project.html" class="underline-hover">Редактор кода</a></li>
-            <li><a href="#" class="underline-hover">Недавние действия</a></li>
-            <li><a href="#" class="underline-hover">Обсуждения</a></li>
+            <li><a href="defaultSelf.html" class="underline-hover">Редактор кода</a></li>
+            <li><a href="defaultSelf.html" class="underline-hover">Недавние действия</a></li>
+            <li><a href="defaultSelf.html" class="underline-hover">Обсуждения</a></li>
             <hr>
-            <li><a href="#" class="underline-hover">Ваши репозитории</a></li>
-            <li><a href="#" class="underline-hover">Подписки</a></li>
-            <li><a href="#" class="underline-hover">Моя библиотека</a></li>
+            <li><a href="defaultSelf.html" class="underline-hover">Ваши репозитории</a></li>
+            <li><a href="defaultSelf.html" class="underline-hover">Подписки</a></li>
+            <li><a href="defaultSelf.html" class="underline-hover">Моя библиотека</a></li>
 
         </ul>
     </nav>
@@ -116,21 +115,21 @@
     <br>
     <br>
     <br>
-    <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center; justify-content: center; width: 100%;">
-        <div>
-            <a href="index.html"><img src="server/ABADark.png" alt="" width="80px"></a>
+    <footer class="footer">
+        <div class="footer-logo">
+            <a href="index.html"><img src="server/ABADark.png" alt="Logo"></a>
         </div>
-        <div class="gaga" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; text-align: center; width: 100%;">
-            <div class="gaga-item">
-                <p style="color: #b4b4b4;">ABartaj - project UDay©</p>
-                <a href="https://dmitryuday.github.io/UDay/" style="color: #b4b4b4; text-decoration: none;">UDay</a>
+        <div class="footer-links">
+            <div class="footer-item">
+                <p>ABartaj - project UDay©</p>
+                <a href="https://dmitryuday.github.io/UDay/">UDay</a>
             </div>
-            <div class="gaga-item">
-                <p style="color: #b4b4b4;">Безопасность</p>
-                <a href="accDash.html" style="color: #b4b4b4; text-decoration: none;">Права пользователя</a>
+            <div class="footer-item">
+                <p>Безопасность</p>
+                <a href="accDash.html">Права пользователя</a>
             </div>
         </div>
-    </div>
+    </footer>
 
 
 
@@ -324,8 +323,23 @@ searchInput.addEventListener("input", () => {
 
     searchResultsContainer.style.display = "block";
 });
-
 });
+
+
+function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+const button = document.getElementById('btnADD');
+
+if (isMobile()) {
+    button.style.display = 'none';
+} else {
+    button.style.display = 'block';
+}
+
+
+
 </script>
 
 

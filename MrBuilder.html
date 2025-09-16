@@ -46,6 +46,7 @@
                     <p style="font-size: 15px;" id="desys">ExampleDescription</p>
                     
                     <a target="_blank" id="contentButton" style="text-decoration: none; color: black;"><div id="buttonType" class="buttonSas"></div></a>
+                    <a target="_blank" id="IICode" style="text-decoration: none; color: black;"><div class="buttonSas">Скачать исходный код</div></a>
 
 
                 </div>
@@ -54,37 +55,39 @@
         </div>
     </div>
     <br>
-    <div class="info-scroll" id="infoScroll">
-        <div class="info-block">
-            <h3>Рейтинг</h3>
-            <p id="starKalivan">★4.8</p>
-            <p id="kalivanRaiting" class="gray">200 отзывов</p>
-        </div>
-        <div class="info-block">
-            <h3>Возраст</h3>
-            <p id="ageKalivan" class="gray">12+</p>
-        </div>
-        <div class="info-block">
-            <h3>Разработчик</h3>
-            <img src="server/develooper.png" width="50">
-            <a id="selfDeveloop"><p id="developer" class="gray"></p></a>
-        </div>
-        <div class="info-block">
-            <h3>Язык</h3>
-            <p id="defoultLanguage">RU</p>
-            <p id="dopingLanguage" class="gray">EN</p>
-        </div>
-        <div class="info-block">
-            <h3>Тип</h3>
-            <p id="tipy" class="gray"></p>
-        </div>
-        <div class="info-block">
-            <h3>Версия</h3>
-            <p id="getVersionApp" class="gray"></p>
-        </div>
-        <div class="info-block">
-            <h3>Размер</h3>
-            <p id="sizess" class="gray"></p>
+    <div class="info-scroll-wrapper">
+        <div class="info-scroll" id="infoScroll">
+            <div class="info-block">
+                <h3>Рейтинг</h3>
+                <p id="starKalivan">★4.8</p>
+                <p id="kalivanRaiting" class="gray">200 отзывов</p>
+            </div>
+            <div class="info-block">
+                <h3>Возраст</h3>
+                <p id="ageKalivan" class="gray">12+</p>
+            </div>
+            <div class="info-block">
+                <h3>Разработчик</h3>
+                <img src="server/develooper.png" width="50">
+                <a id="selfDeveloop"><p id="developer" class="gray"></p></a>
+            </div>
+            <div class="info-block">
+                <h3>Язык</h3>
+                <p id="defoultLanguage">RU</p>
+                <p id="dopingLanguage" class="gray">EN</p>
+            </div>
+            <div class="info-block">
+                <h3>Тип</h3>
+                <p id="tipy" class="gray"></p>
+            </div>
+            <div class="info-block">
+                <h3>Версия</h3>
+                <p id="getVersionApp" class="gray"></p>
+            </div>
+            <div class="info-block">
+                <h3>Размер</h3>
+                <p id="sizess" class="gray"></p>
+            </div>
         </div>
     </div>
 
@@ -137,7 +140,7 @@
             </div>
         </div>
 
-        <h3>Отобраны полезные отзывы</h3>
+        <!-- <h3>Отобраны полезные отзывы</h3>
 
         <div class="reviews">
             <div class="review-card">
@@ -174,7 +177,7 @@
             </div>
         </div>
 
-        <br>
+        <br> -->
 
         <h3 align="center">Коснитесь, чтобы оценить</h3>
         <div style="display: flex; justify-content: center; align-items: center;" onclick="alertErrors()">
@@ -269,21 +272,30 @@
     <br>
     <br>
     <br>
-    <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center; justify-content: center; width: 100%;">
-        <div>
-            <a href="index.html"><img src="server/ABADark.png" alt="" width="80px"></a>
+    <footer class="footer">
+        <div class="footer-logo">
+            <a href="index.html"><img src="server/ABADark.png" alt="Logo"></a>
         </div>
-        <div class="gaga" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; text-align: center; width: 100%;">
-            <div class="gaga-item">
-                <p style="color: #b4b4b4;">ABartaj - project UDay©</p>
-                <a href="https://dmitryuday.github.io/UDay/" style="color: #b4b4b4; text-decoration: none;">UDay</a>
+        <div class="footer-links">
+            <div class="footer-item">
+                <p>ABartaj - project UDay©</p>
+                <a href="https://dmitryuday.github.io/UDay/">UDay</a>
             </div>
-            <div class="gaga-item">
-                <p style="color: #b4b4b4;">Безопасность</p>
-                <a href="accDash.html" style="color: #b4b4b4; text-decoration: none;">Права пользователя</a>
+            <div class="footer-item">
+                <p>Безопасность</p>
+                <a href="accDash.html">Права пользователя</a>
             </div>
         </div>
+    </footer>
+
+
+<div id="downloadModal" class="download-modal">
+    <div class="download-modal-content">
+        <button id="closeDownloadModal" class="download-close">&times;</button>
+        <h2>Выберите платформу</h2>
+        <div id="downloadList" class="download-list"></div>
     </div>
+</div>
 
 
 </body>
@@ -323,21 +335,24 @@ function toggleMenu() {
 // --- Получаем параметры из URL ---
 const params = new URLSearchParams(window.location.search);
 const name = params.get("name");
+const btnCode = document.getElementById("IICode");
+
 
 // --- Загружаем JSON ---
 fetch("app.json")
     .then(res => res.json())
     .then(data => {
         const app = data.find(a => a.name === name);
+        const ua = navigator.userAgent;
         if (app) {
             ptch = app.patch;
             imgPatch = app.imgScreen.split(",").map(item => item.trim());
-            
 
-            // Заполняем элементы
+            // --- Заполняем элементы ---
             document.getElementById("nameApp").textContent = app.name;
             document.getElementById("nameAppDublicate").textContent = app.name;
             document.getElementById("contents").textContent = app.name;
+
             document.getElementById("buttonType").textContent = app.buttonType;
             document.getElementById("IconApp").src = app.icon;
             document.getElementById("kalivanRaiting").textContent = `${app.otziv} Оценок`;
@@ -366,23 +381,99 @@ fetch("app.json")
             document.getElementById("selfDeveloop").href = app.siteDeveloper;
             document.getElementById("selfDeveloopDublicate1").href = app.siteDeveloper;
             document.getElementById("developerDublicate3").href = app.siteDeveloper;
-            document.getElementById("contentButton").href = app.content;
             document.getElementById("polyci").href = app.polyci;
+
+            if (app.allCode && app.allCode.trim() !== ""){
+                btnCode.style.display = 'block';
+                document.getElementById("IICode").href = app.allCode;
+            }else{
+                btnCode.style.display = 'none';
+            }
 
             // показываем первый скриншот
             setimg(imgPatch[ptc]);
 
             // --- скрываем ненужные блоки по fava ---
             if (app.fava) {
-                const allowed = app.fava.split(","); // превращаем строку в массив
+                const allowed = app.fava.split(",");
                 document.querySelectorAll(".block").forEach(el => {
                     if (!allowed.includes(el.classList[1])) {
                         el.style.display = "none";
                     }
                 });
             }
+
+            // --- Логика кнопки ---
+            const btn = document.getElementById("contentButton");
+            if (app.buttonType === "Открыть") {
+                btn.href = app.content;
+                btn.addEventListener("click", () => {
+                    window.location.href = app.content;
+                });
+            } else if (app.buttonType === "Скачать") {
+                btn.href = "#"; // чтобы не переходил сразу
+                btn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    showDownloadModal(app);
+                });
+            }
         }
     });
+
+
+function showDownloadModal(app) {
+    const devices = app.device && Array.isArray(app.device) && app.device.length > 0
+        ? app.device
+        : app.links ? Object.keys(app.links).map(k => {
+            if (k.toLowerCase() === "windows") return "Windows";
+            if (k.toLowerCase() === "mac") return "Mac";
+            if (k.toLowerCase() === "linux") return "Linux";
+            if (k.toLowerCase() === "android") return "Android";
+            if (k.toLowerCase() === "ios") return "iOS";
+            return k;
+        }) : [];
+
+    if (devices.length === 0) {
+        alert("Нет доступных платформ для скачивания");
+        return;
+    }
+
+    const modal = document.getElementById("downloadModal");
+    const list = document.getElementById("downloadList");
+    list.innerHTML = "";
+
+    devices.forEach(dev => {
+        const link = app.links?.[dev.toLowerCase()] || app.content;
+
+        let iconSrc = "";
+        if (dev === "Windows") iconSrc = "server/windows.png";
+        else if (dev === "Mac") iconSrc = "server/apple.png";
+        else if (dev === "Linux") iconSrc = "server/unix.png";
+        else if (dev === "Android") iconSrc = "server/android.png";
+        else if (dev === "iOS") iconSrc = "server/apple.png";
+
+        const item = document.createElement("div");
+        item.classList.add("download-item");
+        item.innerHTML = `<span><img src="${iconSrc}" alt="${dev}"><p style="color:#000";>${dev}</p></span>`;
+
+        item.addEventListener("click", () => {
+            window.location.href = link;
+        });
+
+        list.appendChild(item);
+    });
+
+    modal.style.display = "flex";
+}
+
+// Закрытие модалки
+document.getElementById("closeDownloadModal").addEventListener("click", () => {
+    document.getElementById("downloadModal").style.display = "none";
+});
+
+
+
+
 
 // --- Картинки ---
 const modal = document.getElementById("zoomModal");

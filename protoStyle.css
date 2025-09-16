@@ -399,49 +399,39 @@ span{
 }
 
 
-
+.info-scroll-wrapper {
+    display: flex;
+    justify-content: center; /* центрируем видимую область */
+    overflow: hidden; /* скрываем лишнее */
+    padding: 10px 0;
+}
 
 .info-scroll {
     display: flex;
     gap: 20px;
-    overflow-x: auto;         /* скролл влево-вправо */
-    padding: 10px;
-    justify-content: center;  /* на ПК — центр */
-    -ms-overflow-style: none; /* IE/Edge скрыть скролл */
-    scrollbar-width: none;    /* Firefox скрыть скролл */
-}
-
-.info-scroll::-webkit-scrollbar {
-    display: none; /* Chrome/Safari скрыть скролл */
-}
-
-
-
-
-
-
-
-.info-scroll {
-    display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch; /* плавная прокрутка на iOS */
-    justify-content: flex-start; /* вместо center */
+    -webkit-overflow-scrolling: touch;
+    padding: 10px;
+    justify-content: center; /* центруем блоки на ПК */
+    width: 100%;
 }
 
 .info-scroll::-webkit-scrollbar {
-    display: none; 
+    display: none;
 }
 
 .info-block {
     flex: 0 0 auto;
     min-width: 120px;
+    max-width: 200px; /* ограничиваем максимальный размер на ПК */
     text-align: center;
     padding: 0 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;  /* для линии */
+    position: relative;
+    scroll-snap-align: center;
 }
 
 /* вертикальные линии */
@@ -451,7 +441,7 @@ span{
     top: 0;
     right: 0;
     width: 1px;
-    height: 100%;   /* теперь растягивается на всю высоту блока */
+    height: 100%;
     background: rgba(200,200,200,0.5);
 }
 
@@ -475,6 +465,17 @@ span{
     color: gray;
 }
 
+/* --- Адаптивность --- */
+@media (max-width: 768px) {
+    .info-scroll {
+        justify-content: flex-start; /* на телефоне скроллим влево */
+    }
+    .info-block {
+        min-width: 120px;
+        max-width: none;
+        padding: 0 15px;
+    }
+}
 
 
 
@@ -635,4 +636,94 @@ hr {
         max-width: 500px; /* увеличиваем блок */
     }
     
+}
+
+
+/* --- Модалка --- */
+.download-modal {
+    display: none; /* скрыта по умолчанию */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.download-modal-content {
+    background: #7331ff;
+    border-radius: 12px;
+    padding: 30px 40px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    color: #fff;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.download-modal-content h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.download-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.download-close:hover {
+    transform: rotate(90deg);
+}
+
+.download-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.download-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffd231;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.download-item:hover {
+    background: #d7b32d;
+    transform: translateY(-2px);
+}
+
+.download-item img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.download-item span:first-child {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }

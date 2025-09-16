@@ -6,15 +6,43 @@
     <title>Новый проект</title>
     <link rel="stylesheet" href="cr.css">
 </head>
+<style>
+.homebrew{
+    display: flex;
+    align-items: center;
+    background-color: #ffd231;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    color: black;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 5px;
+    justify-content: space-between;
+    color: black;
+    
+}
+
+.homebrew a{
+    color: black;
+}
+</style>
+
+
 <body>
 
 
     
     
-    <div style="position: sticky; top: 0; z-index: 1000; display: flex; width: 100%; height: 50px; background-color: #ffd231; padding: 5px;">
-        <a href="index.html"><img src="ABA.png" width="120px" alt="" style="padding-left: 10px; position: absolute;"></a>
-        <!-- <h1 style="position: absolute; left: 35%; color: black;">Добавление нового проекта</h1> -->
-        <h1 style="margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto; color: black;">Добавление нового проекта</h1>
+    <div class="homebrew">
+            <a href="index.html" style="margin-left: 10px; text-decoration: none;"><h1 style="color: black;">ABartaj</h1></a>
+            
+            <h1 style="left: 50%; right: 50%; transform: translateX(-50%,-50%); color: black;">Новый проект</h1>
+            <h1 style="color: #ffd231;">ABartaj</h1>
+
+
     </div>
 
     <div id="alertSuces">

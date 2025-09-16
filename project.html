@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проекты</title>
+    <link rel="stylesheet" href="projectStyle.css">
+    <script src="server/js/searchproject.js"></script>
+</head>
+<body>
+
+    <div style="justify-content: space-between; background-color: #ffd231; width: 100%; display: flex; padding: 5px; position: fixed; top: 0; align-items: center;">
+        <a href="index.html"><img src="ABA.png" width="120px" alt=""></a>
+        <h1 style="color: black;">Каталоги проектов</h1>
+        <div style="display: flex;">
+            <input type="text" placeholder="🔍︎Поиск проектов" id="searchInput">
+        </div>
+    </div>
+
+    <br><br><br><br>
+
+    <div id="RandomPro">
+        <div style="display: flex; gap: 10px; justify-content: center;">
+            <h1 align="center">Случайный проект: MorehodRU</h1>
+            <img src="server/projectImage/Morehod.png" alt="" width="50px" height="50px" style="border-radius: 5px;">
+        </div>
+        <br>
+
+        <a href="p1.html">
+            <div id="imaga"></div>
+        </a>
+        
+        <div style="display: flex; gap: 4px; align-items: center; justify-content: center; padding-top: 10px;">
+            <div id="s1"></div>
+            <div id="s2"></div>
+            <div id="s3"></div>
+        </div>
+    </div>
+
+    <br>
+
+    <div id="devOopStand">
+        <h1 align=center>Таблица лидеров</h1>
+        
+        <div style="display: flex; justify-content: space-between;">
+            <div style="text-align: center;">
+                <img src="server/projectImage/dev2.png" alt="" style="border: 5px solid rgb(197,201,199);">
+                <h1 style="font-size: 30px; color: rgb(197,201,199);">2</h1>
+                <h3>@Limon-4ik</h3>
+            </div>
+            <div style="text-align: center;">
+                <img src="server/projectImage/dev1.png" alt=""  style="border: 5px solid rgb(255,215,0);">
+                <h1 style="font-size: 30px; color: rgb(255,215,0);">1</h1>
+                <h3>@Dikiy_ochkarik</h3>
+            </div>
+            <div style="text-align: center;">
+                <img src="server/projectImage/dev3.png" alt=""  style="border: 5px solid rgb(150,116,68);">
+                <h1 style="font-size: 30px; color: rgb(150,116,68);">3</h1>
+                <h3>@Dmitruy2900</h3>
+            </div>
+        </div>
+    </div>
+    
+    <br><br><br><br>
+    
+    <!-- Контейнер для карточек -->
+    <div id="itemsContainer"></div>
+
+</body>
+</html>
+
+<script>
+    // --- Слайдер случайного проекта ---
+    spl = 'server/projectImage/morehod1/'
+    const patcher = [`${spl}1.png`,`${spl}2.png`,`${spl}3.png`]
+
+    let w = 600;
+    let h = 420;
+    pos = 0;
+
+    var container = document.getElementById("imaga");
+    var newImg = document.createElement("img");
+    newImg.src = patcher[pos];
+    newImg.width = w;
+    newImg.height = h;
+    container.appendChild(newImg);
+
+    function sharonoid(numS){
+        const el1 = document.getElementById('s1');
+        const el2 = document.getElementById('s2');
+        const el3 = document.getElementById('s3');
+
+        el1.style.backgroundColor = 'rgb(155, 155, 155)';
+        el1.style.width = '30px';
+        el1.style.height = '30px';
+        el2.style.backgroundColor = 'rgb(155, 155, 155)';
+        el2.style.width = '30px';
+        el2.style.height = '30px';
+        el3.style.backgroundColor = 'rgb(155, 155, 155)';
+        el3.style.width = '30px';
+        el3.style.height = '30px';
+
+        const endiend = document.getElementById(numS);
+        endiend.style.backgroundColor = 'rgb(54, 54, 54)';
+        endiend.style.width = '40px';
+        endiend.style.height = '40px';
+    }
+
+    function rechange(){
+        let container = document.getElementById("imaga");
+        container.innerHTML = "";
+
+        var newImg = document.createElement("img");
+        newImg.src = patcher[pos];
+        newImg.width = w;
+        newImg.height = h;
+        container.appendChild(newImg);
+
+        if (pos == 0){
+            sharonoid('s1')
+        }if (pos == 1) {
+            sharonoid('s2')
+        }if (pos == 2) {
+            sharonoid('s3')
+        }
+
+        if (pos == 2){
+            pos = 0
+        }else{
+            pos = pos+1
+        }
+    }
+
+    setInterval(rechange, 2000);
+
+    // --- Кнопка наверх ---
+    const backToTopBtn = document.getElementById("Btop");
+
+    window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add("show");
+        } else {
+            backToTopBtn.classList.remove("show");
+        }
+    });
+
+    if(backToTopBtn){
+        backToTopBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+
+    // --- Поиск проектов ---
+    const inputField = document.getElementById('searchInput');
+
+    inputField.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            performSearch();
+        }
+    });
+
+    function clearPole(){
+        document.getElementById('searchInput').value = '';
+        performSearch()
+    }
+
+    function performSearch() {
+        const searchTerm = inputField.value.toLowerCase();
+        const items = document.querySelectorAll('.item');
+        let foundItems = 0;
+        
+        items.forEach(item => {
+            const itemId = item.id.toLowerCase();
+            if (itemId.includes(searchTerm)) {
+                item.classList.remove('hidden');
+                foundItems++;
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+        
+        if (foundItems === 0 && searchTerm !== '') {
+            alert('Простите, по вашему запросу ничего не нашлось :(')
+            clearPole()
+        }
+    }
+
+    // --- Подгрузка карточек из JSON ---
+    fetch("app.json")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("itemsContainer");
+        container.innerHTML = "";
+
+        data.forEach(app => {
+          const item = document.createElement("div");
+          item.className = "item";
+          item.id = app.name.toLowerCase();
+
+          item.innerHTML = `
+            <hr>
+            <br>
+            <div class="proto">
+              <a href="MrBuilder.html?name=${encodeURIComponent(app.name)}" id="controlP">
+                <img src="${app.icon}" width="150px" alt="">
+                <h1>${app.name}</h1>
+                <h2>${app.developer}</h2>
+                <p style="color: gray;">${app.types}</p>
+                <p style="font-size: 15px;">${app.descriptionMini}</p>
+                <br>
+              </a>
+              <a href="${app.content}"><button id="goto">${app.buttonType}</button></a>
+            </div>
+          `;
+          container.appendChild(item);
+        });
+      });
+</script>
+
+<button id="Btop" title="Наверх">↑</button>
