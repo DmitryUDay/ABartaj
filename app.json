@@ -19,7 +19,6 @@
     "size":"Онлайн",
     "updated":"20.04.2025",
     "updateText":"В этом обновлении мы улучшили систему безопасности. Добавлена функция просмотра статистики объявления по подпискам мореход плюс,про. Исправленны многочисленные баги",
-    "datasSecurity":"location, internet, content, search, inditifacator, info, options, buy",
     "kategory":"Бизнес",
     "deviceTy":"Все устройства с Telegram",
     "subsi":"Да",
@@ -28,7 +27,8 @@
     "siteDeveloper":"https://dmitryuday.github.io/UDay/",
     "policy":"https://example.com",
     "alternatives": "мореход ру. сдать объект, мореход сдать, мореход, мареход мариход",
-    "fava": "location,search,info,shop,network"
+    "fava": "location,search,info,shop,network",
+    "anonsy": "no"
 
   },
 
@@ -52,7 +52,6 @@
     "size":"Онлайн",
     "updated":"25.07.2025",
     "updateText":"Новое обновление добавли поддержку решения математических задач.",
-    "datasSecurity":"location, internet, content, search, inditifacator, info, options, buy",
     "kategory":"Развлечения, образование",
     "deviceTy":"Все устройства с Telegram",
     "subsi":"Нет",
@@ -61,7 +60,8 @@
     "siteDeveloper":"https://dmitryuday.github.io/UDay/",
     "policy":"https://example.com",
     "alternatives": "рудольф, рудик, аи, AI, рудольфик, rudolphu, rudolph,adolph",
-    "fava": "search,info,inditificator,network"
+    "fava": "search,info,inditificator,network",
+    "anonsy": "no"
     
   },
   {
@@ -84,7 +84,6 @@
     "size":"103MB",
     "updated":"17.08.2025",
     "updateText":"Полный редизайн интерфейса, звуков и механики. Добавленно пространственное звучание и маленький сюжет",
-    "datasSecurity":"location, internet, content, search, inditifacator, info, options, buy",
     "kategory":"Развлечения, Ужасы",
     "deviceTy":"Windows, Mac OS, Linux",
     "subsi":"Нет",
@@ -101,7 +100,8 @@
       "windows": "https://dropbox.com/s/cccc/app.exe?dl=1",
       "mac": "https://dropbox.com/s/dddd/app.dmg?dl=1"
     },
-    "allCode": "https://dropbox.com/s/dddd/app.dmg?dl=1"
+    "allCode": "https://dropbox.com/s/dddd/app.dmg?dl=1",
+    "anonsy": "no"
   },
   {
     "name":"RuGO",
@@ -123,7 +123,6 @@
     "size":"Онлайн",
     "updated":"30.07.2025",
     "updateText":"Добавлена функция подписки, добавки платежных систем и отключения уведомлений",
-    "datasSecurity":"location, internet, content, search, inditifacator, info, options, buy",
     "kategory":"Бизнес, заработок",
     "deviceTy":"Все устройства с Telegram",
     "subsi":"Да",
@@ -132,7 +131,38 @@
     "siteDeveloper":"https://dmitryuday.github.io/UDay/",
     "policy":"https://clck.ru/3NNhtC",
     "alternatives": "руго,rugo",
-    "fava": "search,info,shop,network"
-  }          
+    "fava": "search,info,shop,network",
+    "anonsy": "no"
+  },
+  {
+    "name":"Sally-face",
+    "patching":"Все проекты > Игры > Хоррор > Sally-face",
+    "description":"Игра Sally Face, портированная на Python. В этой версии улучшено качество, оптимизирована производительность и убраны лишние элементы. Также добавлена возможность пропускать уровни, если пройти их не удаётся.",
+    "descriptionMini":"Порт Sally Face на Python с оптимизацией и возможностью пропуска уровней.",
+    "icon":"https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/unitySplashScreen.png",
+    "imgScreen":"https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/sally1.png,https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/sally2.png,https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/sally3.png",
+    "buttonType":"Открыть",
+    "otziv":"3",
+    "star":"4,7",
+    "content":"https://t.me/ZRU_GO_bot",
+    "age":"18+",
+    "developer":"UDay corporation©",
+    "language":"RU",
+    "languageKalivan":"+1 другой",
+    "types":"Игра",
+    "version":"1.1",
+    "size":"Не известно",
+    "updated":"26.09.2025",
+    "updateText":"Добавлен 2 уровень 1 эпизода",
+    "kategory":"Развлечения, Ужасы, Головоломки",
+    "deviceTy":"Windows, Mac OS, Linux",
+    "patent":"UDay©",
+    "sertificate":"Да",
+    "siteDeveloper":"https://dmitryuday.github.io/UDay/",
+    "policy":"https://clck.ru/3NNhtC",
+    "alternatives": "салли, sally, фейс, face, фэйс, кромсали",
+    "fava": "dataFiles,options",
+    "anonsy": "https://t.me/UDay_tehnologi"
+  }
 
 ]

@@ -403,19 +403,27 @@ fetch("app.json")
                 });
             }
 
-            // --- Логика кнопки ---
+            // --- Логика кнопки с учётом anonsy ---
             const btn = document.getElementById("contentButton");
-            if (app.buttonType === "Открыть") {
-                btn.href = app.content;
-                btn.addEventListener("click", () => {
-                    window.location.href = app.content;
-                });
-            } else if (app.buttonType === "Скачать") {
-                btn.href = "#"; // чтобы не переходил сразу
-                btn.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    showDownloadModal(app);
-                });
+
+            if (app.anonsy && app.anonsy !== "no") {
+                // если есть анонс
+                btn.href = app.anonsy;
+                document.getElementById("buttonType").textContent = 'Скоро';
+            } else {
+                // обычное поведение
+                if (app.buttonType === "Открыть") {
+                    btn.href = app.content;
+                    btn.addEventListener("click", () => {
+                        window.location.href = app.content;
+                    });
+                } else if (app.buttonType === "Скачать") {
+                    btn.href = "#"; // чтобы не переходил сразу
+                    btn.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        showDownloadModal(app);
+                    });
+                }
             }
         }
     });
