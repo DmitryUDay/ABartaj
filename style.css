@@ -466,6 +466,75 @@ div > #searchInput {
     justify-content: center;
 }
 
+
+
+
+
+.teaser {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #7331ff;
+    padding: 20px;
+    border-radius: 20px;
+    gap: 20px;
+    flex-wrap: nowrap;
+}
+
+.teaser img {
+    max-width: 50%;
+    border-radius: 10px;
+    height: auto;
+}
+
+/* блок с текстом */
+.teaser-text {
+    color: white;
+    flex: 1;
+}
+
+.teaser-text p {
+    margin: 5px 0;
+    color: rgb(183, 183, 183);
+}
+
+.teaser-text {
+    font-size: 14px;
+    color: #ddd;
+    margin-bottom: 10px;
+}
+
+/* адаптив */
+@media (max-width: 768px) {
+    .teaser {
+        flex-direction: column; /* перенос на телефон */
+        text-align: center;
+    }
+
+    .teaser img {
+        max-width: 100%;
+    }
+
+    .teaser-text {
+        width: 100%;
+    }
+}
+
+.seeAll {
+    border: none;
+    background-color: #ffd231;
+    font-family: "Comfortaa", sans-serif;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+
+
+
+
+
 /* Адаптив для телефонов */
 @media (max-width: 600px) {
     .cards {

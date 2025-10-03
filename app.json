@@ -136,7 +136,6 @@
   },
   {
     "name":"Sally-face",
-    "patching":"Все проекты > Игры > Хоррор > Sally-face",
     "description":"Игра Sally Face, портированная на Python. В этой версии улучшено качество, оптимизирована производительность и убраны лишние элементы. Также добавлена возможность пропускать уровни, если пройти их не удаётся.",
     "descriptionMini":"Порт Sally Face на Python с оптимизацией и возможностью пропуска уровней.",
     "icon":"https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/unitySplashScreen.png",
@@ -152,7 +151,6 @@
     "types":"Игра",
     "version":"1.1",
     "size":"Не известно",
-    "updated":"26.09.2025",
     "updateText":"Добавлен 2 уровень 1 эпизода",
     "kategory":"Развлечения, Ужасы, Головоломки",
     "deviceTy":"Windows, Mac OS, Linux",
@@ -162,7 +160,8 @@
     "policy":"https://clck.ru/3NNhtC",
     "alternatives": "салли, sally, фейс, face, фэйс, кромсали",
     "fava": "dataFiles,options",
-    "anonsy": "https://t.me/UDay_tehnologi"
+    "anonsy": "https://t.me/UDay_tehnologi",
+    "color": "#888"
   }
 
 ]

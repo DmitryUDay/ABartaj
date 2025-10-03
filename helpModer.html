@@ -1,69 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Помощь — ABartaj</title>
     <link rel="stylesheet" href="helpStyle.css">
-    <title>Помощь</title>
+
 </head>
 <body>
-    <br>
-    <button class="gBack">Назад</button>
-    <br>
-    <h2 align="center">Опишите вашу проблему, вопрос или предложение ниже</h2>
-    <br>
-    <input type="text" placeholder="Ваш запрос" id="inputPole">
-    <br>
-    <button id="getRes">Отправить</button>
+  <h1>Помощь</h1>
+  <p>Оставьте свои данные для обратной связи или помощи</p>
 
-    <br>
-    <br>
-    <div style="display: flex; justify-content: center; width: 100%; position: absolute; bottom: 0;">
-        <div style="display: flex; gap: 20px; align-items: center;">
-            <a href="index.html"><img src="server/ABADark.png" alt="" width="80px"></a>
-            <p style="color: #b4b4b4;">ABartaj - project UDay©</p>
-            <p style="color: #b4b4b4; cursor: pointer;" onclick="showCook()">Файлы куки</p>
-            <a href="defaultSelf.html" style="color: #b4b4b4; text-decoration: none;">UDay</a>
-            <p style="color: #b4b4b4;">Безопасность</p>
-            <a href="udayService.html" style="color: #b4b4b4; text-decoration: none;">Сервисы</a>
-            <a href="maksim.html" style="color: #b4b4b4; text-decoration: none;">Правила поведения в режиме разработчика</a>
-            <a href="accDash.html" style="color: #b4b4b4; text-decoration: none;">Аккаунт</a>
-            <p style="color: #b4b4b4;">Контакт</p>
-        </div>
+  <form onsubmit="sendForm(event)">
+    <div>
+      <input type="email" id="email" name="email" placeholder="email" required>
     </div>
+    <div>
+      <input type="email" id="email" name="userAgent" placeholder="имя" required>
+    </div>
+    <div>
+      <textarea id="feedback" name="feedback" placeholder="сообщение" required></textarea>
+    </div>
+    <div class="buttons">
+        <button type="button" class="btn back-btn" onclick="history.back()">Назад</button>
+      <button type="submit" class="btn submit-btn">Отправить</button>
+    </div>
+  </form>
 
+  <script>
+    function sendForm(e){
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      const feedback = document.getElementById("feedback").value.trim();
+
+      if(email && feedback){
+        alert("Спасибо! Ваш отзыв отправлен ✅");
+        e.target.reset();
+      }else{
+        alert("Пожалуйста, заполните все поля.");
+      }
+    }
+  </script>
 </body>
 </html>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('inputPole');
-    const sendButton = document.getElementById('getRes');
-
-    searchInput.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            showAlert();
-        }
-    });
-
-    // Обработчик события при клике на кнопку
-    sendButton.addEventListener('click', showAlert);
-
-    function showAlert() {
-        const value = searchInput.value.trim(); // Получаем значение из инпута и убираем лишние пробелы
-        if (value !== '') {
-            alert(`Отправили от лица Гость вашу проблему: \n${value}`); // Выводим значение в алерт
-            history.back();
-        }
-    }
-});
-
-document.querySelector('.gBack').addEventListener('click', function() {
-this.classList.add('boni');
-
-// Ждем окончания анимации и переходим на сайт
-setTimeout(() => {
-    history.back();
-}, 500); // Время ожидания должно соответствовать длительности анимации
-});
-</script>
