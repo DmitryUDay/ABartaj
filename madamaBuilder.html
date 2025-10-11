@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Категория — Madama Builder</title>
+  <link rel="stylesheet" href="mdmBuild.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="server/js/imager.js"></script>
+</head>
+<body>
+    <button id="BBack" onclick="goBack()" style="cursor: pointer;">&lt;Назад</button>
+    <br>
+    <br>
+    <div id="category-page">
+        <h1 id="category-title"></h1>
+        <div id="all-projects" class="projects-grid"></div>
+    </div>
+
+
+
+
+    <script>
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get("category");
+    const container = document.getElementById("all-projects");
+    const titleEl = document.getElementById("category-title");
+
+    const catNames = {
+        game: "Игры",
+        bot: "Боты",
+        app: "Программы",
+        tool: "Инструменты",
+        other: "Другое"
+    };
+
+    titleEl.textContent = `Категория: ${catNames[category] || category}`;
+    titleEl.style.color = '#ffffff'
+
+    fetch("app.json")
+        .then(res => res.json())
+        .then(data => {
+        const filtered = data.filter(app => (app.searchKategory || "other") === category);
+
+        filtered.forEach(app => {
+            const card = document.createElement("div");
+            card.className = "project-card";
+            card.innerHTML = `
+            <a href="MrBuilder.html?name=${encodeURIComponent(app.name)}">
+                <img src="${app.icon}" alt="${app.name}">
+                <h3>${app.name}</h3>
+                <p>${app.descriptionMini}</p>
+                <div class="project-info">
+                <span>${app.developer}</span>
+                <span>${app.age}</span>
+                <span>⭐ ${app.star}</span>
+                </div>
+            </a>
+            `;
+            container.appendChild(card);
+        });
+        });
+    </script>
+</body>
+</html>

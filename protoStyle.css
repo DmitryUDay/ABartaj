@@ -6,10 +6,11 @@
 }
 
 
-body{
+body,html{
     background-color: #2C3E50;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 h1,h2,h3,h4,h5,h6,p,ul{
@@ -24,27 +25,49 @@ h1 {
 
 
 
-.buttonSas {
-    font-size: 15px;
-    justify-content: center;
+.buttonContainer {
     display: flex;
-    background-color: #ffd231;
-    padding: 10px 15px;
-    margin-bottom: 5px;
-    border-radius: 20px;
-    transition: all 0.2s ease;
-    border: none;
+    margin-right: auto;
+    margin-left: auto;
+    flex-direction: column; /* кнопки идут вертикально */
+    align-items: stretch;   /* одинаковая ширина */
+    gap: 10px;              /* расстояние между кнопками */
+    padding: 10px;
+    width: 250px;
+}
 
-    width: 100%;
-    box-sizing: border-box; /* ← учитываем padding и border в ширине */
-    max-width: 100%;        /* ← запрет вылазить за границы */
+.buttonSas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    height: 45px;           /* одинаковая высота */
+    border-radius: 20px;
+    background-color: #ffd231;
+    color: black;
+    border: none;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 100%;            /* чтобы все кнопки были одинаковой ширины */
+    transition: all 0.2s ease;
 }
 
 .buttonSas:hover {
-    cursor: pointer;
-    color: #fff;
     background-color: #7331ff;
+    color: white;
 }
+
+/* убираем стандартные стили кнопки */
+button.buttonSas {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+
 
 #IICode{
     display: none;
@@ -65,8 +88,8 @@ h1 {
 }
 
 .container2{
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 35px;
+    margin-right: 35px;
 }
 
 table{
@@ -870,13 +893,6 @@ hr {
 
 
 
-
-
-
-
-
-
-
 /* Телефоны */
 @media (max-width: 768px) {
     .backIMG {
@@ -895,14 +911,5 @@ hr {
         width: 100%;
         height: 100%;
         object-fit: cover;
-    }
-
-    /* Выровнять высоту изображения по высоте инфоблока */
-    .backIMG, #imaga {
-        height: auto;
-    }
-
-    .backIMG img {
-        max-height: 100%;          /* чтобы не вылезало за пределы */
     }
 }

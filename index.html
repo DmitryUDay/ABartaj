@@ -55,7 +55,7 @@
         </ul>
     </nav>
     <div style="height: 60px; padding: 10px;"></div>
-
+    <!-- <h2 align="center" style="font-size: 20px; background-color: #7331ff; margin: 10px; padding: 5px; color: white; border-radius: 20px;">Доступ к отдельным услугам ABartaj ограничен в Украине, Польше и США согласно политике <a href="defaultSelf.html" style="color: white; text-decoration: underline;">UDay-corporation</a></h2> -->
     <br>
     <br>
 
@@ -211,45 +211,131 @@ fetch("app.json")
   .then(res => res.json())
   .then(data => {
     allApps = data;
-    renderCards();
+    renderCategories();
   });
 
-// Функция для отображения карточек
-function renderCards() {
-    container.innerHTML = "";
-    const appsToShow = allApps.slice(0, visibleCount);
+function renderCategories() {
+  container.innerHTML = "";
 
-    appsToShow.forEach(app => {
-        const card = document.createElement("div");
-        card.className = "project-card";
-        card.innerHTML = `
-            <a href="MrBuilder.html?name=${app.name}">
-                <img src="${app.icon}" alt="${app.name}" style="">
-                <h3>${app.name}</h3>
-                <p>${app.descriptionMini}</p>
-                <div class="project-info">
-                    <span>${app.developer}</span>
-                    <span>${app.age}</span>
-                    <span>⭐ ${app.star}</span>
-                </div>
-            </a>
-        `;
-        container.appendChild(card);
+  const grouped = {};
+  allApps.forEach(app => {
+    const cat = app.searchKategory || "other";
+    if (!grouped[cat]) grouped[cat] = [];
+    grouped[cat].push(app);
+  });
+
+  const catNames = {
+    game: "Игры",
+    bot: "Боты",
+    app: "Программы",
+    tool: "Инструменты",
+    other: "Другое"
+  };
+
+  Object.keys(grouped).forEach(category => {
+    const apps = grouped[category].slice(0, 20);
+
+    const categoryBlock = document.createElement("div");
+    categoryBlock.className = "category-block";
+
+    const title = document.createElement("h2");
+    title.className = "category-title";
+    title.textContent = (catNames[category] || category) + " >";
+
+    // 🔗 Клик по категории = переход на madamaBuilder.html
+    title.addEventListener("click", () => {
+      window.location.href = `madamaBuilder.html?category=${encodeURIComponent(category)}`;
     });
 
-    // Проверяем нужно ли показывать кнопку
-    if (visibleCount < allApps.length) {
-        loadMoreBtn.style.display = "block";
-    } else {
-        loadMoreBtn.style.display = "none";
+    const scrollWrapper = document.createElement("div");
+    scrollWrapper.className = "scroll-wrapper";
+
+    const scrollContainer = document.createElement("div");
+    scrollContainer.className = "category-scroll";
+
+    // Стрелки
+    const btnLeft = document.createElement("button");
+    btnLeft.className = "scroll-btn left";
+    btnLeft.innerHTML = "&#9664;";
+
+    const btnRight = document.createElement("button");
+    btnRight.className = "scroll-btn right";
+    btnRight.innerHTML = "&#9654;";
+
+    // Добавляем карточки
+    apps.forEach(app => {
+      const card = document.createElement("div");
+      card.className = "project-card";
+      card.innerHTML = `
+        <a href="MrBuilder.html?name=${encodeURIComponent(app.name)}">
+          <img src="${app.icon}" alt="${app.name}">
+          <h3>${app.name}</h3>
+          <p>${app.descriptionMini}</p>
+          <div class="project-info">
+            <span>${app.developer}</span>
+            <span>${app.age}</span>
+          </div>
+        </a>
+      `;
+      scrollContainer.appendChild(card);
+    });
+
+    // Собираем всё
+    scrollWrapper.appendChild(btnLeft);
+    scrollWrapper.appendChild(scrollContainer);
+    scrollWrapper.appendChild(btnRight);
+    categoryBlock.appendChild(title);
+    categoryBlock.appendChild(scrollWrapper);
+    container.appendChild(categoryBlock);
+
+    // Функция проверки: нужно ли показывать стрелки
+    function updateArrowVisibility() {
+      const scrollWidth = scrollContainer.scrollWidth;
+      const clientWidth = scrollContainer.clientWidth;
+      const scrollLeft = scrollContainer.scrollLeft;
+
+      // если контент не переполняет контейнер
+      if (scrollWidth <= clientWidth + 1) {
+        btnLeft.style.display = "none";
+        btnRight.style.display = "none";
+      } else {
+        // если можем скроллить влево
+        btnLeft.style.display = scrollLeft > 10 ? "flex" : "none";
+        // если можем скроллить вправо
+        btnRight.style.display = scrollLeft + clientWidth < scrollWidth - 10 ? "flex" : "none";
+      }
     }
+
+    // Добавляем события на стрелки
+    btnLeft.addEventListener("click", () => {
+      scrollContainer.scrollBy({ left: -300, behavior: "smooth" });
+    });
+    btnRight.addEventListener("click", () => {
+      scrollContainer.scrollBy({ left: 300, behavior: "smooth" });
+    });
+
+    // Обновляем стрелки при прокрутке и изменении размера окна
+    scrollContainer.addEventListener("scroll", updateArrowVisibility);
+    window.addEventListener("resize", updateArrowVisibility);
+
+    // Первый вызов после отрисовки
+    setTimeout(updateArrowVisibility, 200);
+
+    // Небольшой сдвиг влево на телефонах
+    if (window.innerWidth < 768) {
+      setTimeout(() => {
+        scrollContainer.scrollLeft = 30;
+        updateArrowVisibility();
+      }, 250);
+    }
+  });
 }
 
-// Обработчик кнопки "Показать ещё"
-loadMoreBtn.addEventListener("click", () => {
-    visibleCount += increment;
-    renderCards();
-});
+// // Обработчик кнопки "Показать ещё"
+// loadMoreBtn.addEventListener("click", () => {
+//     visibleCount += increment;
+//     renderCards();
+// });
 
     // --- Поиск ---
     const searchResultsContainer = document.getElementById("searchResults");
@@ -340,6 +426,14 @@ if (isMobile()) {
 } else {
     button.style.display = 'block';
 }
+window.addEventListener("scroll", () => {
+  const header = document.querySelector(".homebrew");
+  if (window.scrollY > 10) {
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+});
 
 
 

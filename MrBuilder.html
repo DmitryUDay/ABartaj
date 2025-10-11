@@ -33,26 +33,6 @@
         <img id="zoomImage" src="" alt="Zoomed Image">
     </div>
 
-    <!-- <div class="container">
-        <div class="contentImg">
-            <div id="imaga" class="zoomable"></div>
-            <button onclick="bck()" id="b">&lt;</button>
-            <button onclick="nxt()" id="n">&gt;</button>
-        </div>
-
-
-        <div class="project-info">
-            <div class="icon-wrapper"><img id="IconApp" alt="Приложение" width="100"></div>
-            <p id="desys">ExampleDescription</p>
-
-            <div class="buttons-wrapper">
-            <a target="_blank" id="contentButton" style="text-decoration: none; color: black;"><div id="buttonType" class="buttonSas"></div></a>
-            <a target="_blank" id="IICode" style="text-decoration: none; color: black;"><div class="buttonSas">Скачать исходный код</div></a>
-            <button class="buttonSas" style="text-decoration: none; color: black;" onclick="copyLink()">Поделиться</button>
-            </div>
-        </div>
-    </div> -->
-
 
     <div style="margin: 20px;">
         <div style="display: flex; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
@@ -71,14 +51,22 @@
             <div class="infoProj">
                 <div class="iconCenter"><img id="IconApp" alt="Приложение" width="100" style="border-radius: 10px;"></div>
                 <hr>
-                <p id="desys">ExampleDescription</p>
-                <a target="_blank" id="contentButton" style="text-decoration: none; color: black;"><div id="buttonType" class="buttonSas"></div></a>
-                <button class="buttonSas" style="text-decoration: none; color: black;" onclick="copyLink()">Поделиться</button>
-                <a target="_blank" id="IICode" style="text-decoration: none; color: black;"><div class="buttonSas">Скачать исходный код</div></a>
+                <p id="descryMAX">ExampleDescription</p>
+
+
+
+
+
+
+
+                <div class="buttonContainer">
+                    <a target="_blank" id="contentButton" style="text-decoration: none; color: black;"><div id="buttonType" class="buttonSas"></div></a>
+                    <a target="_blank" id="IICode" style="text-decoration: none; color: black;"><div class="buttonSas">Скачать исходный код</div></a>
+                    <button class="buttonSas" style="text-decoration: none; color: black;" onclick="copyLink()">Поделиться</button>
+                </div>
             </div>
         </div>
     </div>
-
 
 
 
@@ -113,19 +101,24 @@
             </div>
         </div>
     </div>
-
-    <br>
+    
+    
+    
+    
+    
     <div class="container2">
-        <br>
-        <div>
+        <div id="mws">
+            <br>
+            <hr style="clear: both;">
+            <br>
             <h1 style="margin: 0 0 5px 0; line-height:1.2;">Что нового ></h1>
             <div style="width: 300px; margin: 0; line-height:1.2;">
                 <h3 id="contentUpdates" style="margin:0; margin-left: 30px;">Загрузка элемента</h3>
             </div>
         </div>
-
         <br>
-
+        
+        <hr style="clear: both;">
         <a id="developerDublicate3">
             <div class="devHov">
                 <div>
@@ -140,7 +133,7 @@
         </a>
 
 
-
+        <hr style="clear: both;">
         <br>
 
 
@@ -217,21 +210,16 @@
                 <img src="https://cdn-icons-png.flaticon.com/512/59/59203.png" alt="" width="50px">
                 <p style="color: black; font-size: 20px;">Написать отзыв</p>
             </div>
-            <br>
-            <div style="align-items: center; display: flex; gap: 10px; background-color: #ffd231; justify-content: center; border-radius: 30px;">
-                <img src="https://cdn-icons-png.flaticon.com/512/25/25333.png" alt="" width="50px">
-                <p style="color: black; font-size: 20px;">Задать вопрос</p>
-            </div>
         </div>
 
         
         
         <br>
+        <hr style="clear: both;">
         <br>
         
         
-        <h1 style="cursor: pointer; ">Конфиндециальность приложения ></h1>
-
+        <h1 style="cursor: pointer; ">Конфиндециальность приложения</h1>
 
         <div class="data-card" style="background-color: #2C3E50; box-shadow: 0 0 10px #000000; width: 100%; height: auto; justify-content: center; padding: 20px; border-radius: 30px; text-align: center;">
             <div style="display: flex; flex-direction: column; align-items: center;">
@@ -411,13 +399,12 @@ fetch("app.json")
             document.getElementById("ageKalivan").textContent = app.age;
             document.getElementById("developer").textContent = app.developer;
             document.getElementById("developerDublicate1").textContent = app.developer;
-            document.getElementById("developerDublicate2").textContent = app.developer;
+            document.getElementById("developerDublicate1").textContent = app.developer;
             document.getElementById("defoultLanguage").textContent = app.language;
             document.getElementById("dopingLanguage").textContent = app.languageKalivan;
             document.getElementById("getVersionApp").textContent = app.version;
             document.getElementById("sizess").textContent = app.size;
-            document.getElementById("contentUpdates").textContent = app.updateText;
-            document.getElementById("desys").textContent = app.description;
+            document.getElementById("descryMAX").textContent = app.description;
             document.getElementById("category").textContent = app.kategory;
             document.getElementById("deviTY").textContent = app.deviceTy;
             document.getElementById("obj").textContent = app.size;
@@ -429,7 +416,15 @@ fetch("app.json")
             document.getElementById("polyci").href = app.polyci;
 
 
+            const updatesElement = document.getElementById("contentUpdates");
+            const mwsBlock = document.getElementById("mws");
 
+            if (app.updateText && app.updateText.trim() !== "") {
+            updatesElement.textContent = app.updateText;
+            mwsBlock.style.display = "block";
+            } else {
+            mwsBlock.style.display = "none";
+            }
 
 
             if (app.allCode && app.allCode.trim() !== ""){
@@ -731,18 +726,22 @@ modalImg.addEventListener("touchmove", (e) => {
   });
 
 
-  function copyLink(){
+  function copyLink() {
     const url = window.location.href;
-    navigator.clipboard.writeText(url).then(()=>{
-      const toast = document.getElementById("copyToast");
-      toast.classList.add("show");
-      setTimeout(()=> toast.classList.remove("show"), 2500);
-    }).catch(()=>{
-      alert("Не удалось скопировать ссылку :(");
-    });
-  }
-
-
+    const tempInput = document.createElement("textarea");
+    tempInput.value = url;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    try {
+        document.execCommand("copy");
+        const toast = document.getElementById("copyToast");
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2500);
+    } catch (err) {
+        alert("Не удалось скопировать ссылку :(");
+    }
+    document.body.removeChild(tempInput);
+    }
 
 </script>
 

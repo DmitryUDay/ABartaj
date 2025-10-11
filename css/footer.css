@@ -1,0 +1,63 @@
+/* общий футер */
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+    color: #b4b4b4;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-logo img {
+    width: 80px;
+    height: auto;
+}
+
+.footer-links {
+    display: flex;
+    gap: 60px;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.footer-item p {
+    margin: 0;
+    font-size: 14px;
+    color: #b4b4b4;
+}
+
+.footer-item a {
+    display: block;
+    color: #b4b4b4;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 3px;
+    transition: color 0.3s;
+}
+
+.footer-item a:hover {
+    color: #fff;
+}
+
+/* адаптив для телефонов */
+@media (max-width: 768px) {
+    .footer {
+        gap: 50px;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .footer-item {
+        flex: 1 1 45%;
+        min-width: 140px;
+    }
+}
