@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+
+
+
+<script>
+window.addEventListener('load', function() {
+  if (typeof mqtt === 'undefined') {
+    console.error('mqtt.js не загружен');
+    return;
+  }
+
+  const TOPIC_APP = 'dmitry/appjson';
+  const TOPIC_CMD = 'dmitry/commands';
+
+  // Создаём или используем существующий клиент
+  const c = (typeof client !== 'undefined' && client) 
+            ? client 
+            : mqtt.connect('wss://test.mosquitto.org:8081/mqtt', { clientId: 'webclient_'+Math.random().toString(16).slice(2,10), reconnectPeriod:5000 });
+
+  window.client = c; // сохраняем глобально, чтобы другие скрипты могли использовать
+
+  // Подписка на топик appjson и отправка запроса
+  function subscribeAndRequest() {
+    c.subscribe(TOPIC_APP, { qos: 0 }, (err) => {
+      if (err) return console.warn('Subscribe error', err);
+      // запросим app.json
+      c.publish(TOPIC_CMD, 'getAppMQQ', { qos:0 });
+      console.log('Published getAppMQQ');
+    });
+  }
+
+  if (c.connected) subscribeAndRequest();
+  else c.on('connect', subscribeAndRequest);
+
+  // Обработка пришедшего JSON
+  c.on('message', (topic, payload) => {
+    if (topic !== TOPIC_APP) return;
+    let msg = payload.toString();
+    let obj;
+    try { obj = JSON.parse(msg); } 
+    catch(e) { console.error('Не удалось распарсить JSON', e); return; }
+
+    let nameToShow = null;
+
+    // если пришёл массив объектов, берём первый с полем name
+    if (Array.isArray(obj)) {
+      for (let item of obj) {
+        if (item.name) { nameToShow = item.name; break; }
+      }
+    } else if (obj.name) {
+      nameToShow = obj.name;
+    }
+
+    if (nameToShow) {
+      let h1 = document.querySelector('h1');
+      if (!h1) {
+        h1 = document.createElement('h1');
+        document.body.insertBefore(h1, document.body.firstChild);
+      }
+      h1.textContent = nameToShow;
+      console.log('Displayed name:', nameToShow);
+    } else {
+      console.warn('В JSON нет поля name');
+    }
+  });
+});
+</script>
+
+
+<body>
+    
+</body>
+</html>

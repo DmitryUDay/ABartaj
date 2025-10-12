@@ -49,19 +49,20 @@
 
 
             <div class="infoProj">
-                <div class="iconCenter"><img id="IconApp" alt="Приложение" width="100" style="border-radius: 10px;"></div>
+                <div class="iconCenter">
+                    <img id="IconApp" alt="Приложение" width="100" style="border-radius: 10px;">
+                </div>
                 <hr>
-                <p id="descryMAX">ExampleDescription</p>
-
-
-
-
-
-
+                <p id="descryMAX">Очень длинное описание проекта...</p>
+                <p id="moreBtn" bac>Больше</p>
 
                 <div class="buttonContainer">
-                    <a target="_blank" id="contentButton" style="text-decoration: none; color: black;"><div id="buttonType" class="buttonSas"></div></a>
-                    <a target="_blank" id="IICode" style="text-decoration: none; color: black;"><div class="buttonSas">Скачать исходный код</div></a>
+                    <a target="_blank" id="contentButton" style="text-decoration: none; color: black;">
+                        <div id="buttonType" class="buttonSas"></div>
+                    </a>
+                    <a target="_blank" id="IICode" style="text-decoration: none; color: black;">
+                        <div class="buttonSas">Скачать исходный код</div>
+                    </a>
                     <button class="buttonSas" style="text-decoration: none; color: black;" onclick="copyLink()">Поделиться</button>
                 </div>
             </div>
@@ -742,6 +743,11 @@ modalImg.addEventListener("touchmove", (e) => {
     }
     document.body.removeChild(tempInput);
     }
+
+    document.getElementById('moreBtn').addEventListener('click', function() {
+        const proj = this.closest('.infoProj');
+        proj.classList.add('expanded');
+    });
 
 </script>
 

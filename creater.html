@@ -1,11 +1,586 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Новый проект</title>
+  <meta charset="UTF-8">
+  <title>Создание проекта</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="creater.css">
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
 </head>
 <body>
-    
+  <div class="container">
+    <h1>Создание проекта</h1>
+
+    <div class="form">
+      <label>Название проекта (до 100 символов):</label>
+      <input type="text" id="projectName" maxlength="100" required>
+
+      <label>Описание (до 500 символов):</label>
+      <textarea id="projectDescription" maxlength="500" required></textarea>
+
+      <label>Мини-описание (до 100 символов):</label>
+      <input type="text" id="shortDescription" maxlength="100" required>
+
+        <hr>
+
+      <label>Иконка проекта:</label>
+      <div class="file-row">
+        <input type="file" id="iconFile" accept="image/*">
+        <span>или</span>
+        <input type="text" id="iconPath" placeholder="URL иконки">
+      </div>
+      <div id="iconLoading" class="loading" style="display:none;">Поиск изображения...</div>
+      <div id="iconPreview"></div>
+
+      <label>Картинки (до 10 штук):</label>
+      <div class="file-row">
+        <input type="file" id="images" accept="image/*" multiple>
+        <span>или</span>
+        <input type="text" id="imagePaths" placeholder="через запятую URL картинок">
+      </div>
+      <div id="imagesLoading" class="loading" style="display:none;">Поиск изображения...</div>
+      <div id="imagesPreview"></div>
+
+
+
+      <hr>
+      <label>Тип проекта:</label>
+      <select id="projectType" required>
+        <option value="">Выберите...</option>
+        <option>Бот</option>
+        <option>Игра</option>
+        <option>ПО</option>
+        <option>Прошивка</option>
+        <option>Веб приложение</option>
+        <option>Сайт</option>
+        <option>Исполняемый файл</option>
+        <option>Плагин</option>
+        <option>Приложение</option>
+      </select>
+
+      <label>Возрастное ограничение:</label>
+      <select id="ageLimit" required>
+        <option>0+</option>
+        <option>6+</option>
+        <option>12+</option>
+        <option>16+</option>
+        <option>18+</option>
+      </select>
+
+      <label>Разработчик:</label>
+      <input type="text" value="GUst" disabled>
+
+      <label>Основной язык:</label>
+      <select id="mainLang">
+        <option>Русский</option>
+        <option>Английский</option>
+        <option>Китайский</option>
+        <option>Испанский</option>
+        <option>Немецкий</option>
+        <option>Французский</option>
+        <option>Японский</option>
+        <option>Корейский</option>
+        <option>Итальянский</option>
+      </select>
+
+        <label>Дополнительные языки:</label><br>
+        <div id="extraLangs" style="border: 1px solid gray; background-color: white; width: 220px; height: 100px; overflow-y: auto; padding: 5px;">
+        <input type="checkbox" value="Русский"> Русский<br>
+        <input type="checkbox" value="Английский"> Английский<br>
+        <input type="checkbox" value="Китайский"> Китайский<br>
+        <input type="checkbox" value="Испанский"> Испанский<br>
+        <input type="checkbox" value="Немецкий"> Немецкий<br>
+        <input type="checkbox" value="Французский"> Французский<br>
+        <input type="checkbox" value="Японский"> Японский<br>
+        <input type="checkbox" value="Корейский"> Корейский<br>
+        <input type="checkbox" value="Итальянский"> Итальянский<br>
+        <input type="checkbox" value="Арабский"> Арабский<br>
+        <input type="checkbox" value="Португальский"> Португальский<br>
+        <input type="checkbox" value="Турецкий"> Турецкий<br>
+        </div><br>
+
+      <label>Версия приложения:</label>
+      <input type="text" id="version" placeholder="например 1.0.0">
+
+      <label>Категория:</label>
+      <input type="text" id="category" placeholder="например Хоррор, Бизнес и т.д.">
+
+      <label>Совместимость:</label>
+      <div id="compatibility" class="compatibility">
+        <label><input type="checkbox" value="Windows"> Windows</label>
+        <label><input type="checkbox" value="Android"> Android</label>
+        <label><input type="checkbox" value="iOS"> iOS</label>
+        <label><input type="checkbox" value="iMac"> iMac</label>
+        <label><input type="checkbox" value="Linux"> Linux</label>
+        <label><input type="checkbox" value="UOS"> UOS</label>
+      </div>
+      <div id="repoLinks"></div>
+
+      <label>Ссылка на исходный код (необязательно):</label>
+      <input type="url" id="sourceLink" placeholder="https://...">
+
+      <label>Ссылка на сертификат (необязательно):</label>
+      <input type="url" id="certificateLink" placeholder="https://...">
+      <small id="certWarning" class="warning">⚠ Без сертификата приложение будет менее доверенным!</small>
+
+      <label>Сайт разработчика (если есть):</label>
+      <input type="url" id="devSite" placeholder="https://...">
+
+    <label>Используемые данные:</label><br>
+    <div id="usedData" style="background-color: white; border-radius: 10px; padding: 3px;">
+    <input type="checkbox" value="Фото"> Фото<br>
+    <input type="checkbox" value="Данные памяти"> Данные памяти<br>
+    <input type="checkbox" value="Идентификатор"> Идентификатор<br>
+    <input type="checkbox" value="Контакты"> Контакты<br>
+    <input type="checkbox" value="Местоположение"> Местоположение<br>
+    <input type="checkbox" value="Интернет-соединение"> Интернет-соединение<br>
+    </div><br>
+
+      <label>Категория:</label>
+      <select id="announceCategory">
+        <option>Игра</option>
+        <option>Приложение</option>
+        <option>Редактор</option>
+        <option>ВидеоРедактор</option>
+        <option>Инструмент</option>
+        <option>Библиотека</option>
+      </select>
+
+      <div class="announce-block">
+        <label>Анонсирование:</label>
+        <input type="checkbox" id="announce">
+      </div>
+
+      <div id="announceFields" style="display:none;">
+        <label>Ссылка на анонс:</label>
+        <input type="url" id="announceLink" placeholder="https://...">
+      </div>
+
+      <button type="submit" class="submit-btn">Создать проект</button>
+    </div>
+  </div>
+
+  <script>
+    const cert = document.getElementById("certificateLink");
+    const certWarn = document.getElementById("certWarning");
+    cert.addEventListener("input", () => {
+      certWarn.style.display = cert.value.trim() === "" ? "inline" : "none";
+    });
+
+    document.getElementById("announce").addEventListener("change", function() {
+      document.getElementById("announceFields").style.display = this.checked ? "block" : "none";
+    });
+
+    const compBoxes = document.querySelectorAll("#compatibility input");
+    const repoLinksDiv = document.getElementById("repoLinks");
+
+    compBoxes.forEach(box => {
+      box.addEventListener("change", function() {
+        const os = this.value;
+        const id = "repo_" + os;
+        if (this.checked) {
+          const input = document.createElement("div");
+          input.id = id;
+          input.className = "repo-input";
+          input.innerHTML = `<label>${os} репозиторий:</label><input type='url' placeholder='https://...' name='${os}_repo'>`;
+          repoLinksDiv.appendChild(input);
+        } else {
+          const old = document.getElementById(id);
+          if (old) repoLinksDiv.removeChild(old);
+        }
+      });
+    });
+
+
+  const iconFile = document.getElementById('iconFile');
+  const iconPath = document.getElementById('iconPath');
+  const iconPreview = document.getElementById('iconPreview');
+  const iconLoading = document.getElementById('iconLoading');
+
+  const imagesInput = document.getElementById('images');
+  const imagePaths = document.getElementById('imagePaths');
+  const imagesPreview = document.getElementById('imagesPreview');
+  const imagesLoading = document.getElementById('imagesLoading');
+
+  let uploadedImages = [];
+
+  // === Иконка ===
+  iconFile.addEventListener('change', e => {
+    iconPreview.innerHTML = '';
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = document.createElement('img');
+      img.src = reader.result;
+      iconPreview.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  });
+
+  iconPath.addEventListener('input', () => {
+    const url = iconPath.value.trim();
+    if (!url) {
+      iconPreview.innerHTML = '';
+      iconLoading.style.display = 'none';
+      return;
+    }
+
+    iconLoading.style.display = 'flex';
+    iconPreview.innerHTML = '';
+
+    const img = new Image();
+    img.onload = () => {
+      iconLoading.style.display = 'none';
+      iconPreview.appendChild(img);
+    };
+    img.onerror = () => {
+      iconLoading.textContent = 'Не удалось загрузить изображение';
+      setTimeout(() => iconLoading.style.display = 'none', 2000);
+    };
+    img.src = url;
+  });
+
+  // === Картинки ===
+  imagesInput.addEventListener('change', e => {
+    const files = Array.from(e.target.files);
+    for (const file of files) {
+      if (uploadedImages.length >= 10) break;
+      uploadedImages.push(file);
+    }
+    renderImages();
+  });
+
+  imagePaths.addEventListener('input', () => {
+    const urls = imagePaths.value.split(',').map(u => u.trim()).filter(Boolean);
+    imagesLoading.style.display = 'flex';
+    imagesPreview.innerHTML = '';
+    uploadedImages = [];
+
+    let loaded = 0;
+    if (urls.length === 0) {
+      imagesLoading.style.display = 'none';
+      return;
+    }
+
+    urls.forEach(url => {
+      const img = new Image();
+      img.onload = () => {
+        uploadedImages.push(url);
+        loaded++;
+        if (loaded === urls.length) {
+          imagesLoading.style.display = 'none';
+          renderImages();
+        }
+      };
+      img.onerror = () => {
+        loaded++;
+        if (loaded === urls.length) {
+          imagesLoading.style.display = 'none';
+          renderImages();
+        }
+      };
+      img.src = url;
+    });
+  });
+
+  function renderImages() {
+    imagesPreview.innerHTML = '';
+    uploadedImages.forEach((item, index) => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'img-wrapper';
+      const img = document.createElement('img');
+
+      if (typeof item === 'string') {
+        img.src = item;
+      } else {
+        const reader = new FileReader();
+        reader.onload = () => { img.src = reader.result; };
+        reader.readAsDataURL(item);
+      }
+
+      const del = document.createElement('button');
+      del.className = 'delete-btn';
+      del.innerHTML = '×';
+      del.onclick = () => {
+        uploadedImages.splice(index, 1);
+        renderImages();
+      };
+
+      wrapper.appendChild(img);
+      wrapper.appendChild(del);
+      imagesPreview.appendChild(wrapper);
+    });
+  }
+
+
+  </script>
+  <!-- === MQTT realtime: append this BEFORE </body> === -->
+<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+<script>
+  // Настройки брокера (публичный тестовый брокер)
+  const WS_BROKER = 'wss://test.mosquitto.org:8081/mqtt'; // WebSocket endpoint для браузера
+  const TOPIC_CMD = 'dmitry/commands';
+  const TOPIC_RESP = 'dmitry/responses';
+
+  // Создаём UI-кнопку "Поздороваться" и индикатор статуса
+  (function createUI() {
+    const container = document.querySelector('.container') || document.body;
+    const btnRow = document.createElement('div');
+    btnRow.style.margin = '10px 0';
+
+    const helloBtn = document.createElement('button');
+    helloBtn.id = 'sayHelloBtn';
+    helloBtn.textContent = 'Поздороваться 👋';
+    helloBtn.style.marginRight = '10px';
+
+    const status = document.createElement('span');
+    status.id = 'mqttStatus';
+    status.style.fontWeight = '600';
+
+    btnRow.appendChild(helloBtn);
+    btnRow.appendChild(status);
+    container.appendChild(btnRow);
+  })();
+
+  // Подключаем MQTT клиент
+  const clientId = 'webclient_' + Math.random().toString(16).slice(2,10);
+  const client = mqtt.connect(WS_BROKER, { clientId, reconnectPeriod: 5000 });
+
+  client.on('connect', () => {
+    document.getElementById('mqttStatus').textContent = 'MQTT: connected';
+    // подписка на ответы
+    client.subscribe(TOPIC_RESP, { qos: 0 }, (err) => {
+      if (err) console.warn('Subscribe error', err);
+    });
+  });
+
+  client.on('reconnect', () => {
+    document.getElementById('mqttStatus').textContent = 'MQTT: reconnecting...';
+  });
+
+  client.on('error', (e) => {
+    document.getElementById('mqttStatus').textContent = 'MQTT: error';
+    console.error('MQTT error', e);
+  });
+
+  client.on('offline', () => {
+    document.getElementById('mqttStatus').textContent = 'MQTT: offline';
+  });
+
+  // При получении сообщений из TOPIC_RESP
+  client.on('message', (topic, payload) => {
+    const msg = payload.toString();
+    console.log('MQTT recv', topic, msg);
+    if (topic === TOPIC_RESP && msg === 'doneUPDOW') {
+      // показать "привет мир" в интерфейсе
+      showHelloInPage();
+      alert('Проект успешно загружен на сервер и в скором времени появится'); // можно убрать, если не нравится alert
+    }
+  });
+
+  // Отправка createANewProjectFromDmitry при сабмите формы
+  (function hookFormSubmit() {
+    const formBtn = document.querySelector('.submit-btn');
+    if (!formBtn) return;
+    formBtn.addEventListener('click', (ev) => {
+      // не блокируем отправку формы (если таковая есть), просто отправляем команду
+      ev.preventDefault && ev.preventDefault();
+      if (client && client.connected) {
+        client.publish(TOPIC_CMD, 'createANewProjectFromDmitry', { qos: 0 }, (err) => {
+          if (err) {
+            console.error('Publish error', err);
+          } else {
+            console.log('Published createANewProjectFromDmitry');
+          }
+        });
+      } else {
+        console.warn('MQTT not connected yet.');
+        alert('MQTT не подключен — команда не отправлена.');
+      }
+    });
+  })();
+
+  // Кнопка "Поздороваться" публикует aNewHello
+  document.getElementById('sayHelloBtn').addEventListener('click', () => {
+    if (client && client.connected) {
+      client.publish(TOPIC_CMD, 'aNewHello', { qos: 0 }, (err) => {
+        if (err) console.error('Publish error', err);
+        else console.log('Published aNewHello');
+      });
+    } else {
+      alert('MQTT не подключен — команда не отправлена.');
+    }
+  });
+
+  // Вставляет визуальный блок с текстом "привет мир"
+  function showHelloInPage() {
+    let el = document.getElementById('helloBox');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'helloBox';
+      el.style.position = 'fixed';
+      el.style.right = '20px';
+      el.style.bottom = '20px';
+      el.style.background = 'white';
+      el.style.border = '2px solid #333';
+      el.style.padding = '10px 15px';
+      el.style.borderRadius = '8px';
+      el.style.boxShadow = '0 2px 6px rgba(0,0,0,0.2)';
+      el.style.zIndex = 9999;
+      document.body.appendChild(el);
+    }
+    el.textContent = 'привет мир';
+    // Авто‑исчезновение через 6 секунд
+    setTimeout(() => { if (el.parentNode) el.parentNode.removeChild(el); }, 6000);
+  }
+</script>
+<!-- === end MQTT realtime === -->
+
+
+<script>
+document.querySelector('.submit-btn').addEventListener('click', (ev) => {
+  ev.preventDefault(); // предотвращаем стандартное сабмитирование
+
+  let projectData = [];
+
+  // === Простые поля ===
+  const name = document.getElementById('projectName').value.trim();
+  if (name) projectData.push(`(name:${name})`);
+
+  const description = document.getElementById('projectDescription').value.trim();
+  if (description) projectData.push(`(description:${description})`);
+
+  const shortDesc = document.getElementById('shortDescription').value.trim();
+  if (shortDesc) projectData.push(`(descriptionMini:${shortDesc})`);
+  
+  const icn = imagePaths.value.trim(); // оставляем как есть
+  if (icn) projectData.push(`(iconFile:${icn})`);
+
+  const imagesValue = imagePaths.value.trim(); // оставляем как есть
+  if (imagesValue) projectData.push(`(images:${imagesValue})`);
+
+  const version = document.getElementById('version').value.trim();
+  if (version) projectData.push(`(version:${version})`);
+
+  const category = document.getElementById('category').value.trim();
+  if (category) projectData.push(`(kategory:${category})`);
+
+  const ageLimit = document.getElementById('ageLimit').value.trim();
+  if (ageLimit) projectData.push(`(age:${ageLimit})`);
+
+  const mainLang = document.getElementById('mainLang').value.trim();
+  if (mainLang) projectData.push(`(language:${mainLang})`);
+
+  const devSite = document.getElementById('devSite').value.trim();
+  if (devSite) projectData.push(`(siteDeveloper:${devSite})`);
+
+  const sourceLink = document.getElementById('sourceLink').value.trim();
+  if (sourceLink) projectData.push(`(allCode:${sourceLink})`);
+
+  const certificateLink = document.getElementById('certificateLink').value.trim();
+  if (certificateLink) projectData.push(`(policy:${certificateLink})`);
+
+  const projectType = document.getElementById('projectType').value.trim();
+  if (projectType) projectData.push(`(projectType:${projectType})`);
+
+
+
+
+  // === Чекбоксы Доп. языки ===
+  const extraLangsCount = document.querySelectorAll('#extraLangs input:checked').length;
+  if (extraLangsCount > 0) projectData.push(`(languageKalivan:${extraLangsCount})`);
+
+  // === Чекбоксы Совместимость ===
+  const usedDataArray = Array.from(document.querySelectorAll('#usedData input:checked'))
+                            .map(el => el.value);
+
+  if (usedDataArray.length > 0) {
+      projectData.push(`(device:${JSON.stringify(usedDataArray)})`);
+  }
+
+  // === Используемые данные ===
+  const usedData = Array.from(document.querySelectorAll('#usedData input:checked'))
+                        .map(el => el.value)
+                        .join(',');
+  if (usedData) projectData.push(`(usedData:${usedData})`);
+
+  // === Анонсирование ===
+  const announceChecked = document.getElementById('announce').checked;
+  if (announceChecked) {
+    const announceLink = document.getElementById('announceLink').value.trim();
+    if (announceLink) projectData.push(`(anonsy:${announceLink})`);
+  }
+  
+  const value = projectTypeSelect.value.trim().toLowerCase();
+  if (["сайт", "бот", "веб приложение"].includes(value)) {
+    projectData.push(`(buttonType:Октрыть)`);
+  }else{
+    projectData.push(`(buttonType:Скачать)`);
+  }
+
+
+
+
+  // === Сборка строки ===
+  const finalString = 'LOOPA ' + projectData.join(' ');
+
+  console.log(finalString); // можно посмотреть в консоли
+
+  // === Отправка через MQTT ===
+  if (client && client.connected) {
+    client.publish('dmitry/commands', finalString, { qos: 0 }, (err) => {
+      if (err) console.error('Publish error', err);
+      else console.log('Проект отправлен:', finalString);
+    });
+  } else {
+    alert('MQTT не подключен — проект не отправлен.');
+  }
+});
+window.addEventListener('load', () => {
+  const helloBtn = document.getElementById('sayHelloBtn');
+  if (!helloBtn) return;
+  helloBtn.addEventListener('click', () => {
+    if (client && client.connected) {
+      client.publish(TOPIC_CMD, 'aNewHello', { qos: 0 }, (err) => {
+        if (err) console.error('Publish error', err);
+        else console.log('Published aNewHello');
+      });
+    } else {
+      alert('MQTT не подключен — команда не отправлена.');
+    }
+  });
+});
+
+
+// === Автоматическое скрытие блока совместимости по типу проекта ===
+const projectTypeSelect = document.getElementById('projectType');
+const compatibilityBlock = document.getElementById('compatibility');
+const repoLinksBlock = document.getElementById('repoLinks');
+
+function updateCompatibilityVisibility() {
+  const value = projectTypeSelect.value.trim().toLowerCase();
+  // Если выбран сайт, бот или веб приложение → скрыть
+  if (["сайт", "бот", "веб приложение"].includes(value)) {
+    compatibilityBlock.style.display = "none";
+    repoLinksBlock.style.display = "none";
+  } else {
+    compatibilityBlock.style.display = "block";
+    repoLinksBlock.style.display = "block";
+  }
+}
+
+// Срабатывает при изменении выбора
+projectTypeSelect.addEventListener('change', updateCompatibilityVisibility);
+
+// Проверка при первой загрузке страницы (на случай, если выбрано заранее)
+updateCompatibilityVisibility();
+
+
+</script>
+
+
+
+
 </body>
 </html>

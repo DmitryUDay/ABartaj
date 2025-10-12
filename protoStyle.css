@@ -813,14 +813,47 @@ hr {
     flex-wrap: wrap;
 }
 
-.infoProj{
+.infoProj {
     background-color: #435e7a;
-    width: 400px;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 20px;
-    padding-bottom: 10px;
+    width: 500px;
+    padding: 20px 40px 10px 40px;
     border-radius: 10px;
+
+    max-height: 500px;        /* ограничение по высоте */
+    overflow: hidden;         /* скрываем лишнее */
+    position: relative;
+}
+
+/* описание с обрезкой */
+#descryMAX {
+    display: -webkit-box;
+    -webkit-line-clamp: 8;    /* сколько строк показываем */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* кнопка "Больше" */
+#moreBtn {
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #ffd231;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* когда карточка развернута */
+.infoProj.expanded {
+    max-height: none;        /* снимаем ограничение */
+}
+
+.infoProj.expanded #descryMAX {
+    -webkit-line-clamp: none; /* показываем весь текст */
+}
+
+.infoProj.expanded #moreBtn {
+    display: none;             /* убираем кнопку */
 }
 
 .contentImg {
@@ -912,4 +945,65 @@ hr {
         height: 100%;
         object-fit: cover;
     }
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+}
+
+#cancelLoad {
+    padding:10px 20px;
+    cursor:pointer;
+    border:none;
+    background:#3498db;
+    color:white;
+    border-radius:10px;
+    font-size:16px;
+}
+
+
+#stickyHeader {
+    position: fixed;
+    top: 20px;
+    width: 90%;
+    height: 60px;
+    background-color: rgba(255,255,255,0.95);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+#stickyHeader.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.sticky-content {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sticky-content img {
+    border-radius: 10px;
+}
+
+.sticky-buttons a,
+.sticky-buttons button {
+    margin-left: 10px;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #ffd231;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
 }
