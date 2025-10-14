@@ -294,6 +294,8 @@
         <div class="footer-logo">
             <a href="index.html"><img src="server/ABADark.png" alt="Logo"></a>
         </div>
+
+
         <div class="footer-links">
             <div class="footer-item">
                 <p>ABartaj - project UDay©</p>
@@ -302,8 +304,23 @@
             <div class="footer-item">
                 <p>Безопасность</p>
                 <a href="accDash.html">Права пользователя</a>
+                <a href="accDash.html">Нащли уязвимость?</a>
+            </div>
+            <div class="footer-item">
+                <p>Основные</p>
+                <a href="accDash.html">О ABartaj</a>
+                <a href="accDash.html">Пользовательское соглашение</a>
+                <a href="accDash.html">Конфиндециальность</a>
+            </div>
+            <div class="footer-item">
+                <p>Разработчикам</p>
+                <a href="accDash.html">Стать разработчиком</a>
+                <a href="accDash.html">Соглашение о публикации</a>
+                <a href="accDash.html">Конфиндециальность разработчика</a>
             </div>
         </div>
+
+
     </footer>
 
 
@@ -485,6 +502,10 @@ function showDownloadModal(app) {
             if (k.toLowerCase() === "linux") return "Linux";
             if (k.toLowerCase() === "android") return "Android";
             if (k.toLowerCase() === "ios") return "iOS";
+            if (k.toLowerCase() === "xbox") return "Xbox";
+            if (k.toLowerCase() === "playstation") return "PlayStation";
+            if (k.toLowerCase() === "nintendo") return "Nintendo";
+            if (k.toLowerCase() === "oculus") return "Oculus";
             return k;
         }) : [];
 
@@ -506,6 +527,10 @@ function showDownloadModal(app) {
         else if (dev === "Linux") iconSrc = "server/unix.png";
         else if (dev === "Android") iconSrc = "server/android.png";
         else if (dev === "iOS") iconSrc = "server/apple.png";
+        else if (dev === "Xbox") iconSrc = "https://cdn-icons-png.flaticon.com/512/1/1321.png";
+        else if (dev === "PlayStation") iconSrc = "https://cdn-icons-png.flaticon.com/512/1/1443.png";
+        else if (dev === "Nintendo") iconSrc = "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/video-games/nintendo-switch-h21td98cj5k8f88b5fif6.png/nintendo-switch-mkvu6y3jqk26e9b502u9b.png?_a=DATAg1AAZAA0";
+        else if (dev === "Oculus") iconSrc = "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/meta-black-icon.png";
 
         const item = document.createElement("div");
         item.classList.add("download-item");

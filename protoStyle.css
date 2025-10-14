@@ -597,28 +597,30 @@ hr {
 
 /* --- Модалка --- */
 .download-modal {
-    display: none; /* скрыта по умолчанию */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.7);
-    z-index: 1000;
+    background: rgba(0,0,0,0.5);
+    display: none;
     justify-content: center;
     align-items: center;
-    overflow-y: auto;
+    z-index: 10000;
 }
 
 .download-modal-content {
     background: #7331ff;
-    border-radius: 12px;
-    padding: 30px 40px;
-    max-width: 400px;
+    border-radius: 20px;
     width: 90%;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    color: #fff;
-    animation: fadeIn 0.3s ease-out;
+    max-width: 500px;
+    max-height: 80vh; /* ограничение по высоте */
+    overflow-y: auto; /* включаем скролл при переполнении */
+    padding: 30px 20px; /* отступы сверху и снизу по 30px */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .download-modal-content h2 {
