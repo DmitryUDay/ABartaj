@@ -545,6 +545,10 @@ div > #searchInput {
     font-size: 20px;
     padding: 8px 16px;
     cursor: pointer;
+    color: black;
+}
+.seeAll:hover{
+  text-decoration: underline;
 }
 
 
@@ -781,4 +785,36 @@ div > #searchInput {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+
+.guest-popup {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #ffd231;
+    color: black;
+    padding: 15px 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgb(0, 0, 0);
+    border: 0 0 10px solid #7331ff;
+    font-size: 16px;
+    z-index: 9999;
+    animation: popupIn 0.3s ease forwards;
+    text-align: center;
+    cursor: pointer;
+}
+
+.guest-popup.fade-out {
+    animation: popupOut 0.4s ease forwards;
+}
+
+@keyframes popupIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popupOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(20px); }
 }

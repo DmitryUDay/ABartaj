@@ -6,6 +6,7 @@
     <title>ABartaj</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="server/css/footer.css">
+    <link rel="icon" type="image/png" href="server\icons.png" style="border-radius: 20px;">
 </head>
 <body>
     <div class="homebrew">
@@ -98,13 +99,15 @@
     <br>
 
     <div class="teaser">
-        <img src="https://raw.githubusercontent.com/DmitryUDay/safetyImage/main/sally1.png" alt="Sally-face">
+        <img src="server/teezer.png" alt="Sally-face">
         <div class="teaser-text">
-            <h1>Sally-face</h1>
-            <p>Порт игры на движок python</p>
-            <a href="MrBuilder.html?name=Sally-face" style="text-decoration: none; color: black;"><button class="seeAll">Посмотреть детали</button></a>
+            <h1>Анонс ABartaj</h1>
+            <p>Скоро открытие магазина приложений ABartaj — готовьтесь к общедоступному запуску и новым возможностям!</p>
+            <a href="MrBuilder.html?name=Sally-face" style="text-decoration: none; color: black;"><button class="seeAll">Следить</button></a>
         </div>
     </div>
+
+
 
 
     <div class="projects-wrapper">
@@ -122,6 +125,8 @@
         <div class="footer-logo">
             <a href="index.html"><img src="server/ABADark.png" alt="Logo"></a>
         </div>
+
+
         <div class="footer-links">
             <div class="footer-item">
                 <p>ABartaj - project UDay©</p>
@@ -130,8 +135,23 @@
             <div class="footer-item">
                 <p>Безопасность</p>
                 <a href="accDash.html">Права пользователя</a>
+                <a href="accDash.html">Нащли уязвимость?</a>
+            </div>
+            <div class="footer-item">
+                <p>Основные</p>
+                <a href="accDash.html">О ABartaj</a>
+                <a href="accDash.html">Пользовательское соглашение</a>
+                <a href="accDash.html">Конфиндециальность</a>
+            </div>
+            <div class="footer-item">
+                <p>Разработчикам</p>
+                <a href="accDash.html">Стать разработчиком</a>
+                <a href="accDash.html">Соглашение о публикации</a>
+                <a href="accDash.html">Конфиндециальность разработчика</a>
             </div>
         </div>
+
+
     </footer>
 
 
@@ -228,7 +248,10 @@ function renderCategories() {
     game: "Игры",
     bot: "Боты",
     app: "Программы",
-    tool: "Инструменты",
+    shev: "Веб приложения",
+    sites: "Сайт",
+    plug: "Плагин",
+    runFile: "Исполняемый файл",
     other: "Другое"
   };
 
@@ -434,6 +457,30 @@ window.addEventListener("scroll", () => {
     header.classList.remove("scrolled");
   }
 });
+
+
+const userAvatar = document.querySelector(".client img");
+
+if (userAvatar) {
+    userAvatar.addEventListener("click", () => {
+        // Если уже есть уведомление — не создаём новое
+        if (document.querySelector(".guest-popup")) return;
+
+        const popup = document.createElement("div");
+        popup.className = "guest-popup";
+        popup.innerHTML = `
+            Да, это вы, <strong>Гость!</strong><br>
+            Вы выглядите прекрасно сегодня!
+        `;
+        document.body.appendChild(popup);
+
+        // Автоматически скрывается через 3 секунды
+        setTimeout(() => {
+            popup.classList.add("fade-out");
+            setTimeout(() => popup.remove(), 400);
+        }, 3000);
+    });
+}
 
 
 
