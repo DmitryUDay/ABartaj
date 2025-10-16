@@ -234,19 +234,20 @@
     "updated":"31.03.2023",
     "updateText":"Мы добавили поддержку Iso2GoD новых iso, улучшили совместимость и исправили ошибки",
     "kategory":"Утилиты, инструмент, файловый менеджер",
-    "deviceTy":"Windows, Linux, Mac",
+    "deviceTy":"Windows Linux Mac",
     "sertificate":"Да",
     "siteDeveloper":"https://github.com/r4dius/iso2god",
     "policy":"https://example.com",
     "alternatives": "iso, 2god, god, xbox, file, manager",
     "fava": "",
-    "device": ["Android", "iOS"],
+    "device": ["Windows", "Linux", "Mac"],
     "links": {
-      "android": "https://play.google.com/store/apps/details?id=com.tocaboca.tocalifeworld&hl=ru",
-      "ios": "https://apps.apple.com/ru/app/toca-boca-world/id1208138685"
+      "windows": "https://github.com/r4dius/Iso2God/releases/download/v1.3.6/ISO2GoD_Windows.zip",
+      "mac": "https://github.com/r4dius/Iso2God/releases/download/v1.3.6/ISO2GoD_macOS.zip",
+      "linux": "https://github.com/r4dius/Iso2God/releases/download/v1.3.6/ISO2GoD_Linux.zip"
     },
     "anonsy": "no",
-    "searchKategory": "game"
+    "searchKategory": "program"
   }
 
 ]
