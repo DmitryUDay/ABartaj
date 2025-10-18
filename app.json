@@ -79,18 +79,7 @@
         "policy": "https://example.com",
         "alternatives": "duga, DUGA, дуга, ДУГА, dga",
         "fava": "dataFiles,options",
-        "device": [
-            "Windows",
-            "Mac",
-            "Linux"
-        ],
-        "links": {
-            "android": "https://dropbox.com/s/aaaa/app.apk?dl=1",
-            "ios": "https://dropbox.com/s/bbbb/app.ipa?dl=1",
-            "windows": "https://dropbox.com/s/cccc/app.exe?dl=1",
-            "mac": "https://dropbox.com/s/dddd/app.dmg?dl=1"
-        },
-        "allCode": "https://dropbox.com/s/dddd/app.dmg?dl=1",
+        "allCode": "https://github.com/DmitryUDay/DUGA_project",
         "anonsy": "no",
         "searchKategory": "game"
     },
