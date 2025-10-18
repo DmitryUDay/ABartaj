@@ -18,14 +18,16 @@
       <label>Описание (до 500 символов):</label>
       <textarea id="projectDescription" maxlength="500" required></textarea>
 
-      <label>Мини-описание (до 100 символов):</label>
+      <label>Минимальное описание (до 100 символов):</label>
       <input type="text" id="shortDescription" maxlength="100" required>
 
       <label>Иконка проекта (URL):</label>
       <input type="text" id="iconPath" placeholder="https://..." />
+      <div id="iconPreview" class="preview-container"></div>
 
       <label>Скриншоты (URL через запятую):</label>
       <input type="text" id="imagePaths" placeholder="https://img1, https://img2" />
+      <div id="imagesPreview" class="preview-container"></div>
 
       <label>Тип проекта:</label>
       <select id="projectType" required>
@@ -40,6 +42,11 @@
         <option>Плагин</option>
         <option>Приложение</option>
       </select>
+
+
+      <label>Ссылка на продукт:</label>
+      <input type="text" id="selfer" required>
+
 
       <label>Возрастное ограничение:</label>
       <select id="ageLimit" required>
@@ -66,11 +73,36 @@
         <option>Итальянский</option>
       </select>
 
+      <label>Предпочитаемые языки (выберите несколько):</label>
+      <div id="preferredLangs">
+        <label><input type="checkbox" value="Русский"> Русский</label>
+        <label><input type="checkbox" value="Английский"> Английский</label>
+        <label><input type="checkbox" value="Китайский"> Китайский</label>
+        <label><input type="checkbox" value="Испанский"> Испанский</label>
+        <label><input type="checkbox" value="Немецкий"> Немецкий</label>
+        <label><input type="checkbox" value="Французский"> Французский</label>
+        <label><input type="checkbox" value="Японский"> Японский</label>
+        <label><input type="checkbox" value="Корейский"> Корейский</label>
+        <label><input type="checkbox" value="Итальянский"> Итальянский</label>
+      </div>
+
       <label>Версия:</label>
       <input type="text" id="version" placeholder="например 1.0.0">
 
+      <label>Дата последнего обновления:</label>
+      <input type="text" id="dateUPD" required>
+
+      <label>Что обновилось?</label>
+      <input type="text" id="contentUPD" required>
+      
       <label>Категория:</label>
       <input type="text" id="category" placeholder="например Хоррор, Бизнес и т.д.">
+      
+      <label>Совместимые девайсы</label>
+      <input type="text" id="deviceUDD" required>
+      
+      <label>По каким словам можно найти проект?</label>
+      <input type="text" id="alts" required>
 
       <label>Ссылка на исходный код:</label>
       <input type="url" id="sourceLink" placeholder="https://...">
@@ -81,103 +113,170 @@
       <label>Сайт разработчика:</label>
       <input type="url" id="devSite" placeholder="https://...">
 
+      <label>Категория:</label>
+      <select id="projectType" required>
+        <option value="">Выберите...</option>
+        <option>bot</option>
+        <option>game</option>
+        <option>program</option>
+      </select>
+
       <button type="submit" class="submit-btn">Создать проект</button>
     </div>
 
     <span id="mqttStatus">MQTT: подключение...</span>
   </div>
+<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+<script>
+const TOPIC_CMD = "mytopic/cmd";
+const TOPIC_RESP = "mytopic/responses";
+const client = mqtt.connect("wss://broker.emqx.io:8084/mqtt");
 
-  <script>
-    const WS_BROKER = 'wss://broker.emqx.io:8084/mqtt';
-    const TOPIC_CMD = 'dmitry/commands';
-    const TOPIC_RESP = 'dmitry/responses';
+client.on("connect", () => {
+  console.log("MQTT подключен");
+  client.subscribe(TOPIC_RESP, { qos: 1 });
+});
 
-    const clientId = 'webclient_' + Math.random().toString(16).slice(2, 10);
-    const client = mqtt.connect(WS_BROKER, { clientId, reconnectPeriod: 5000 });
+let modal;
 
-    const statusEl = document.getElementById('mqttStatus');
-    let pingResponse = false;
+function showModal(text, showButton = false) {
+  modal = document.createElement("div");
+  modal.className = "modal-bg";
+  const box = document.createElement("div");
+  box.className = "modal";
+  box.innerHTML = `<p>${text}</p>`;
 
-    client.on('connect', () => {
-      statusEl.textContent = 'MQTT: подключен';
-      client.subscribe(TOPIC_RESP);
-    });
+  if(showButton){
+    const btn = document.createElement("button");
+    btn.textContent = "OK";
+    btn.onclick = () => window.location.href = "index.html";
+    box.appendChild(btn);
+  }
 
-    client.on('reconnect', () => statusEl.textContent = 'MQTT: переподключение...');
-    client.on('error', () => statusEl.textContent = 'MQTT: ошибка');
-    client.on('offline', () => statusEl.textContent = 'MQTT: офлайн');
+  modal.appendChild(box);
+  document.body.appendChild(modal);
+}
 
-    client.on('message', (topic, message) => {
-      const msg = message.toString();
-      if (topic === TOPIC_RESP && msg === 'pong') {
-        pingResponse = true;
-      }
-    });
+function closeModal() {
+  if(modal) modal.remove();
+  modal = null;
+}
+function getPreferredLanguages() {
+  const checkboxes = document.querySelectorAll('#preferredLangs input[type="checkbox"]');
+  const selected = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
+  return selected;
+}
 
-    function showModal(text, time = 2000) {
-      const bg = document.createElement('div');
-      bg.className = 'modal-bg';
-      const box = document.createElement('div');
-      box.className = 'modal';
-      box.textContent = text;
-      bg.appendChild(box);
-      document.body.appendChild(bg);
-      if (time > 0) setTimeout(() => bg.remove(), time);
-      return bg;
+
+document.querySelector('.submit-btn').addEventListener('click', (e) => {
+  e.preventDefault();
+
+  const get = id => document.getElementById(id)?.value.trim();
+
+  const selectedLangs = getPreferredLanguages();
+  const project = {
+    name: get('projectName'),
+    description: get('projectDescription'),
+    descriptionMini: get('shortDescription'),
+    icon: get('iconPath'),
+    imgScreen: get('imagePaths'),
+    projectType: get('projectType'),
+    age: get('ageLimit'),
+    language: get('mainLang'),
+    version: get('version'),
+    kategory: get('category'),
+    allCode: get('sourceLink'),
+    policy: get('certificateLink'),
+    siteDeveloper: get('devSite'),
+    content: get('selfer'),
+    updated: get('dateUPD'),
+    updateText: get('contentUPD'),
+    deviceTy: get('deviceUDD'),
+    alternatives: get('alts'),
+    developer: 'GUst',
+    sertificate: 'Да',
+    size: 'Онлайн',
+    fava: '',
+    anonsy: '',
+    languageKalivan: `+${selectedLangs.length} других`,
+    otziv: '0',
+    star: '0',
+    buttonType: ['сайт','бот','веб приложение'].includes(get('projectType')?.toLowerCase()) ? 'Открыть' : 'Скачать'
+  };
+
+  const message = "appendProject::" + JSON.stringify(project);
+
+  // Публикуем на MQTT
+  client.publish(TOPIC_CMD, message, { qos: 1 });
+
+  // Модалка появляется сразу, не ждём ответа
+  showModal("Подождите, загружаю на сервер…");
+});
+
+// Дополнительно: если Python ответит, можно обработать
+client.on("message", (topic, message) => {
+  if(topic === TOPIC_RESP && message.toString() === "doneUPDOW"){
+    closeModal();
+    showModal("Всё готово!", true);
+  }
+});
+</script>
+
+
+
+
+
+<script>
+  const iconInput = document.getElementById('iconPath');
+const iconPreview = document.getElementById('iconPreview');
+
+const imagesInput = document.getElementById('imagePaths');
+const imagesPreview = document.getElementById('imagesPreview');
+
+function createPreview(url, container, single = false) {
+  if (!url) return;
+
+  if (single) container.innerHTML = ''; // только одна иконка
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'img-wrapper';
+
+  const img = document.createElement('img');
+  img.src = url;
+  wrapper.appendChild(img);
+
+  const btn = document.createElement('button');
+  btn.textContent = '×';
+  btn.className = 'delete-btn';
+  btn.onclick = () => {
+    wrapper.remove();
+    if (single) container.querySelectorAll('img').length === 0 && (iconInput.value = '');
+    else {
+      const urls = Array.from(container.querySelectorAll('img')).map(i => i.src);
+      imagesInput.value = urls.join(',');
     }
+    if(single) iconInput.value = '';
+  };
+  wrapper.appendChild(btn);
 
-    document.querySelector('.submit-btn').addEventListener('click', async (e) => {
-      e.preventDefault();
+  container.appendChild(wrapper);
+}
 
-      if (!client.connected) {
-        alert('MQTT не подключен.');
-        return;
-      }
+// Иконка
+iconInput.addEventListener('change', () => {
+  const url = iconInput.value.trim();
+  if (!url) return;
+  createPreview(url, iconPreview, true);
+});
 
-      pingResponse = false;
-      client.publish(TOPIC_CMD, 'ping', { qos: 0 });
-      const modal = showModal('Проверка соединения с сервером...');
+// Скриншоты
+imagesInput.addEventListener('change', () => {
+  const urls = imagesInput.value.split(',').map(u => u.trim()).filter(u => u);
+  imagesPreview.innerHTML = ''; // очистка
+  urls.slice(0, 10).forEach(url => createPreview(url, imagesPreview, false));
+});
+</script>
 
-      // ждём до 5 секунд
-      for (let i = 0; i < 10; i++) {
-        await new Promise(r => setTimeout(r, 500));
-        if (pingResponse) break;
-      }
 
-      modal.remove();
-
-      if (!pingResponse) {
-        alert('Сервер не ответил. Повторите позже.');
-        return;
-      }
-
-      showModal('Начинается отправка...', 1500);
-
-      // собираем данные
-      const data = [];
-      const get = id => document.getElementById(id)?.value.trim();
-      const push = (key, val) => { if (val) data.push(`(${key}:${val})`); };
-
-      push('name', get('projectName'));
-      push('description', get('projectDescription'));
-      push('descriptionMini', get('shortDescription'));
-      push('iconFile', get('iconPath'));
-      push('images', get('imagePaths'));
-      push('projectType', get('projectType'));
-      push('age', get('ageLimit'));
-      push('language', get('mainLang'));
-      push('version', get('version'));
-      push('kategory', get('category'));
-      push('allCode', get('sourceLink'));
-      push('policy', get('certificateLink'));
-      push('siteDeveloper', get('devSite'));
-      push('developer', 'GUst');
-      push('buttonType', ['сайт', 'бот', 'веб приложение'].includes(get('projectType')?.toLowerCase()) ? 'Открыть' : 'Скачать');
-
-      const finalString = 'LOOPA ' + data.join(' ');
-      client.publish(TOPIC_CMD, finalString, { qos: 0 });
-      console.log('Отправлено:', finalString);
-    });
-  </script>
 </body>
 </html>
