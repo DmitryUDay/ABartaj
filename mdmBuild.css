@@ -2,13 +2,13 @@
 
 body{
     background-color: #2C3E50;
-    font-family: "Comfortaa", sans-serif;
     margin-left: 20px;
     margin-right: 20px;
     padding: 0;
-    }
+}
 * {
     text-decoration: none;
+    font-family: "Comfortaa", sans-serif;
 }
 
 menu, ol, ul {

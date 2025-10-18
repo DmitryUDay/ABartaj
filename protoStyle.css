@@ -931,21 +931,25 @@ hr {
 /* Телефоны */
 @media (max-width: 768px) {
     .backIMG {
-        width: 100%;               /* во всю ширину */
-        height: auto;              /* убираем фиксированную высоту */
-        display: flex;
+        width: 100%;
+        height: 350px; /* фиксированная высота, можно подогнать */
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        background-color: black;
     }
 
     #imaga {
         width: 100%;
-        height: auto;              /* высота по содержимому */
-        aspect-ratio: auto;        /* отключаем фиксированное соотношение */
+        height: 100%;
+        position: relative;
     }
 
     #imaga img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: cover; /* заполняет контейнер, не растягивая */
+        display: block;
     }
 }
 
