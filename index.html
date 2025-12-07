@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" href="server\icons.png" style="border-radius: 20px;">
 </head>
 <body>
+    <button id="toTopBtn">↑</button>
     <div class="homebrew">
         <div style="display: flex; align-items: center; gap: 20px;">
             <div class="menu-btn" id="menu-open">
@@ -73,6 +74,9 @@
         <h2>Место, где идеи становятся проектами, а проекты — реальностью</h2>
         <p style="color: rgb(210, 210, 210);">ABartaj — бесплатная платформа для инди-проектов: игры, приложения, прошивки, софт и другие проекты.</p>
     </div>
+
+
+
     <br>
     <div class="top-developers">
         <h2>Топ 3 разработчика</h2>
@@ -134,12 +138,12 @@
             </div>
             <div class="footer-item">
                 <p>Безопасность</p>
-                <a href="accDash.html">Права пользователя</a>
-                <a href="accDash.html">Нащли уязвимость?</a>
+                <a href="userRules.html">Права пользователя</a>
+                <a href="cockieBOB.html">Нашли уязвимость?</a>
             </div>
             <div class="footer-item">
                 <p>Основные</p>
-                <a href="accDash.html">О ABartaj</a>
+                <a href="abortAJ.html">О ABartaj</a>
                 <a href="accDash.html">Пользовательское соглашение</a>
                 <a href="accDash.html">Конфиндециальность</a>
             </div>
@@ -147,7 +151,7 @@
                 <p>Разработчикам</p>
                 <a href="accDash.html">Стать разработчиком</a>
                 <a href="accDash.html">Соглашение о публикации</a>
-                <a href="accDash.html">Конфиндециальность разработчика</a>
+                <a href="devRules.html">Конфиндециальность разработчика</a>
             </div>
         </div>
 
@@ -182,13 +186,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const phrases = [
         "Что будем искать?",
-        "Проект Дуга",
+        "DUGA",
         "Мореход",
         "Бот рудольф",
         "Порт салли фейс",
         "Рус линк",
         "UOS-dev",
-        "Сервер UCloud",
+        "iso2god",
 
     ];
     let index = 0;
@@ -288,20 +292,22 @@ function renderCategories() {
 
     // Добавляем карточки
     apps.forEach(app => {
-      const card = document.createElement("div");
-      card.className = "project-card";
-      card.innerHTML = `
-        <a href="MrBuilder.html?name=${encodeURIComponent(app.name)}">
-          <img src="${app.icon}" alt="${app.name}">
-          <h3>${app.name}</h3>
-          <p>${app.descriptionMini}</p>
-          <div class="project-info">
-            <span>${app.developer}</span>
-            <span>${app.age}</span>
-          </div>
-        </a>
-      `;
-      scrollContainer.appendChild(card);
+        const card = document.createElement("div");
+        card.className = "project-card";
+
+        card.innerHTML = `
+            <a href="MrBuilder.html?project=${encodeURIComponent(app.name + '%' + app.idi)}">
+                <img class="icon" src="${app.icon}" alt="${app.name}">
+                <h3>${app.name}</h3>
+                <p>${app.description}</p>
+                <div class="project-info">
+                <span>©${app.developer.replace(/©/g, '')}</span>
+                <span>${app.age}</span>
+                </div>
+            </a>
+            <div class="icon-blur-bg" style="background-image: url('${app.icon}')"></div>
+        `;
+        scrollContainer.appendChild(card);
     });
 
     // Собираем всё
@@ -314,20 +320,27 @@ function renderCategories() {
 
     // Функция проверки: нужно ли показывать стрелки
     function updateArrowVisibility() {
-      const scrollWidth = scrollContainer.scrollWidth;
-      const clientWidth = scrollContainer.clientWidth;
-      const scrollLeft = scrollContainer.scrollLeft;
+        const scrollWidth = scrollContainer.scrollWidth;
+        const clientWidth = scrollContainer.clientWidth;
+        const scrollLeft = scrollContainer.scrollLeft;
 
-      // если контент не переполняет контейнер
-      if (scrollWidth <= clientWidth + 1) {
-        btnLeft.style.display = "none";
-        btnRight.style.display = "none";
-      } else {
-        // если можем скроллить влево
-        btnLeft.style.display = scrollLeft > 10 ? "flex" : "none";
-        // если можем скроллить вправо
-        btnRight.style.display = scrollLeft + clientWidth < scrollWidth - 10 ? "flex" : "none";
-      }
+        // Контента меньше или ровно столько же — стрелки не нужны
+        const needArrows = scrollWidth > clientWidth + 1;
+
+        if (!needArrows) {
+            btnLeft.classList.remove("show");
+            btnRight.classList.remove("show");
+            return;
+        }
+
+        // Показывать левую стрелку, если есть куда скроллить влево
+        btnLeft.classList.toggle("show", scrollLeft > 10);
+
+        // Показывать правую стрелку, если есть куда скроллить вправо
+        btnRight.classList.toggle(
+            "show",
+            scrollLeft + clientWidth < scrollWidth - 10
+        );
     }
 
     // Добавляем события на стрелки
@@ -399,7 +412,7 @@ searchInput.addEventListener("input", () => {
             `;
 
             resultItem.addEventListener("click", () => {
-                window.location.href = `MrBuilder.html?name=${encodeURIComponent(app.name)}`;
+                window.location.href = `MrBuilder.html?project=${encodeURIComponent(app.name + '%' + app.idi)}`;
             });
 
             searchResultsContainer.appendChild(resultItem);
@@ -485,6 +498,28 @@ if (userAvatar) {
 
 
 
+</script>
+
+
+<script>
+    const btn = document.getElementById("toTopBtn");
+
+    // Показывать кнопку при прокрутке вниз более чем на 200px
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 200) {
+            btn.style.display = "flex";
+        } else {
+            btn.style.display = "none";
+        }
+    });
+
+    // Плавный скролл вверх
+    btn.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
 </script>
 
 

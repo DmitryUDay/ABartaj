@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Сообщить о пробелме</title>
+    <link rel="stylesheet" href="helpStyle.css">
+    <link rel="icon" type="image/png" href="server\icons.png" style="border-radius: 20px;">
+
+</head>
+<body>
+  <h1>Помогите нам сделать ABartaj ещё лучше!</h1>
+  <p>Если вы заметили проблему — просто заполните поля ниже, и мы обязательно всё исправим. Спасибо!</p>
+
+  <form onsubmit="sendForm(event)">
+    <div>
+      <input type="email" id="email" name="email" placeholder="email" required>
+    </div>
+    <div>
+      <input id="email" name="userAgent" placeholder="имя" required>
+    </div>
+    <div>
+      <textarea id="feedback" name="feedback" placeholder="сообщение" required></textarea>
+    </div>
+    <div class="buttons">
+        <button type="button" class="btn back-btn" onclick="history.back()">Назад</button>
+      <button type="submit" class="btn submit-btn">Отправить</button>
+    </div>
+  </form>
+
+  <script>
+    function sendForm(e){
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      const feedback = document.getElementById("feedback").value.trim();
+
+      if(email && feedback){
+        alert("Спасибо! Ваш x отправлен ✅");
+        e.target.reset();
+      }else{
+        alert("Пожалуйста, заполните все поля.");
+      }
+    }
+  </script>
+</body>
+</html>

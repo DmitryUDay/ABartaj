@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ABartaj | Подробнее</title>
+<link rel="icon" type="image/png" href="server\icons.png" style="border-radius: 20px;">
+<script src="server/js/imager.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #2C3E50;
+    color: #ffffff;
+  }
+  *{
+        font-family: "Comfortaa", sans-serif;
+    }
+
+    .wrap {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 30px;
+    }
+
+    .logo img {
+        width: 70px;
+        height: 70px;
+        border-radius: 14px;
+        object-fit: cover;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 28px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        opacity: 0.8;
+        margin-top: 4px;
+    }
+    button{
+        border: none;
+        position: fixed;
+        top: 0;
+        border-radius: 20px;
+        font-size: 25px;
+        padding: 10px;
+        margin: 10px;
+        color: white;
+        background: none;
+        text-decoration: underline;
+    }
+    .card {
+        background: rgba(255,255,255,0.06);
+        padding: 24px;
+        border-radius: 14px;
+        backdrop-filter: blur(4px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+
+    .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;      /* чтобы фото не вылезало */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #333;      /* на случай, если фото нет */
+    }
+
+    .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;     /* обрезает фото красиво */
+    }
+
+    .btn {
+        padding: 12px 16px;
+        background: #7331ff;
+        color: #fff;
+        display: inline-block;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: 0.2s;
+    }
+    .btn:hover {
+        opacity: 0.8;
+    }
+
+    .btn-yellow {
+        padding: 12px 16px;
+        background: #ffd231;
+        color: #000;
+        display: inline-block;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: 0.2s;
+    }
+    .btn-yellow:hover {
+        opacity: 0.85;
+    }
+
+    .dev-list {
+        margin-top: 20px;
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    .dev {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        background: rgba(255,255,255,0.08);
+        padding: 12px 14px;
+        border-radius: 12px;
+    }
+
+    .avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: #7331ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 16px;
+        color: #fff;
+    }
+
+    footer {
+        margin-top: 30px;
+        text-align: center;
+        opacity: 0.7;
+    }
+</style>
+</head>
+<body>
+<button id="BBack" onclick="goBack()" style="cursor: pointer; color: blue; ">&lt;Назад</button>
+
+<div class="wrap">
+
+
+    <header>
+        <div class="logo">
+          <img src="server\icons.png" alt="Логотип">
+        </div>
+        <div>
+            <h1>ABartaj</h1>
+            <div class="subtitle">Платформа для инди-проектов: игры, приложения, прошивки и софт</div>
+        </div>
+    </header>
+
+    <main class="card">
+        <h2 style="margin-top:0;">Что такое ABartaj?</h2>
+
+        <p>
+            ABartaj — это платформа, созданная для независимых разработчиков, чтобы публиковать свои проекты:
+            игры, приложения, прошивки и разный экспериментальный софт.
+        </p>
+
+        <p>
+            На платформе можно размещать файлы, описания, версии проектов и делиться ими с другими пользователями.
+            Идея — дать место, где каждый может показать свою работу.
+        </p>
+
+        <h3 style="margin-top:20px;">Разработчики платформы</h3>
+
+        <div class="dev-list">
+            <a href="https://ex.com" class="dev" style="text-decoration:none; color:white;">
+                <div class="avatar">
+                    <img src="https://dmitryuday.github.io/UDay/img/dev1.png" alt="ОД">
+                </div>
+                <div>Осипов Дмитрий</div>
+            </a>
+
+            <a href="https://ex.com" class="dev" style="text-decoration:none; color:white;">
+                <div class="avatar">
+                    <img src="https://dmitryuday.github.io/UDay/img/dev2.png" alt="МН">
+                </div>
+                <div>Максим Недря</div>
+            </a>
+        </div>
+
+        <div style="margin-top:24px;">
+            <a href="#" class="btn">Связаться</a>
+        </div>
+    </main>
+    <section style="margin-top:40px;">
+        <h2 style="font-size:28px; margin-bottom:20px;">Возможности платформы</h2>
+
+        <div style="
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+            gap:20px;
+        ">
+            
+            <div style="
+            background:rgba(255,255,255,0.07);
+            padding:20px;
+            border-radius:16px;
+            transition:0.25s;
+            backdrop-filter:blur(4px);
+            " 
+            onmouseover="this.style.transform='translateY(-4px)'; this.style.background='rgba(115,49,255,0.25)';"
+            onmouseout="this.style.transform='none'; this.style.background='rgba(255,255,255,0.07)'">
+            <div style="font-size:32px; margin-bottom:12px;">🚀</div>
+            <h3 style="margin:0 0 8px;">Публикация проектов</h3>
+            <p style="opacity:0.8">Загружай игры, программы, прошивки — всё, что создаёшь абсолютно <b>Бесплатно</b>.</p>
+            </div>
+
+            <div style="
+            background:rgba(255,255,255,0.07);
+            padding:20px;
+            border-radius:16px;
+            transition:0.25s;
+            backdrop-filter:blur(4px);
+            " 
+            onmouseover="this.style.transform='translateY(-4px)'; this.style.background='rgba(255,210,49,0.25)';"
+            onmouseout="this.style.transform='none'; this.style.background='rgba(255,255,255,0.07)'">
+            <div style="font-size:32px; margin-bottom:12px;">⭐</div>
+            <h3 style="margin:0 0 8px;">Оценки и отзывы</h3>
+            <p style="opacity:0.8">Получайте обратную связь от пользователей и улучшайте продукт.</p>
+            </div>
+
+            <div style="
+            background:rgba(255,255,255,0.07);
+            padding:20px;
+            border-radius:16px;
+            transition:0.25s;
+            backdrop-filter:blur(4px);
+            " 
+            onmouseover="this.style.transform='translateY(-4px)'; this.style.background='rgba(115,49,255,0.25)';"
+            onmouseout="this.style.transform='none'; this.style.background='rgba(255,255,255,0.07)'">
+            <div style="font-size:32px; margin-bottom:12px;">📦</div>
+            <h3 style="margin:0 0 8px;">Версии и обновления</h3>
+            <p style="opacity:0.8">Сохраняйте все версии проекта и выпускай обновления в один клик.</p>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <footer>
+        © ABartaj — информационная страница
+    </footer>
+
+</div>
+
+</body>
+</html>

@@ -310,22 +310,24 @@ div > #searchInput {
 
 /* Карточка фиксированной высоты */
 .project-card {
-    background-color: #ffd231;
-    border-radius: 15px;
-    padding: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    height: 300px; /* ← фиксированная высота карточки */
-    overflow: hidden; /* обрезает длинные описания */
-    box-sizing: border-box;
+  position: relative;
+  background-color: #ffd231;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: 300px; /* ← фиксированная высота карточки */
+  overflow: hidden; /* обрезает длинные описания */
+  box-sizing: border-box;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    background-color: #ffd231f1;
 }
 
 .project-card img {
@@ -340,15 +342,6 @@ div > #searchInput {
     background-color: black;
 }
 
-.project-card a {
-    text-decoration: none;
-    color: black;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
 .project-card h3 {
     margin: 5px 0;
     font-size: 18px;
@@ -356,14 +349,66 @@ div > #searchInput {
 }
 
 .project-card p {
-    font-size: 14px;
-    text-align: center;
-    color: #333;
-    margin: 5px 0;
-    flex-grow: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-size: 14px;
+  text-align: center;
+  color: #333;
+  margin: 5px 0;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 5;   /* максимум 6 строк */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* flex-grow: 1; <- убрать! */
 }
+
+.project-card a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.project-card .icon-blur-bg {
+  position: absolute;
+  top: 10px;   /* совпадает с padding карточки */
+  left: 10px;
+  right: 10px;
+  height: 50%; /* половина высоты карточки */
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  filter: blur(15px);
+  opacity: 0.3;
+
+  z-index: 0;
+  border-radius: 15px 15px 0 0;
+}
+
+.project-card .icon {
+  position: relative;
+  width: 80px;       /* размер иконки */
+  height: 80px;
+  object-fit: contain;
+  z-index: 1;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+
+
+
+
+
+
 
 /* Нижняя часть прижата к низу */
 .project-info {
@@ -458,6 +503,13 @@ div > #searchInput {
     text-align: center;
     color: black;
     position: relative;
+    transition: all 0.3s;
+    z-index: 100;
+}
+
+
+.card:hover{
+    cursor: pointer;
 }
 
 .card img {
@@ -686,74 +738,47 @@ div > #searchInput {
   border-radius: 10px;
 }
 
+
+
 /* Кнопки прокрутки */
 .scroll-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  
   background-color: rgba(115, 49, 255, 0.8);
   border: none;
   color: white;
-  font-size: 24px;
+  font-size: 22px;
+
   cursor: pointer;
-  width: 35px;
-  height: 60px;
-  border-radius: 10px;
+
+  width: 50px;   /* 👈 одинаковые размеры */
+  height: 50px;  /* 👈 чтобы была круглая */
+
+  border-radius: 50%;
+
+  display: flex;              /* 👈 стрелка теперь по центру */
+  justify-content: center;
+  align-items: center;
+
   transition: 0.3s;
   z-index: 2;
-  display: none; /* 👈 по умолчанию скрыто, включается динамически */
+
+  opacity: 0;   /* невидимо, но НЕ ломает layout */
+  pointer-events: none; /* чтобы нельзя было кликать, пока скрыто */
+}
+
+/* Когда нужно показать кнопку */
+.scroll-btn.show {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .scroll-btn:hover {
   background-color: #ffd231;
   color: black;
-}
-
-.scroll-btn.left {
-  left: 0;
-}
-
-.scroll-btn.right {
-  right: 0;
-}
-
-/* Скрываем кнопки на мобильных — там свайп */
-@media (max-width: 768px) {
-  .scroll-btn {
-    display: none;
-  }
-}
-
-
-
-.scroll-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.scroll-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(115, 49, 255, 0.85);
-  border: none;
-  color: white;
-  font-size: 28px;
-  cursor: pointer;
-  width: 40px;
-  height: 70px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: all 0.3s;
-  z-index: 2;
-}
-
-.scroll-btn:hover {
-  background-color: #ffd231;
-  color: black;
-  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 0 15px rgb(0, 0, 0);
 }
 
 .scroll-btn.left {
@@ -764,11 +789,23 @@ div > #searchInput {
   right: 5px;
 }
 
-/* На телефоне кнопки скрываем */
+/* На мобильных скрываем */
 @media (max-width: 768px) {
   .scroll-btn {
     display: none !important;
   }
+}
+
+
+
+
+
+
+.scroll-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -817,4 +854,32 @@ div > #searchInput {
 @keyframes popupOut {
     from { opacity: 1; transform: translateY(0); }
     to { opacity: 0; transform: translateY(20px); }
+}
+
+
+
+
+
+#toTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    background: #7331ff;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgb(0, 0, 0);
+    font-size: 20px;
+    display: none; /* по умолчанию скрыта */
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    z-index: 100000;
+}
+
+#toTopBtn:hover {
+    background: #7231ffe0;
 }

@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="contents"></title>
+    <title id="contents">Example app</title>
     <link rel="stylesheet" href="protoStyle.css">
     <script src="server/js/imager.js"></script>
     <link rel="stylesheet" href="server/css/footer.css">
+    <link rel="icon" type="image/png" id="ICONMR" style="border-radius: 20px;">
 </head>
 <body>
     <button id="BBack" onclick="goBack()" style="cursor: pointer;">&lt;Назад</button>
@@ -54,14 +55,13 @@
                 </div>
                 <hr>
                 <p id="descryMAX">Очень длинное описание проекта...</p>
-                <p id="moreBtn" bac>Больше</p>
 
                 <div class="buttonContainer">
                     <a target="_blank" id="contentButton" style="text-decoration: none; color: black;">
                         <div id="buttonType" class="buttonSas"></div>
                     </a>
                     <a target="_blank" id="IICode" style="text-decoration: none; color: black;">
-                        <div class="buttonSas">Скачать исходный код</div>
+                        <div class="buttonSas">Скачать код</div>
                     </a>
                     <button class="buttonSas" style="text-decoration: none; color: black;" onclick="copyLink()">Поделиться</button>
                 </div>
@@ -231,7 +231,7 @@
                     <div style="display: block; margin-right: auto; margin-left: auto;">
                         <div class="block location" style="display: flex; align-items: center; margin-bottom: 15px;">
                             <img src="server/locatorIcon.png" alt="" width="30px">
-                            <p style="margin: 0; margin-left: 10px;">Локация</p>
+                            <p style="margin: 0; margin-left: 10px;">Местоположение</p>
                         </div>
                         <div class="block dataFiles" style="display: flex; align-items: center; margin-bottom: 15px;">
                             <img src="server/contentIcon.png" alt="" width="30px">
@@ -239,7 +239,7 @@
                         </div>
                         <div class="block inditificator" style="display: flex; align-items: center; margin-bottom: 15px;">
                             <img src="server/inditificatorIcon.png" alt="" width="30px">
-                            <p style="margin: 0; margin-left: 10px;">Идентификация</p>
+                            <p style="margin: 0; margin-left: 10px;">Индитификация</p>
                         </div>
                         <div class="block options" style="display: flex; align-items: center; margin-bottom: 15px;">
                             <img src="server/optionIcon.png" alt="" width="30px">
@@ -268,23 +268,28 @@
 
         <h1 align="center">Информация</h1>
         <div style="margin-left: 20px; margin-right: 20px;" class="infofo">
-            <div style="display: flex; justify-content: space-between; gap: 10px;"><h3>Издатель</h3> <h3 id="developerDublicate2" class="value"></h3></div>
+            <div style="display: flex; justify-content: space-between; gap: 10px;"><h3>Издатель</h3> <h3 id="developerDublicate2" class="value">???</h3></div>
             <hr>
-            <div style="display: flex; justify-content: space-between;"><h3>Жанр</h3> <h3 id="category" class="value"></h3></div>
+            <div style="display: flex; justify-content: space-between;"><h3>Жанр</h3> <h3 id="category" class="value">???</h3></div>
             <hr>
-            <div style="display: flex; justify-content: space-between;"><h3>Совместимость</h3> <h3 id="deviTY" class="value"></h3></div>
+            <div style="display: flex; justify-content: space-between;"><h3>Совместимость</h3> <h3 id="deviTY" class="value">???</h3></div>
             <hr>
-            <div style="display: flex; justify-content: space-between;"><h3>Языки</h3> <h3 id="lana" class="value"></h3></div>
+            <div style="display: flex; justify-content: space-between;"><h3>Языки</h3> <h3 id="lana" class="value">???</h3></div>
             <hr>
-            <div style="display: flex; justify-content: space-between;"><h3>Приблизительный объем</h3> <h3 id="obj" class="value"></h3></div>
+            <div style="display: flex; justify-content: space-between;"><h3>Приблизительный объем</h3> <h3 id="obj" class="value">???</h3></div>
             <hr>
-            <div style="display: flex; justify-content: space-between;"><h3>Сертификаты защиты</h3> <h3 id="sertificate" class="value"></h3></div>
+            <div style="display: flex; justify-content: space-between;"><h3>Сертификаты защиты</h3> <h3 id="sertificate" class="value">???</h3></div>
             <hr>
             <a id="selfDeveloopDublicate1" style="display: flex; justify-content: space-between; text-decoration: none; align-items: center;"><h3>Сайт разработчика</h3> <img src="server/yandexIcon.png" alt="" width="40px" height="40px"></a>
             <hr>
             <a id="polyci" style="display: flex; justify-content: space-between; text-decoration: none; align-items: center;"><h3>Политика конфиндециальности</h3> <img src="server/privacyIcon.png" alt="" width="40px" height="40px"></a>
             <hr>
             <a style="display: flex; justify-content: space-between; text-decoration: none; align-items: center;" href="defaultSelf.html"><h3>Сообщить о проблеме</h3> <img src="server/warningIcon.png" alt="" width="40px" height="40px"></a>
+            
+            <hr>
+            <a style="display: flex; justify-content: space-between; text-decoration: none; align-items: center;" href="defaultSelf.html" id="support"><h3>Поддержка</h3> <img src="server\supportIcon.png" alt="" width="40px" height="40px"></a>
+        
+        
         </div>
 
     <br>
@@ -304,12 +309,12 @@
             </div>
             <div class="footer-item">
                 <p>Безопасность</p>
-                <a href="accDash.html">Права пользователя</a>
-                <a href="accDash.html">Нащли уязвимость?</a>
+                <a href="userRules.html">Права пользователя</a>
+                <a href="cockieBOB.html">Нашли уязвимость?</a>
             </div>
             <div class="footer-item">
                 <p>Основные</p>
-                <a href="accDash.html">О ABartaj</a>
+                <a href="abortAJ.html">О ABartaj</a>
                 <a href="accDash.html">Пользовательское соглашение</a>
                 <a href="accDash.html">Конфиндециальность</a>
             </div>
@@ -317,7 +322,7 @@
                 <p>Разработчикам</p>
                 <a href="accDash.html">Стать разработчиком</a>
                 <a href="accDash.html">Соглашение о публикации</a>
-                <a href="accDash.html">Конфиндециальность разработчика</a>
+                <a href="devRules.html">Конфиндециальность разработчика</a>
             </div>
         </div>
 
@@ -387,9 +392,21 @@ function toggleMenu() {
     }
 }
 
+
+// --- Получаем параметры из URL ---
 // --- Получаем параметры из URL ---
 const params = new URLSearchParams(window.location.search);
-const name = params.get("name");
+const project = params.get("project");
+
+let name = null;
+let idi = null;
+
+if (project) {
+  const parts = project.split("%");
+  name = parts[0] || null;
+  idi = parts[1] || null;
+}
+
 const btnCode = document.getElementById("IICode");
 
 
@@ -397,7 +414,15 @@ const btnCode = document.getElementById("IICode");
 fetch("app.json")
     .then(res => res.json())
     .then(data => {
-        const app = data.find(a => a.name === name);
+        const app = data.find(a => a.idi === idi);
+
+        // Если данных нет — отправляем на notFound.html
+        if (!app) {
+            window.location.href = "notFound.html";
+            return;
+        }
+
+
         const ua = navigator.userAgent;
         if (app) {
             imgPatch = app.imgScreen.split(",").map(item => item.trim());
@@ -433,15 +458,29 @@ fetch("app.json")
             document.getElementById("developerDublicate3").href = app.siteDeveloper;
             document.getElementById("polyci").href = app.policy;
 
+            document.getElementById("ICONMR").href = app.icon;
+
 
             const updatesElement = document.getElementById("contentUpdates");
             const mwsBlock = document.getElementById("mws");
+            const supportBlock = document.getElementById("support");
+
+
+
+            if (!("supported" in app)) {
+                supportBlock.style.display = "none";
+            }else{
+                document.getElementById("support").href = app.supported;
+            }
+
+
+
 
             if (app.updateText && app.updateText.trim() !== "") {
-            updatesElement.textContent = app.updateText;
-            mwsBlock.style.display = "block";
+                updatesElement.textContent = app.updateText;
+                mwsBlock.style.display = "block";
             } else {
-            mwsBlock.style.display = "none";
+                mwsBlock.style.display = "none";
             }
 
 
@@ -674,7 +713,7 @@ document.querySelectorAll(".review-card").forEach(card => {
 });
 
 function alertErrors(){
-    alert('Прстите, вы не можете пока оставлять отзывы')
+    alert('Прстите, вы пока не можете оставлять отзывы')
 }
 
 
@@ -775,10 +814,6 @@ modalImg.addEventListener("touchmove", (e) => {
     document.body.removeChild(tempInput);
     }
 
-    document.getElementById('moreBtn').addEventListener('click', function() {
-        const proj = this.closest('.infoProj');
-        proj.classList.add('expanded');
-    });
 
 </script>
 

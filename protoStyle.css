@@ -353,6 +353,7 @@ span{
     transform: translateX(-50%);
     background-color: #ffd231;
     color: black;
+    box-shadow: 0 0 15px rgb(0, 0, 0);
     border-radius: 20px;
     padding: 10px 20px;
 }
@@ -504,19 +505,14 @@ hr {
 }
 
 
-/* левый столбец фиксированный */
 .infofo h3.label {
     flex: 0 0 auto;
     white-space: nowrap;
 }
 
-/* правый столбец — растягивается */
 .infofo h3.value {
     flex: 1 1 auto;
     text-align: right;
-    /* white-space: nowrap; */
-    /* overflow: hidden; */
-    /* text-overflow: ellipsis; */
     cursor: pointer;
 }
 
@@ -579,7 +575,6 @@ hr {
         scrollbar-width: none;     /* Firefox */
     }
 
-    /* Chrome, Safari, Opera */
     .table-container::-webkit-scrollbar {
         display: none;
     }
@@ -686,7 +681,6 @@ hr {
 }
 
 
-  /* Контейнер всплывающего окна */
   .bubble {
     position: fixed;
     top: 50%;
@@ -703,13 +697,11 @@ hr {
     z-index: 10;
   }
 
-  /* Активное состояние */
   .bubble.active {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
 
-  /* Форма внутри пузыря */
   .bubble form {
     display: flex;
     flex-direction: column;
@@ -738,7 +730,6 @@ hr {
     background: #dcb52b;
   }
 
-  /* Закрытие окна */
   .closeBubble {
     position: absolute;
     top: 10px;
@@ -771,7 +762,7 @@ hr {
     display: flex;
     gap: 10px;
     position:fixed;
-    top:20px; right:-300px;  /* спрятано за экраном */
+    top:20px; right:-300px;
     background: #ffd231;
     color: black;
     padding:12px 20px;
@@ -786,16 +777,15 @@ hr {
 #desys {
     position: relative;
     z-index: 5;
-    transition: all 0.3s ease; /* плавный переход */
+    transition: all 0.3s ease;
 }
 
-/* Класс для “прилипания” */
 #desys.sticky {
     position: fixed;
-    top: 50%; /* середина экрана */
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #ffd231; /* желтый фон */
+    background-color: #ffd231;
     color: black;
     padding: 10px 20px;
     border-radius: 10px;
@@ -821,52 +811,34 @@ hr {
     padding: 20px 40px 10px 40px;
     border-radius: 10px;
 
-    max-height: 500px;        /* ограничение по высоте */
-    overflow: hidden;         /* скрываем лишнее */
+    max-height: 500px;
+    overflow: hidden;
     position: relative;
 }
 
-/* описание с обрезкой */
 #descryMAX {
-    display: -webkit-box;
-    -webkit-line-clamp: 8;    /* сколько строк показываем */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  max-height: 150px;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox — скрыть скроллбар */
+  -ms-overflow-style: none;  /* скрыть скроллбар */
 }
 
-/* кнопка "Больше" */
-#moreBtn {
-    display: block;
-    margin-top: 10px;
-    cursor: pointer;
-    color: #ffd231;
-    text-align: center;
-    font-weight: bold;
+#descryMAX::-webkit-scrollbar {
+  display: none;
 }
 
-/* когда карточка развернута */
-.infoProj.expanded {
-    max-height: none;        /* снимаем ограничение */
-}
 
-.infoProj.expanded #descryMAX {
-    -webkit-line-clamp: none; /* показываем весь текст */
-}
 
-.infoProj.expanded #moreBtn {
-    display: none;             /* убираем кнопку */
-}
 
 .contentImg {
-    position: relative; /* важно для абсолютного позиционирования кнопок */
+    position: relative;
     display: inline-block;
 }
 
 .backIMG {
     width: 50%;
     height: 500px;
-    display: flex;         /* чтобы #imaga занял всё */
+    display: flex;
     position: relative;
     border-radius: 10px;
     background-color: black;

@@ -88,12 +88,6 @@
 
       <label>Версия:</label>
       <input type="text" id="version" placeholder="например 1.0.0">
-
-      <label>Дата последнего обновления:</label>
-      <input type="text" id="dateUPD" required>
-
-      <label>Что обновилось?</label>
-      <input type="text" id="contentUPD" required>
       
       <label>Категория:</label>
       <input type="text" id="category" placeholder="например Хоррор, Бизнес и т.д.">
@@ -190,7 +184,6 @@ document.querySelector('.submit-btn').addEventListener('click', (e) => {
     siteDeveloper: get('devSite'),
     content: get('selfer'),
     updated: get('dateUPD'),
-    updateText: get('contentUPD'),
     deviceTy: get('deviceUDD'),
     alternatives: get('alts'),
     developer: 'GUst',
@@ -198,6 +191,8 @@ document.querySelector('.submit-btn').addEventListener('click', (e) => {
     size: 'Онлайн',
     fava: '',
     anonsy: '',
+    updated: '',
+    updateText: '',
     languageKalivan: `+${selectedLangs.length} других`,
     otziv: '0',
     star: '0',
