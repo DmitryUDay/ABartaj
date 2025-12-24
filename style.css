@@ -47,10 +47,39 @@ menu, ol, ul {
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-.client{
+
+.client {
     display: flex;
     gap: 5px;
     margin-right: 10px;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    overflow: visible; /* ВАЖНО */
+}
+
+.client:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.3s;
+}
+
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: block;
+}
+
+/* Шапка */
+.hat {
+    position: absolute;
+    top: -20px;      /* подгоняй */
+    right: -10px;     /* подгоняй */
+    width: 40px;     /* размер шапки */
+    transform: rotate(25deg); /* наклон */
+    pointer-events: none; /* чтобы не мешала кликам */
 }
 
 /* Кнопка-гамбургер */
@@ -147,18 +176,15 @@ menu, ol, ul {
   transition: color 0.3s;
 }
 
-/* при фокусе placeholder немного светлее */
 #searchInput:focus::placeholder {
   color: #ddd;
 }
 
-/* контейнер вокруг input для центровки */
 div > #searchInput {
   display: block;
   margin: 10px auto;
 }
 
-/* Контейнер для результатов поиска */
 .search-wrapper {
     position: relative; /* обёртка должна быть относительной */
     max-width: 500px;
@@ -170,6 +196,7 @@ div > #searchInput {
     top: 100%;          /* сразу под input */
     left: 0;
     width: 100%;
+    z-index: 10000;
     max-width: 500px;
     background-color: #ffd231;
     border: 1px solid rgba(85, 85, 85, 0.426);
@@ -178,18 +205,31 @@ div > #searchInput {
     padding: 10px;
     box-sizing: border-box;
     display: none;
+    gap: 10px; /* расстояние между карточками */
+    padding: 10px; /* внутренний отступ у всего блока */
+    flex-direction: column;
 }
+
+
+.search-result-item {
+    padding: 10px 15px; /* внутренние отступы */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-result-item:hover {
+    background-color: #b99925;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
 
 .result-inner {
     display: flex;
     align-items: center;
     gap: 10px;
     transition: all 0.4s;
-}
-.result-inner:hover{
-    background-color: #b99925;
-    cursor: pointer;
-    border-radius: 10px;
 }
 
 
@@ -292,6 +332,7 @@ div > #searchInput {
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 0;
     text-align: center;
     gap: 10px;
 }
@@ -461,6 +502,7 @@ div > #searchInput {
 
 
 .top-developers {
+    z-index: 0;
     text-align: center;
     background-color: #ffd231;
     border-radius: 20px;
@@ -540,6 +582,7 @@ div > #searchInput {
 
 
 .teaser {
+    z-index: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;

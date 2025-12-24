@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Санкции</title>
+    <link rel="stylesheet" href="maksim.css">
+    <script src="server/js/imager.js"></script>
+</head>
+<body>
+    <style>
+
+
+        h1,h2,h3,h4,h5,h6,p{
+            color: white;
+        }
+        p{
+            font-size: 25px;
+        }
+    </style>
+        <button id="BBack" onclick="goBack()" style="cursor: pointer; color: rgb(75, 75, 255);; ">&lt;Назад</button>
+        
+        <div style="margin: 20px; line-height: 1.6; color: #f5f5f5; background: #2C3E50; padding: 20px; border-radius: 15px;">
+    <h1 style="text-align: center; color: #fff;">Санкции против Украины и Евросоюза</h1>
+    <p style="margin-top: 10px; text-align: center;">
+        Настоящие санкции введены в ответ на действия, считающиеся угрозой безопасности и стабильности.
+    </p>
+
+    <h2 style="margin-top: 20px; color: #ffd700;">1. Недоступные на сайте функции и сервисы</h2>
+    <ul style="margin-left: 20px;">
+        <li>Доступ к публикации проектов.</li>
+        <li>Возможность регистрации по IP-адресу, электронной почте или номеру телефона.</li>
+        <li>Использование платёжных систем MasterCard и Visa.</li>
+        <li>Работа в команде.</li>
+        <li>Участие в опросах, конкурсах и акциях.</li>
+        <li>Некоторые приложения могут быть недоступны.</li>
+    </ul>
+
+    <h2 style="margin-top: 20px; color: #ffd700;">2. Заморозка кошельков</h2>
+    <p>
+        Суммы находящиеся в кошелке uToPass будут заморожены до окончания военных действий
+    </p>
+
+    <h2 style="margin-top: 20px; color: #ffd700;">3. Ответственность за нарушение</h2>
+    <ul style="margin-left: 20px;">
+        <li>Нарушение санкций влечёт за собой юридическую ответственность, вплоть до уголовного преследования.</li>
+        <li>Компании и организации, игнорирующие санкции, могут быть заблокированны на площадке.</li>
+    </ul>
+
+    <h2 style="margin-top: 20px; color: #ffd700;">4. Обновление санкций</h2>
+    <p>
+        Санкции могут быть пересмотрены и дополнены в зависимости от развития ситуации и политических решений.
+    </p>
+
+
+    <p style="margin-top: 30px; text-align: center; font-style: italic; color: #bbb;">
+        Рекомендуется следить за официальными сообщениями для получения актуальной информации.
+    </p>
+</div>
+
+        <!-- <button disabled class="goCaca">Согласиться и продолжить</button> -->
+
+</body>
+</html>
+
+<script>
+    document.querySelector('button').addEventListener('click', function() {
+        this.classList.add('active');
+        setTimeout(() => this.classList.remove('active'), 5000); // Убираем класс после завершения анимации
+    });
+</script>

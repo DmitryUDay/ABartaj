@@ -6,9 +6,15 @@
     <title>ABartaj</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="server/css/footer.css">
+    <link rel="stylesheet" href="newYears.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <link rel="icon" type="image/png" href="server\icons.png" style="border-radius: 20px;">
 </head>
 <body>
+    <canvas id="snow"></canvas>
+
+    
     <button id="toTopBtn">↑</button>
     <div class="homebrew">
         <div style="display: flex; align-items: center; gap: 20px;">
@@ -22,18 +28,33 @@
 
         <div style="display: flex; align-items: center; gap: 20px;">
             <div style="display: flex; gap: 20px;">
-                <a href="creater.html" id="btnADD"><div class="btnNAVI">+</div></a>
-                <a href="#"><div class="btnNAVI"><img src="https://cdn-icons-png.flaticon.com/512/1827/1827347.png" alt="" width="20px"></div></a>
+                <div class="btnNAVI" id="toggleSnow" title="Снег">
+                    <img src="server/snow.png" width="20">
+                </div>
+
+                <a href="creater.html" id="btnADD">
+                    <div class="btnNAVI">+</div>
+                </a>
+
+                <a href="#">
+                    <div class="btnNAVI">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827347.png" width="20">
+                    </div>
+                </a>
             </div>
 
 
             <div class="client">
-                <img src="server/ava.png" alt="" width="50px" height="50px">
+                <img class="avatar" src="server/ava.png" alt="">
+                <img class="hat" src="server/shapa.png" alt="">
             </div>
         </div>
-
-
     </div>
+    <div id="accessBanner" class="access-banner" style="display:none;">
+        <span style="margin-right: 10px;">ABartaj временно ограничивает доступ из Евросоюза и Украины. <a href="sanctiom.html" class="more-link">Подробнее</a></span>
+        <button id="bannerCloseBtn" class="close-btn" aria-label="Закрыть">&times;</button>
+    </div>
+
 
 
     <nav class="side-menu" id="side-menu">
@@ -53,7 +74,6 @@
             <li><a href="defaultSelf.html" class="underline-hover">Подписки</a></li>
             <li><a href="defaultSelf.html" class="underline-hover">Моя библиотека</a></li>
             <li><a href="helpModer.html" class="underline-hover">Помощь</a></li>
-
         </ul>
     </nav>
     <div style="height: 60px; padding: 10px;"></div>
@@ -61,20 +81,28 @@
     <br>
     <br>
 
+    <div id="ny-poster">
+        <h1 id="ny-text"></h1>
+    </div>
+
+
+    
     <h2 style="color: white;" align="center">Поиск проектов</h2>
     <div class="search-wrapper" style="position: relative; max-width: 500px; margin: 0 auto;">
         <input type="text" id="searchInput" enterkeyhint="search">
         <div id="searchResults"></div>
     </div>
-
-
+    
+    
     </a>
     <br>
     <div class="abaHaba">
         <h2>Место, где идеи становятся проектами, а проекты — реальностью</h2>
         <p style="color: rgb(210, 210, 210);">ABartaj — бесплатная платформа для инди-проектов: игры, приложения, прошивки, софт и другие проекты.</p>
     </div>
-
+    
+    <canvas id="fireworks"></canvas>
+    <br>
 
 
     <br>
@@ -135,6 +163,7 @@
             <div class="footer-item">
                 <p>ABartaj - project UDay©</p>
                 <a href="https://dmitryuday.github.io/UDay/">UDay</a>
+                <a href="https://dmitryuday.github.io/UDay/">Реестр проектов</a>
             </div>
             <div class="footer-item">
                 <p>Безопасность</p>
@@ -525,6 +554,215 @@ if (userAvatar) {
 
 
 
+<script>
+    function getNewYearText() {
+    const now = new Date();
+    const newYear2026 = new Date(2026, 0, 1, 0, 0, 0);
+
+    if (now >= newYear2026) {
+        return "С Новым годом! 🎉";
+    } else {
+        return "С наступающим Новым годом! 🎄";
+    }
+}
+
+
+document.getElementById("ny-text").textContent = getNewYearText();
+
+
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+function firework(x, y) {
+    let particles = [];
+    const maxLife = 70;
+
+    for (let i = 0; i < 80; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 5 + 2;
+
+        particles.push({
+            x,
+            y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            life: maxLife,
+            size: Math.random() * 2 + 1,
+            color: `hsl(${Math.random() * 360}, 100%, 60%)`
+        });
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles = particles.filter(p => p.life > 0);
+
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 0.04;
+
+            p.life--;
+            const alpha = p.life / maxLife;
+
+            ctx.globalAlpha = alpha;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        ctx.globalAlpha = 1;
+
+        if (particles.length > 0) {
+            requestAnimationFrame(animate);
+        } else {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    }
+
+    animate();
+}
+
+document.getElementById("ny-poster").addEventListener("click", (e) => {
+    const rect = canvas.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    firework(x, y);
+});
+
+
+
+const snowCanvas = document.getElementById("snow");
+const snowCtx = snowCanvas.getContext("2d");
+
+snowCanvas.width = window.innerWidth;
+snowCanvas.height = window.innerHeight;
+
+let snowEnabled = localStorage.getItem("snow") !== "off";
+
+const snowflakes = [];
+
+function createSnow() {
+    snowflakes.length = 0;
+    for (let i = 0; i < 120; i++) {
+        snowflakes.push({
+            x: Math.random() * snowCanvas.width,
+            y: Math.random() * snowCanvas.height,
+            r: Math.random() * 2 + 1,
+            s: Math.random() * 1 + 0.5
+        });
+    }
+}
+
+function snowLoop() {
+    if (!snowEnabled) {
+        snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+        requestAnimationFrame(snowLoop);
+        return;
+    }
+
+    snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+
+    snowCtx.fillStyle = "white";
+    snowflakes.forEach(f => {
+        f.y += f.s;
+        if (f.y > snowCanvas.height) f.y = -5;
+
+        snowCtx.beginPath();
+        snowCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        snowCtx.fill();
+    });
+
+    requestAnimationFrame(snowLoop);
+}
+
+createSnow();
+snowLoop();
+
+
+const toggleSnowBtn = document.getElementById("toggleSnow");
+
+function updateSnowBtn() {
+    toggleSnowBtn.style.opacity = snowEnabled ? "1" : "0.5";
+}
+
+toggleSnowBtn.addEventListener("click", () => {
+    snowEnabled = !snowEnabled;
+    localStorage.setItem("snow", snowEnabled ? "on" : "off");
+    updateSnowBtn();
+});
+
+updateSnowBtn();
+
+
+</script>
+
+
+
+<script>
+// Список стран ЕС + Украина (ISO коды)
+const euCountries = [
+  "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR",
+  "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL",
+  "PL", "PT", "RO", "SK", "SI", "ES", "SE"
+];
+const ukraine = "UA";
+
+// Получение куки
+function getCookie(name) {
+  const matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([.$?*|{}()[]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+// Установка куки
+function setCookie(name, value, days) {
+  const expires = new Date(Date.now() + days*24*60*60*1000).toUTCString();
+  document.cookie = name + "=" + encodeURIComponent(value) + "; expires=" + expires + "; path=/";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const banner = document.getElementById("accessBanner");
+  const closeBtn = document.getElementById("bannerCloseBtn");
+  const homebrew = document.querySelector(".homebrew");
+
+  // Подставляем высоту homebrew как top для баннера
+  if (homebrew) {
+    const height = homebrew.getBoundingClientRect().height;
+    banner.style.top = height + "px";
+  }
+
+  // Если куки есть — не показываем
+  if (getCookie("accessBannerDismissed")) return;
+
+  // Запрос к API для определения страны по IP
+  fetch("https://ipapi.co/json/")
+    .then(response => response.json())
+    .then(data => {
+      const countryCode = data.country;
+
+
+      // Проверка ЕС или Украина
+      if (euCountries.includes(countryCode) || countryCode === ukraine) {
+        alert('us')
+        banner.style.display = "flex";
+      }
+    })
+
+  closeBtn.addEventListener("click", () => {
+    banner.style.display = "none";
+    setCookie("accessBannerDismissed", "true", 365);
+  });
+});
+
+</script>
 
 
     

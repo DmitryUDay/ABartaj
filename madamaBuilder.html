@@ -5,60 +5,87 @@
   <title>Категория — Madama Builder</title>
   <link rel="stylesheet" href="mdmBuild.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="server/js/imager.js"></script>
+  <style>
+    /* Инлайн-стили для быстрой корректировки */
+    body {
+        padding-top: 60px; /* Чтобы кнопка "Назад" не перекрывала контент */
+    }
+  </style>
 </head>
 <body>
-    <button id="BBack" onclick="goBack()" style="cursor: pointer;">&lt;Назад</button>
-    <br>
-    <br>
+    <button id="BBack" onclick="goBack()" style="cursor: pointer;">&lt; Назад</button>
+    
     <div id="category-page">
         <h1 id="category-title"></h1>
-        <div id="all-projects" class="projects-grid"></div>
+        <div id="projectsContainer"></div>
     </div>
 
+<script>
+function goBack() {
+    window.history.back();
+}
 
+const params = new URLSearchParams(window.location.search);
+const category = params.get("category");
+const container = document.getElementById("projectsContainer");
+const titleEl = document.getElementById("category-title");
 
+const catNames = {
+  game: "Игры",
+  bot: "Боты",
+  app: "Программы",
+  shev: "Веб приложения",
+  sites: "Сайты",
+  plug: "Плагины",
+  runFile: "Исполняемые файлы",
+  other: "Другое"
+};
 
-    <script>
-    const params = new URLSearchParams(window.location.search);
-    const category = params.get("category");
-    const container = document.getElementById("all-projects");
-    const titleEl = document.getElementById("category-title");
+titleEl.textContent = `Категория: ${catNames[category] || category}`;
 
-    const catNames = {
-        game: "Игры",
-        bot: "Боты",
-        app: "Программы",
-        tool: "Инструменты",
-        other: "Другое"
-    };
-
-    titleEl.textContent = `Категория: ${catNames[category] || category}`;
-    titleEl.style.color = '#ffffff'
-
-    fetch("app.json")
-        .then(res => res.json())
-        .then(data => {
+fetch("app.json")
+    .then(res => res.json())
+    .then(data => {
         const filtered = data.filter(app => (app.searchKategory || "other") === category);
 
         filtered.forEach(app => {
             const card = document.createElement("div");
             card.className = "project-card";
+
+            // Добавляем размытый фон как на главной странице
             card.innerHTML = `
-            <a href="MrBuilder.html?name=${encodeURIComponent(app.name)}">
-                <img src="${app.icon}" alt="${app.name}">
-                <h3>${app.name}</h3>
-                <p>${app.descriptionMini}</p>
-                <div class="project-info">
-                <span>${app.developer}</span>
-                <span>${app.age}</span>
-                <span>⭐ ${app.star}</span>
-                </div>
-            </a>
+                <a href="MrBuilder.html?project=${encodeURIComponent(app.name + '%' + app.idi)}">
+                    <div class="icon-blur-bg" style="background-image: url('${app.icon}')"></div>
+                    <img src="${app.icon}" alt="${app.name}">
+                    <h3>${app.name}</h3>
+                    <p>${app.descriptionMini || app.description || ''}</p>
+                    <div class="project-info">
+                        <span>${app.developer}</span>
+                        <span>${app.age}</span>
+                        ${app.star ? `<span>⭐ ${app.star}</span>` : ''}
+                    </div>
+                </a>
             `;
             container.appendChild(card);
         });
-        });
-    </script>
+        
+        // Если нет проектов в категории
+        if (filtered.length === 0) {
+            container.innerHTML = `
+                <div style="color: white; text-align: center; width: 100%; padding: 50px;">
+                    <p>В этой категории пока нет проектов</p>
+                </div>
+            `;
+        }
+    })
+    .catch(error => {
+        console.error("Ошибка загрузки проектов:", error);
+        container.innerHTML = `
+            <div style="color: white; text-align: center; width: 100%; padding: 50px;">
+                <p>Ошибка загрузки проектов. Попробуйте позже.</p>
+            </div>
+        `;
+    });
+</script>
 </body>
 </html>

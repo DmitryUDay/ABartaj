@@ -1,0 +1,91 @@
+#ny-poster {
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    border-radius: 20px;
+    background: #6a3fcc;
+    color: #ffd93b;
+    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    transition: transform .2s;
+    text-decoration: underline;
+}
+
+
+#fireworks {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+
+#snow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#fireworks {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+body > * {
+    position: relative;
+    z-index: 1;
+}
+
+#toggleSnow {
+    cursor: pointer !important;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+
+
+
+
+.access-banner {
+  position: fixed;
+  top: 60px; /* пример, подгоняй под высоту .homebrew */
+  left: 0;
+  width: 100%;
+  z-index: 10000;
+  
+  background-color: #7331ff;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px 20px;
+  user-select: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.access-banner .more-link {
+  color: #ffde59;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.access-banner .close-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  user-select: none;
+}

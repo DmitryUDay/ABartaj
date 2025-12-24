@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="contents">Example app</title>
+    <title id="contents">Загружаю</title>
     <link rel="stylesheet" href="protoStyle.css">
     <script src="server/js/imager.js"></script>
     <link rel="stylesheet" href="server/css/footer.css">
@@ -139,16 +139,19 @@
 
 
         <h1 style="cursor: pointer;">Рейтинг и отзывы ></h1>
+        <p>Рейтинг данного приложения основан на отзывах других источниках</p>
         <div style="margin-bottom: 0; line-height: 0.5;" id="raiting">
             <div style="display: flex; align-items: center; margin-bottom: 5px; gap: 20px; font-size: 20px;">
                 <h1 style="font-size: 60px;" id="starKalivanDublicate1"></h1>
                 <div>
                     <div style="display: inline-flex; margin-left: 10px;">
-                        <p>⭐️</p>
-                        <p>⭐️</p>
-                        <p>⭐️</p>
-                        <p>⭐️</p>
-                        <p>★</p>
+                        <div class="stars">
+                            <span class="star" data-index="1">★</span>
+                            <span class="star" data-index="2">★</span>
+                            <span class="star" data-index="3">★</span>
+                            <span class="star" data-index="4">★</span>
+                            <span class="star" data-index="5">★</span>
+                        </div>
                     </div>
                     <h3 style="margin-top: -5px;" id="kalivanRaitingDublicate1"></h3>
                 </div>
@@ -264,7 +267,26 @@
                     </div>
                 </div>
             </div>
+            <p>Политика конфиндециальности может различаться в зависимости от возраста или используемых функций</p>
         </div>
+
+        <div id="Neurconfiggg">
+            <h1 style="cursor: pointer; ">Конфиндециальность приложения</h1>
+
+            <div class="data-card" style="background-color: #2C3E50; box-shadow: 0 0 10px #000000; width: 100%; height: auto; justify-content: center; padding: 20px; border-radius: 30px; text-align: center;" >
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="server/galya.png" alt="" width="50px" height="50px" style="margin: 0 auto;">
+                    <h1 style="text-align: center; margin-top: 10px;">Данные не собираются</h1>
+                    <p style="text-align: center; margin-top: 5px;">Разработчик не собирает данные с этого приложения<b></p>
+
+                </div>
+            </div>
+            <p>Политика конфиндециальности может различаться в зависимости от возраста или используемых функций</p>
+        </div>
+
+
+
+
 
         <h1 align="center">Информация</h1>
         <div style="margin-left: 20px; margin-right: 20px;" class="infofo">
@@ -433,11 +455,13 @@ fetch("app.json")
 
             document.getElementById("nameApp").textContent = app.name;
             document.getElementById("nameAppDublicate").textContent = app.name;
-            document.getElementById("contents").textContent = app.name;
+            document.getElementById("contents").textContent = `ABartaj || ${app.name}`;
             document.getElementById("buttonType").textContent = app.buttonType;
             document.getElementById("IconApp").src = app.icon;
             document.getElementById("kalivanRaitingDublicate1").textContent = `${app.otziv} отзывов`;
             document.getElementById("starKalivanDublicate1").textContent = `${app.star}`;
+            
+
             document.getElementById("raiting").style.display = 'block';
             document.getElementById("ageKalivan").textContent = app.age;
             document.getElementById("developer").textContent = app.developer;
@@ -501,9 +525,11 @@ fetch("app.json")
                     if (!allowed.includes(el.classList[1])) {
                         el.style.display = "none";
                     }
+                    document.getElementById("Neurconfiggg").style.display = "none";
                 });
             }else{
                 document.getElementById("configgg").style.display = "none";
+                document.getElementById("Neurconfiggg").style.display = "block";
             }
             
             // --- Логика кнопки с учётом anonsy ---
@@ -816,5 +842,42 @@ modalImg.addEventListener("touchmove", (e) => {
 
 
 </script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const starsValue = 3.5; // тут меняй значение рейтинга
+
+  const stars = document.querySelectorAll('.star');
+
+  stars.forEach((star, idx) => {
+    const starIndex = idx + 1;
+    // вычисляем процент заливки текущей звезды: от 0 до 100%
+    let fillPercent = Math.min(Math.max(starsValue - starIndex + 1, 0), 1) * 100;
+    star.style.setProperty('--fill', fillPercent + '%');
+    star.style.setProperty('position', 'relative');
+    star.style.setProperty('overflow', 'hidden');
+    star.style.setProperty('display', 'inline-block');
+    star.style.setProperty('vertical-align', 'middle');
+
+    // Устанавливаем ширину ::before через JS напрямую:
+    star.style.setProperty('--fill', fillPercent + '%');
+    star.style.setProperty('position', 'relative');
+
+    // Применяем ширину ::before
+    star.style.setProperty('--fill', fillPercent + '%');
+    star.style.setProperty('position', 'relative');
+
+    // JS не может напрямую поменять ::before, поэтому используем CSS переменную:
+    star.style.setProperty('--fill', fillPercent + '%');
+  });
+});
+</script>
+
+<style>
+  .star::before {
+    width: var(--fill, 0%);
+  }
+</style>
 
 </html>

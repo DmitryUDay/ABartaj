@@ -985,3 +985,40 @@ hr {
     font-weight: bold;
     text-decoration: none;
 }
+
+
+.stars {
+  display: inline-flex;
+  font-size: 50px;
+}
+
+.star {
+  position: relative;
+  color: #ccc;
+  cursor: default;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  line-height: 1; /* важное */
+  vertical-align: middle;
+  overflow: visible; /* разрешаем видимость по высоте */
+  display: inline-block;
+}
+
+.star::before {
+  content: '★';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  color: gold;
+  overflow: hidden; /* обрезаем только по ширине */
+  white-space: nowrap;
+  width: var(--fill, 0%);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.Neurconfiggg{
+    display: none;
+}
