@@ -7,6 +7,7 @@
 <link rel="icon" type="image/png" href="server\icons.png" style="border-radius: 20px;">
 <script src="server/js/imager.js"></script>
 
+<link rel="stylesheet" href="server/css/footer.css">
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -144,16 +145,10 @@
         font-size: 16px;
         color: #fff;
     }
-
-    footer {
-        margin-top: 30px;
-        text-align: center;
-        opacity: 0.7;
-    }
 </style>
 </head>
 <body>
-<button id="BBack" onclick="goBack()" style="cursor: pointer; color: blue; ">&lt;Назад</button>
+<button id="BBack" onclick="goBack()" style="cursor: pointer; color: blue; z-index: 10000;">&lt;Назад</button>
 
 <div class="wrap">
 
@@ -257,11 +252,42 @@
         </div>
     </section>
 
+    <br>
+    <br>
+    <footer class="footer">
+        <div class="footer-logo">
+            <a href="index.html"><img src="server/ABADark.png" alt="Logo"></a>
+        </div>
 
 
-    <footer>
-        © ABartaj — информационная страница
+        <div class="footer-links">
+            <div class="footer-item">
+                <p>ABartaj - project UDay©</p>
+                <a href="https://dmitryuday.github.io/UDay/">UDay</a>
+                <a href="https://dmitryuday.github.io/UDay/reester.html">Реестр проектов</a>
+            </div>
+            <div class="footer-item">
+                <p>Безопасность</p>
+                <a href="userRules.html">Права пользователя</a>
+                <a href="cockieBOB.html">Нашли уязвимость?</a>
+            </div>
+            <div class="footer-item">
+                <p>Основные</p>
+                <a href="abortAJ.html">О ABartaj</a>
+                <a href="accDash.html">Пользовательское соглашение</a>
+                <a href="accDash.html">Конфиндециальность</a>
+            </div>
+            <div class="footer-item">
+                <p>Разработчикам</p>
+                <a href="accDash.html">Стать разработчиком</a>
+                <a href="accDash.html">Соглашение о публикации</a>
+                <a href="devRules.html">Конфиндециальность разработчика</a>
+            </div>
+        </div>
+
+
     </footer>
+
 
 </div>
 

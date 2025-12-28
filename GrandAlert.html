@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Опаньки</title>
+    <link rel="stylesheet" href="helpStyle.css">
+    <link rel="icon" type="image/png" href="server\icons.png" style="border-radius: 20px;">
+</head>
+<body>
+  <h1 id="problemName">Сообщить о проблеме</h1>
+
+  <p class="intro">
+    Мы стараемся поддерживать порядок и следить за тем, чтобы проекты на нашей площадке работали корректно.
+Если что-то пошло не так или выглядит подозрительно — напишите нам, мы обязательно посмотрим.
+  </p>
+
+  <form onsubmit="sendForm(event)">
+    <input type="email" id="email" placeholder="Ваш email (для связи)" required>
+
+    <input type="text" id="username" placeholder="Ваше имя или ник" required>
+
+    <!-- Быстрые кнопки -->
+    <div class="quick-buttons">
+      <button type="button" onclick="setReason('Ссылка не работает')">🔗 Ссылка не работает</button>
+      <button type="button" onclick="setReason('Проект больше не существует')">🪦 Проект не существует</button>
+      <button type="button" onclick="setReason('Обнаружен вирус')">🦠 Найден вирус</button>
+      <button type="button" onclick="setReason('Неприемлемый контент')">🚫 Неприемлемый контент</button>
+    </div>
+
+    <textarea id="feedback" placeholder="Опишите проблему подробнее..." required></textarea>
+
+    <!-- Фото -->
+    <div class="file-block">
+      <label class="file-label">
+        📸 Прикрепить скриншот (обязательно)
+        <input type="file" id="imageInput" accept="image/*" required hidden>
+      </label>
+
+      <div id="preview"></div>
+    </div>
+
+    <div class="buttons">
+      <button type="button" class="btn back-btn" onclick="history.back()">Назад</button>
+      <button type="submit" class="btn submit-btn">Отправить</button>
+    </div>
+  </form>
+
+  <script>
+    // project из URL
+    const params = new URLSearchParams(window.location.search);
+    const project = params.get("project");
+    if (project) {
+        const params = project.split("%");
+        name = params[0] || null;
+        idi = params[1] || null;
+    }
+
+    if (project) {
+      document.getElementById("problemName").textContent =
+        `Что-то не так с проектом ${name}?`;
+    }
+
+    // быстрые причины
+    function setReason(text) {
+      const feedback = document.getElementById("feedback");
+      feedback.value = text + "\n\n";
+      feedback.focus();
+    }
+
+    // превью картинки
+    const imageInput = document.getElementById("imageInput");
+    const preview = document.getElementById("preview");
+
+    imageInput.addEventListener("change", () => {
+      preview.innerHTML = "";
+
+      const file = imageInput.files[0];
+      if (!file) return;
+
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(file);
+
+      const remove = document.createElement("button");
+      remove.textContent = "❌ Удалить";
+      remove.type = "button";
+      remove.onclick = () => {
+        imageInput.value = "";
+        preview.innerHTML = "";
+      };
+
+      preview.append(img, remove);
+    });
+
+    function sendForm(e) {
+      e.preventDefault();
+
+      if (!imageInput.files.length) {
+        alert("Пожалуйста, прикрепите скриншот 📸");
+        return;
+      }
+
+      alert("Спасибо! Сообщение отправлено ❤️");
+      e.target.reset();
+      preview.innerHTML = "";
+    }
+  </script>
+</body>
+</html>
