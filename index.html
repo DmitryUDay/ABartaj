@@ -77,13 +77,9 @@
         </ul>
     </nav>
     <div style="height: 60px; padding: 10px;"></div>
-    <!-- <h2 align="center" style="font-size: 20px; background-color: #7331ff; margin: 10px; padding: 5px; color: white; border-radius: 20px;">Доступ к отдельным услугам ABartaj ограничен в Украине, Польше и США согласно политике <a href="404.html" style="color: white; text-decoration: underline;">UDay-corporation</a></h2> -->
     <br>
     <br>
 
-    <div id="ny-poster">
-        <h1 id="ny-text"></h1>
-    </div>
 
 
     
@@ -555,21 +551,6 @@ if (userAvatar) {
 
 
 <script>
-    function getNewYearText() {
-    const now = new Date();
-    const newYear2026 = new Date(2026, 0, 1, 0, 0, 0);
-
-    if (now >= newYear2026) {
-        return "С Новым годом! 🎉";
-    } else {
-        return "С наступающим Новым годом! 🎄";
-    }
-}
-
-
-document.getElementById("ny-text").textContent = getNewYearText();
-
-
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 
@@ -751,7 +732,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Проверка ЕС или Украина
       if (euCountries.includes(countryCode) || countryCode === ukraine) {
-        alert('us')
         banner.style.display = "flex";
       }
     })
