@@ -2,14 +2,12 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Создание проекта</title>
+  <title>Редактирование проекта</title>
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/creater.css">
-  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
-
-  <link rel="icon" type="image/png" href="server\icons.png" style="border-radius: 20px;">
+  <link rel="icon" type="image/png" href="server/icons.png" style="border-radius: 20px;">
 </head>
-
+<body>
 
 <div id="notification" class="notification">
     <div class="notification-content">
@@ -21,32 +19,43 @@
     </div>
 </div>
 
+<!-- Модальное окно для ввода ID -->
+<div id="idModal" class="modal">
+    <div class="modal-content">
+        <h2>Поиск проекта</h2>
+        <p>Введите ID проекта для редактирования:</p>
+        <input type="text" id="projectIdInput" placeholder="например: gtehrthtbdsfbsy54gthr">
+        <div style="display: flex; gap: 10px; margin-top: 15px;">
+            <button onclick="loadProject()" style="padding: 10px 20px; background: #ffd54f; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">Загрузить проект</button>
+            <button onclick="showAllProjects()" style="padding: 10px 20px; background: #7331ff; color: white; border: none; border-radius: 10px; cursor: pointer;">Показать все проекты</button>
+        </div>
+        <div id="projectList" style="margin-top: 20px; max-height: 300px; overflow-y: auto; display: none;"></div>
+        <p id="modalError" style="color: #ff4444; margin-top: 10px; display: none;"></p>
+    </div>
+</div>
 
-<div class="container">
-    <h2>Создание проекта</h2>
+<div class="container" id="editorContainer" style="display: none;">
+    <h2>Редактирование проекта</h2>
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <span style="color: #ffd54f;">ID: <strong id="currentId"></strong></span>
+        <button onclick="location.reload()" style="padding: 8px 15px; background: #7331ff; color: white; border: none; border-radius: 8px; cursor: pointer;">Сменить проект</button>
+    </div>
 
     <div class="form">
         <label>Название проекта:</label>
         <input type="text" id="projectName" placeholder="Название (например, Мореход Ру)">
 
-
         <label>Иконка проекта (URL):</label>
         <input type="text" id="iconPath" placeholder="https://...">
         <div id="iconPreview" class="preview-container"></div>
 
-
         <label>Тип проекта:</label>
         <select id="projectType">
-            <!-- <option value="bot">Бот</option> -->
             <option value="game">Игра</option>
             <option value="program">Програмное обеспечение</option>
-            <!-- <option value="firmware">Прошивка</option> -->
-            <!-- <option value="site">Сайт</option> -->
-            <!-- <option value="executable">Исполняемый файл</option> -->
-            <!-- <option value="plugin">Плагин</option> -->
             <option value="app">Приложение</option>
         </select>
-
 
         <label>Категории и Жанры:</label>
         <div style="position: relative;">
@@ -55,13 +64,10 @@
         </div>
         <div id="cateTagsContainer" class="preview-container"></div>
 
-
         <label>Описание:</label>
         <textarea id="projectDescription" rows="4"></textarea>
 
-
         <hr>
-
 
         <label>Скриншоты проекта:</label>
         <div style="display: flex; gap: 10px;">
@@ -70,15 +76,12 @@
         </div>
         <div id="screenshotsWrapper" class="preview-container" style="margin-top: 15px; display: flex; flex-wrap: wrap; gap: 10px;"></div>
 
-
         <label>Ключевые слова (через запятую):</label>
         <input type="text" id="alts">
-
 
         <label>Возрастное ограничение:</label>
         <select id="ageLimit">
             <option>0+</option>
-            <option>3+</option>
             <option>6+</option>
             <option>10+</option>
             <option>12+</option>
@@ -86,13 +89,10 @@
             <option>18+</option>
         </select>
 
-
         <hr>
-
 
         <label>Версия:</label>
         <input type="text" id="version" placeholder="1.0.0">
-
 
         <label>Основной язык:</label>
         <select id="mainLang">
@@ -102,14 +102,12 @@
             <option>Японский</option>
         </select>
 
-
         <label>Дополнительные языки:</label>
         <div style="position: relative;">
             <input type="text" id="langInput" placeholder="Введите хотя бы 2 символа для поиска языка..." autocomplete="off">
             <div id="langSuggestions" class="suggestions-list"></div>
         </div>
         <div id="langTagsContainer" class="preview-container"></div>
-
 
         <label>Совместимые девайсы:</label>
         <div style="position: relative;">
@@ -118,10 +116,8 @@
         </div>
         <div id="deviceTagsContainer" class="preview-container"></div>
 
-
         <label>Исходный код (URL):</label>
         <input type="url" id="sourceLink">
-
 
         <label>Отслеживаемые данные:</label>
         <div style="position: relative;">
@@ -135,14 +131,11 @@
         <label>Сайт разработчика:</label>
         <input type="url" id="devSite">
 
-
-        <label>Техническая поддержка разработчика</label>
+        <label>Техническая поддержка разработчика:</label>
         <input type="text" id="tehSupport">
 
-
-        <label>Политика конфиндециальности</label>
+        <label>Политика конфиденциальности:</label>
         <input type="text" id="polly">
-
 
         <div class="inet-control" style="margin-top: 20px; display: flex; align-items: center; gap: 15px;">
             <label style="margin: 0;">Нужен интернет?</label>
@@ -151,55 +144,44 @@
                 <span class="slider round"></span>
             </label>
         </div>
-        <br>
-        <br>
-        <br>
+
+        <br><br><br>
         <h2>Поле отладки и разработчика</h2>
 
-        <label>Разработчик</label>
+        <label>Разработчик:</label>
         <input type="text" id="razrab">
 
-        <label>Размер файла</label>
+        <label>Размер файла:</label>
         <input type="text" id="resizee">
 
+        <label>Количество отзывов:</label>
+        <input type="text" id="otzivInput">
 
+        <label>Рейтинг (звезды):</label>
+        <input type="text" id="starInput">
 
+        <label>Текст обновления:</label>
+        <textarea id="updateTextInput" rows="3"></textarea>
 
-
-
-
-        
-        
-        
+        <label>Дата обновления:</label>
+        <input type="text" id="updatedInput" placeholder="ДД.ММ.ГГГГ">
     </div>
 </div>
 
-
-<div class="btn-wrapper">
+<div class="btn-wrapper" id="generateWrapper" style="display: none;">
     <button class="btn-main" id="generateBtn">
-        <span class="btn-text" onclick="buildAndCopyJSON()">Сгенерировать конфигурацию</span>
+        <span class="btn-text">Сгенерировать обновлённую конфигурацию</span>
         <div class="btn-loader"></div>
     </button>
 </div>
 
-
-
-
-
-<script src="js/generatorJson.js"></script>
-
+<script src="js/editorJson.js"></script>
 
 <script>
-let allowExit = false;
-
-// Твой обработчик кнопки генерации
 document.getElementById('generateBtn').addEventListener('click', function() {
     const btn = this;
     const notification = document.getElementById('notification');
     const progressBar = document.getElementById('progress');
-
-    // РАЗРЕШАЕМ ВЫХОД, так как юзер сам нажал "Сгенерировать"
-    allowExit = true;
 
     btn.classList.add('is-loading');
 
@@ -210,29 +192,79 @@ document.getElementById('generateBtn').addEventListener('click', function() {
     notification.classList.add('show');
     
     progressBar.style.animation = 'none';
-    progressBar.offsetHeight; 
+    progressBar.offsetHeight;
     progressBar.style.animation = 'progress 5s linear forwards';
 
     setTimeout(function() {
         notification.classList.remove('show');
-        // Теперь редирект пройдет без всплывающих окон
         window.location.href = 'index.html';
     }, 5000);
 });
-
-// 2. Умный блокировщик закрытия
-window.addEventListener('beforeunload', function (e) {
-    // Если флаг allowExit равен true, мы просто выходим и ничего не показываем
-    if (allowExit) {
-        return undefined;
-    }
-
-    // В противном случае — включаем защиту "от дурака"
-    e.preventDefault(); 
-    e.returnValue = ''; 
-});
-
-
 </script>
+
+<style>
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #2C3E50;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    border: 2px solid #ffd54f;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #ffd54f;
+    background: #1a252f;
+    color: white;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.project-list-item {
+    padding: 15px;
+    background: #1a252f;
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid #444;
+}
+
+.project-list-item:hover {
+    background: #7331ff;
+    border-color: #ffd54f;
+}
+
+.project-list-item h3 {
+    margin: 0;
+    color: #ffd54f;
+}
+
+.project-list-item p {
+    margin: 5px 0;
+    color: #aaa;
+    font-size: 12px;
+}
+</style>
 </body>
 </html>

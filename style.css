@@ -6,7 +6,7 @@ body{
     margin-left: 20px;
     margin-right: 20px;
     padding: 0;
-    }
+}
 * {
     text-decoration: none;
 }
@@ -26,7 +26,7 @@ menu, ol, ul {
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 20000;
     padding: 5px;
     justify-content: space-between;
     background-color: rgb(255, 210, 49);
@@ -57,8 +57,6 @@ menu, ol, ul {
 
 .client:hover{
   cursor: pointer;
-  transform: scale(1.1);
-  transition: all 0.3s;
 }
 
 
@@ -69,15 +67,6 @@ menu, ol, ul {
     display: block;
 }
 
-/* Шапка */
-.hat {
-    position: absolute;
-    top: -20px;      /* подгоняй */
-    right: -10px;     /* подгоняй */
-    width: 40px;     /* размер шапки */
-    transform: rotate(25deg); /* наклон */
-    pointer-events: none; /* чтобы не мешала кликам */
-}
 
 /* Кнопка-гамбургер */
 .menu-btn {
@@ -152,8 +141,8 @@ menu, ol, ul {
   max-width: 500px;       /* ограничение по ширине */
   padding: 12px 20px;
   font-size: 16px;
-  border: 2px solid #555; /* начальный цвет границы */
   border-radius: 25px;     /* круглые края */
+  border: none;
   outline: none;
   background-color: #1c1c1c; /* темный фон */
   color: white;
@@ -193,7 +182,7 @@ div > #searchInput {
     top: 100%;          /* сразу под input */
     left: 0;
     width: 100%;
-    z-index: 10000;
+    z-index: 999;
     max-width: 500px;
     background-color: #ffd231;
     border: 1px solid rgba(85, 85, 85, 0.426);
@@ -348,19 +337,74 @@ div > #searchInput {
 
 /* Карточка фиксированной высоты */
 .project-card {
-  position: relative;
-  background-color: #ffd231;
-  border-radius: 15px;
-  padding: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-  height: 300px; /* ← фиксированная высота карточки */
-  overflow: hidden; /* обрезает длинные описания */
-  box-sizing: border-box;
+    position: relative;
+    background-color: #ffd231;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 300px; /* ← фиксированная высота карточки */
+    overflow: hidden; /* обрезает длинные описания */
+    box-sizing: border-box;
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
 }
+
+
+.project-card .card-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    width: 100%;
+    height: 100%; /* Растягиваем на всю карточку */
+    padding: 10px; /* Переносим паддинг из .project-card сюда */
+    box-sizing: border-box;
+    position: relative;
+    z-index: 5;
+}
+
+
+/* Чтобы блюр не мешал кликам, кидаем его на задний план */
+.project-card .icon-blur-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    filter: blur(15px);
+    opacity: 0.3;
+    z-index: -1; /* Уходим под контент */
+    pointer-events: none; /* Игнорируем клики, чтобы не мешать ссылке */
+}
+
+/* Контейнер для текста, чтобы он не прыгал */
+.card-text {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+.project-card .icon {
+    position: relative;
+    z-index: 2; /* Иконка выше блюра */
+}
+
+.project-info {
+    position: relative;
+    z-index: 2;
+    margin-top: auto; /* Прижимаем инфу к низу */
+}
+
+
+
 
 .project-card:hover {
     transform: translateY(-5px);
@@ -377,7 +421,7 @@ div > #searchInput {
     object-fit: cover;
     border-radius: 12px;
     margin-bottom: 10px;
-    background-color: black;
+    /* background-color: black; */
 }
 
 .project-card h3 {
@@ -839,7 +883,9 @@ div > #searchInput {
 
 
 
-
+.scroll-btn{
+    z-index: 1000;
+}
 
 .scroll-wrapper {
   position: relative;

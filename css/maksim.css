@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
+
+
+body{
+    background-color: #2C3E50;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+*{
+    font-family: "Comfortaa", sans-serif;
+
+}
+
+button{
+    border: none;
+    border-radius: 20px;
+    font-size: 25px;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    background: none;
+    text-decoration: underline;
+}
+
+.goCaca {
+    background: #d2b960;
+    text-decoration: none;
+    color: black;
+    width: 90%;
+    margin: 20px auto; /* Можно объединить */
+    display: flex;
+    justify-content: center; /* центрирует текст по горизонтали */
+    align-items: center;     /* центрирует текст по вертикали */
+    text-align: center;      /* на всякий случай для многострочного текста */
+}
+
+.goCaca:hover{
+    cursor: not-allowed;
+}

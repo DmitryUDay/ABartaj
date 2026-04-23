@@ -6,15 +6,12 @@
     <title>ABartaj</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="server/css/footer.css">
-    <link rel="stylesheet" href="newYears.css">
+    <link rel="stylesheet" href="css/modalLocation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <link rel="icon" type="image/png" href="server\icons.png" style="border-radius: 20px;">
 </head>
 <body>
-    <canvas id="snow"></canvas>
-
-    
     <button id="toTopBtn">↑</button>
     <div class="homebrew">
         <div style="display: flex; align-items: center; gap: 20px;">
@@ -28,9 +25,6 @@
 
         <div style="display: flex; align-items: center; gap: 20px;">
             <div style="display: flex; gap: 20px;">
-                <div class="btnNAVI" id="toggleSnow" title="Снег">
-                    <img src="server/snow.png" width="20">
-                </div>
 
                 <a href="creater.html" id="btnADD">
                     <div class="btnNAVI">+</div>
@@ -46,7 +40,6 @@
 
             <div class="client">
                 <img class="avatar" src="server/ava.png" alt="">
-                <img class="hat" src="server/shapa.png" alt="">
             </div>
         </div>
     </div>
@@ -65,7 +58,7 @@
         <br>
         <ul>
             <li><a href="index.html" class="underline-hover">Домашняя стриица</a></li>
-            <li><a href="404.html" class="underline-hover">Открыть файл</a></li>
+            <li><a href="404.html" class="underline-hover">Мне нравится</a></li>
             <li><a href="404.html" class="underline-hover">Недавние действия</a></li>
             <li><a href="404.html" class="underline-hover">Обсуждения</a></li>
             <hr>
@@ -82,22 +75,21 @@
 
 
 
-    
+
     <h2 style="color: white;" align="center">Поиск проектов</h2>
     <div class="search-wrapper" style="position: relative; max-width: 500px; margin: 0 auto;">
         <input type="text" id="searchInput" enterkeyhint="search">
         <div id="searchResults"></div>
     </div>
-    
-    
+
+
     </a>
     <br>
     <div class="abaHaba">
         <h2>Место, где идеи становятся проектами, а проекты — реальностью</h2>
         <p style="color: rgb(210, 210, 210);">ABartaj — бесплатная платформа для инди-проектов: игры, приложения, прошивки, софт и другие проекты.</p>
     </div>
-    
-    <canvas id="fireworks"></canvas>
+
     <br>
 
 
@@ -142,9 +134,6 @@
         <div id="projectsContainer" class="projects-grid"></div>
         <button id="loadMoreBtn" style="display:none;">Показать ещё</button>
     </div>
-
-
-
     <br>
     <br>
     <br>
@@ -184,567 +173,10 @@
     </footer>
 
 
+<script src="js/builderCardAndSearchIndex.js"></script> <!--Постройщик карточек приложений и результатов поиска-->
+<script src="js/notification.js"></script> <!--отвечает за Уведомления на странице-->
+<script src="js/scrollUp.js"></script> <!--отвечает за кнопку прокрутки страницы-->
+<script src="js/locator.js"></script> <!--отслеживает пользователя по ip для банера санкции-->
 
-
-
-
-
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-    // --- Меню ---
-    const openBtn = document.getElementById('menu-open');
-    const closeBtn = document.getElementById('menu-close');
-    const sideMenu = document.getElementById('side-menu');
-
-    if (openBtn && closeBtn && sideMenu) {
-        openBtn.addEventListener('click', () => {
-            sideMenu.classList.add('active');
-        });
-        closeBtn.addEventListener('click', () => {
-            sideMenu.classList.remove('active');
-        });
-    }
-
-    // --- Подсказки с эффектом печати ---
-    const searchInput = document.getElementById("searchInput");
-    if (!searchInput) return;
-
-    const phrases = [
-        "Что будем искать?",
-        "DUGA",
-        "Мореход",
-        "Бот рудольф",
-        "Порт салли фейс",
-        "Рус линк",
-        "UOS-dev",
-        "iso2god",
-
-    ];
-    let index = 0;
-    let charIndex = 0;
-    let typingSpeed = 100;
-    let delayBetweenPhrases = 1500;
-
-    function typePhrase() {
-        const currentPhrase = phrases[index];
-        if (!searchInput.value) searchInput.placeholder = currentPhrase.substring(0, charIndex);
-        charIndex++;
-        if (charIndex <= currentPhrase.length) {
-            setTimeout(typePhrase, typingSpeed);
-        } else {
-            setTimeout(erasePhrase, delayBetweenPhrases);
-        }
-    }
-    function erasePhrase() {
-        const currentPhrase = phrases[index];
-        charIndex--;
-        if (!searchInput.value) searchInput.placeholder = currentPhrase.substring(0, charIndex);
-        if (charIndex > 0) {
-            setTimeout(erasePhrase, typingSpeed / 2);
-        } else {
-            index = (index + 1) % phrases.length;
-            setTimeout(typePhrase, typingSpeed);
-        }
-    }
-    typePhrase();
-
-    // --- Подгрузка карточек ---
-    let allApps = [];
-let visibleCount = 4;
-const increment = 1;
-
-const container = document.getElementById("projectsContainer");
-const loadMoreBtn = document.getElementById("loadMoreBtn");
-
-// Загружаем JSON
-fetch("app.json")
-  .then(res => res.json())
-  .then(data => {
-    allApps = data;
-    renderCategories();
-  });
-
-function renderCategories() {
-  container.innerHTML = "";
-
-  const grouped = {};
-  allApps.forEach(app => {
-    const cat = app.searchKategory || "other";
-    if (!grouped[cat]) grouped[cat] = [];
-    grouped[cat].push(app);
-  });
-
-  const catNames = {
-    game: "Игры",
-    bot: "Боты",
-    app: "Программы",
-    shev: "Веб приложения",
-    sites: "Сайты",
-    plug: "Плагины",
-    runFile: "Исполняемые файлы",
-    other: "Другое"
-  };
-
-  Object.keys(grouped).forEach(category => {
-    const apps = grouped[category].slice(0, 20);
-
-    const categoryBlock = document.createElement("div");
-    categoryBlock.className = "category-block";
-
-    const title = document.createElement("h2");
-    title.className = "category-title";
-    title.textContent = (catNames[category] || category) + " >";
-
-    // 🔗 Клик по категории = переход на madamaBuilder.html
-    title.addEventListener("click", () => {
-      window.location.href = `madamaBuilder.html?category=${encodeURIComponent(category)}`;
-    });
-
-    const scrollWrapper = document.createElement("div");
-    scrollWrapper.className = "scroll-wrapper";
-
-    const scrollContainer = document.createElement("div");
-    scrollContainer.className = "category-scroll";
-
-    // Стрелки
-    const btnLeft = document.createElement("button");
-    btnLeft.className = "scroll-btn left";
-    btnLeft.innerHTML = "&#9664;";
-
-    const btnRight = document.createElement("button");
-    btnRight.className = "scroll-btn right";
-    btnRight.innerHTML = "&#9654;";
-
-    // Добавляем карточки
-    apps.forEach(app => {
-        const card = document.createElement("div");
-        card.className = "project-card";
-
-        card.innerHTML = `
-            <a href="MrBuilder.html?project=${encodeURIComponent(app.name + '%' + app.idi)}">
-                <img class="icon" src="${app.icon}" alt="${app.name}">
-                <h3>${app.name}</h3>
-                <p>${app.description}</p>
-                <div class="project-info">
-                <span>©${app.developer.replace(/©/g, '')}</span>
-                <span>${app.age}</span>
-                </div>
-            </a>
-            <div class="icon-blur-bg" style="background-image: url('${app.icon}')"></div>
-        `;
-        scrollContainer.appendChild(card);
-    });
-
-    // Собираем всё
-    scrollWrapper.appendChild(btnLeft);
-    scrollWrapper.appendChild(scrollContainer);
-    scrollWrapper.appendChild(btnRight);
-    categoryBlock.appendChild(title);
-    categoryBlock.appendChild(scrollWrapper);
-    container.appendChild(categoryBlock);
-
-    // Функция проверки: нужно ли показывать стрелки
-    function updateArrowVisibility() {
-        const scrollWidth = scrollContainer.scrollWidth;
-        const clientWidth = scrollContainer.clientWidth;
-        const scrollLeft = scrollContainer.scrollLeft;
-
-        // Контента меньше или ровно столько же — стрелки не нужны
-        const needArrows = scrollWidth > clientWidth + 1;
-
-        if (!needArrows) {
-            btnLeft.classList.remove("show");
-            btnRight.classList.remove("show");
-            return;
-        }
-
-        // Показывать левую стрелку, если есть куда скроллить влево
-        btnLeft.classList.toggle("show", scrollLeft > 10);
-
-        // Показывать правую стрелку, если есть куда скроллить вправо
-        btnRight.classList.toggle(
-            "show",
-            scrollLeft + clientWidth < scrollWidth - 10
-        );
-    }
-
-    // Добавляем события на стрелки
-    btnLeft.addEventListener("click", () => {
-      scrollContainer.scrollBy({ left: -300, behavior: "smooth" });
-    });
-    btnRight.addEventListener("click", () => {
-      scrollContainer.scrollBy({ left: 300, behavior: "smooth" });
-    });
-
-    // Обновляем стрелки при прокрутке и изменении размера окна
-    scrollContainer.addEventListener("scroll", updateArrowVisibility);
-    window.addEventListener("resize", updateArrowVisibility);
-
-    // Первый вызов после отрисовки
-    setTimeout(updateArrowVisibility, 200);
-
-    // Небольшой сдвиг влево на телефонах
-    if (window.innerWidth < 768) {
-      setTimeout(() => {
-        scrollContainer.scrollLeft = 30;
-        updateArrowVisibility();
-      }, 250);
-    }
-  });
-}
-
-// // Обработчик кнопки "Показать ещё"
-// loadMoreBtn.addEventListener("click", () => {
-//     visibleCount += increment;
-//     renderCards();
-// });
-
-    // --- Поиск ---
-    const searchResultsContainer = document.getElementById("searchResults");
-
-searchInput.addEventListener("input", () => {
-    const query = searchInput.value.trim().toLowerCase();
-    searchResultsContainer.innerHTML = "";
-
-    if (!query) {
-        searchResultsContainer.style.display = "none";
-        return;
-    }
-
-    // Фильтруем проекты с учетом alternatives
-    const matchedApps = allApps.filter(app => {
-        const options = app.alternatives
-            ? app.alternatives.split(",").map(s => s.trim().toLowerCase())
-            : [];
-        options.push(app.name.toLowerCase());
-        return options.some(opt => opt.includes(query));
-    });
-
-    const limit = 4;
-
-    if (matchedApps.length === 0) {
-        searchResultsContainer.innerHTML = `<p style="color:black;">Не нашлось подходящих результатов</p>`;
-    } else {
-        matchedApps.slice(0, limit).forEach(app => {
-            const resultItem = document.createElement("div");
-            resultItem.className = "search-result-item";
-
-            resultItem.innerHTML = `
-                <div class="result-inner">
-                    <img src="${app.icon}" alt="${app.name}" class="result-icon">
-                    <span class="result-text">${app.name}</span>
-                </div>
-            `;
-
-            resultItem.addEventListener("click", () => {
-                window.location.href = `MrBuilder.html?project=${encodeURIComponent(app.name + '%' + app.idi)}`;
-            });
-
-            searchResultsContainer.appendChild(resultItem);
-        });
-
-        if (matchedApps.length > limit) {
-            const remaining = matchedApps.length - limit;
-            const showMoreBtn = document.createElement("button");
-            showMoreBtn.textContent = `Показать ещё +${remaining}`;
-            showMoreBtn.classList.add("show-more-btn");
-            showMoreBtn.addEventListener("click", () => {
-                searchResultsContainer.innerHTML = "";
-                matchedApps.forEach(app => {
-                    const resultItem = document.createElement("div");
-                    resultItem.className = "search-result-item";
-
-                    resultItem.innerHTML = `
-                        <div class="result-inner">
-                            <img src="${app.icon}" alt="${app.name}" class="result-icon">
-                            <span class="result-text">${app.name}</span>
-                        </div>
-                    `;
-
-                    resultItem.addEventListener("click", () => {
-                        window.location.href = `MrBuilder.html?name=${encodeURIComponent(app.name)}`;
-                    });
-
-                    searchResultsContainer.appendChild(resultItem);
-                });
-            });
-            searchResultsContainer.appendChild(showMoreBtn);
-        }
-    }
-
-    searchResultsContainer.style.display = "block";
-});
-});
-
-
-function isMobile() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
-
-const button = document.getElementById('btnADD');
-
-if (isMobile()) {
-    button.style.display = 'none';
-} else {
-    button.style.display = 'block';
-}
-window.addEventListener("scroll", () => {
-  const header = document.querySelector(".homebrew");
-  if (window.scrollY > 10) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
-});
-
-
-const userAvatar = document.querySelector(".client img");
-
-if (userAvatar) {
-    userAvatar.addEventListener("click", () => {
-        // Если уже есть уведомление — не создаём новое
-        if (document.querySelector(".guest-popup")) return;
-
-        const popup = document.createElement("div");
-        popup.className = "guest-popup";
-        popup.innerHTML = `
-            Да, это вы, <strong>Гость!</strong><br>
-            Вы выглядите прекрасно сегодня!
-        `;
-        document.body.appendChild(popup);
-
-        // Автоматически скрывается через 3 секунды
-        setTimeout(() => {
-            popup.classList.add("fade-out");
-            setTimeout(() => popup.remove(), 400);
-        }, 3000);
-    });
-}
-
-
-
-</script>
-
-
-<script>
-    const btn = document.getElementById("toTopBtn");
-
-    // Показывать кнопку при прокрутке вниз более чем на 200px
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 200) {
-            btn.style.display = "flex";
-        } else {
-            btn.style.display = "none";
-        }
-    });
-
-    // Плавный скролл вверх
-    btn.addEventListener("click", () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    });
-</script>
-
-
-
-
-<script>
-const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-function firework(x, y) {
-    let particles = [];
-    const maxLife = 70;
-
-    for (let i = 0; i < 80; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 5 + 2;
-
-        particles.push({
-            x,
-            y,
-            vx: Math.cos(angle) * speed,
-            vy: Math.sin(angle) * speed,
-            life: maxLife,
-            size: Math.random() * 2 + 1,
-            color: `hsl(${Math.random() * 360}, 100%, 60%)`
-        });
-    }
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        particles = particles.filter(p => p.life > 0);
-
-        particles.forEach(p => {
-            p.x += p.vx;
-            p.y += p.vy;
-            p.vy += 0.04;
-
-            p.life--;
-            const alpha = p.life / maxLife;
-
-            ctx.globalAlpha = alpha;
-            ctx.fillStyle = p.color;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            ctx.fill();
-        });
-
-        ctx.globalAlpha = 1;
-
-        if (particles.length > 0) {
-            requestAnimationFrame(animate);
-        } else {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-    }
-
-    animate();
-}
-
-document.getElementById("ny-poster").addEventListener("click", (e) => {
-    const rect = canvas.getBoundingClientRect();
-
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    firework(x, y);
-});
-
-
-
-const snowCanvas = document.getElementById("snow");
-const snowCtx = snowCanvas.getContext("2d");
-
-snowCanvas.width = window.innerWidth;
-snowCanvas.height = window.innerHeight;
-
-let snowEnabled = localStorage.getItem("snow") !== "off";
-
-const snowflakes = [];
-
-function createSnow() {
-    snowflakes.length = 0;
-    for (let i = 0; i < 120; i++) {
-        snowflakes.push({
-            x: Math.random() * snowCanvas.width,
-            y: Math.random() * snowCanvas.height,
-            r: Math.random() * 2 + 1,
-            s: Math.random() * 1 + 0.5
-        });
-    }
-}
-
-function snowLoop() {
-    if (!snowEnabled) {
-        snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-        requestAnimationFrame(snowLoop);
-        return;
-    }
-
-    snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-
-    snowCtx.fillStyle = "white";
-    snowflakes.forEach(f => {
-        f.y += f.s;
-        if (f.y > snowCanvas.height) f.y = -5;
-
-        snowCtx.beginPath();
-        snowCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-        snowCtx.fill();
-    });
-
-    requestAnimationFrame(snowLoop);
-}
-
-createSnow();
-snowLoop();
-
-
-const toggleSnowBtn = document.getElementById("toggleSnow");
-
-function updateSnowBtn() {
-    toggleSnowBtn.style.opacity = snowEnabled ? "1" : "0.5";
-}
-
-toggleSnowBtn.addEventListener("click", () => {
-    snowEnabled = !snowEnabled;
-    localStorage.setItem("snow", snowEnabled ? "on" : "off");
-    updateSnowBtn();
-});
-
-updateSnowBtn();
-
-
-</script>
-
-
-
-<script>
-// Список стран ЕС + Украина (ISO коды)
-const euCountries = [
-  "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR",
-  "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL",
-  "PL", "PT", "RO", "SK", "SI", "ES", "SE"
-];
-const ukraine = "UA";
-
-// Получение куки
-function getCookie(name) {
-  const matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([.$?*|{}()[]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
-}
-
-// Установка куки
-function setCookie(name, value, days) {
-  const expires = new Date(Date.now() + days*24*60*60*1000).toUTCString();
-  document.cookie = name + "=" + encodeURIComponent(value) + "; expires=" + expires + "; path=/";
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const banner = document.getElementById("accessBanner");
-  const closeBtn = document.getElementById("bannerCloseBtn");
-  const homebrew = document.querySelector(".homebrew");
-
-  // Подставляем высоту homebrew как top для баннера
-  if (homebrew) {
-    const height = homebrew.getBoundingClientRect().height;
-    banner.style.top = height + "px";
-  }
-
-  // Если куки есть — не показываем
-  if (getCookie("accessBannerDismissed")) return;
-
-  // Запрос к API для определения страны по IP
-  fetch("https://ipapi.co/json/")
-    .then(response => response.json())
-    .then(data => {
-      const countryCode = data.country;
-
-
-      // Проверка ЕС или Украина
-      if (euCountries.includes(countryCode) || countryCode === ukraine) {
-        banner.style.display = "flex";
-      }
-    })
-
-  closeBtn.addEventListener("click", () => {
-    banner.style.display = "none";
-    setCookie("accessBannerDismissed", "true", 365);
-  });
-});
-
-</script>
-
-
-    
 </body>
 </html>

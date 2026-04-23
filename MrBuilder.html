@@ -10,9 +10,25 @@
     <link rel="icon" type="image/png" id="ICONMR" style="border-radius: 20px;">
 </head>
 <body>
-    <button id="BBack" onclick="goBack()" style="cursor: pointer;">&lt;Назад</button>
+    <div style="padding: 20px;">
+        <div class="button-group">
+            <button class="btn btn-close" onclick="goBack()">✕</button>
+            <button class="btn btn-menu">•••</button>
+            <button class="btn btn-fav">★</button>
+        </div>
+    </div>
 
-    <div id="copyToast"><img src="https://cdn-icons-png.freepik.com/512/10942/10942303.png" alt="" width="25px"> <p style="color: black;">Ссылка скопирована</p></div>
+    <div id="copyToast" class="notification">
+        <div class="notification-content" style="display: flex; align-items: center; gap: 10px;">
+            <img src="https://cdn-icons-png.freepik.com/512/10942/10942303.png" alt="" width="25px">
+            <p style="color: black; margin: 0; font-weight: bold;">Ссылка скопирована</p>
+        </div>
+        <div class="progress-bar">
+            <div class="progress" id="progressLine"></div>
+        </div>
+    </div>
+
+
 
     <div id="fScreen" onclick="hideImg()">
         <div id="imgFull"></div>
@@ -36,26 +52,18 @@
 
 
     <div style="margin: 20px;">
-        <div style="display: flex; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
-
+        <div class="containerHeroHeadProject">
             <div class="backIMG">
                 <div id="imaga" class="zoomable"></div>
                 <button onclick="bck()" id="b">&lt;</button>
                 <button onclick="nxt()" id="n">&gt;</button>
             </div>
-
-
-
-
-
-
             <div class="infoProj">
                 <div class="iconCenter">
                     <img id="IconApp" alt="Приложение" width="100" style="border-radius: 10px;">
                 </div>
                 <hr>
-                <p id="descryMAX">Очень длинное описание проекта...</p>
-
+                <p id="descryMAX">Загрнужаю элементы...</p>
                 <div class="buttonContainer">
                     <a target="_blank" id="contentButton" style="text-decoration: none; color: black;">
                         <div id="buttonType" class="buttonSas"></div>
@@ -69,13 +77,10 @@
         </div>
     </div>
 
-
-
-
-
     <br>
     <br>
     <br>
+
     <div class="info-scroll-wrapper">
         <div class="info-scroll" id="infoScroll">
             <div class="info-block">
@@ -90,7 +95,7 @@
             <div class="info-block">
                 <h3>Язык</h3>
                 <p id="defoultLanguage">???</p>
-                <p id="dopingLanguage" class="gray">???</p>
+                <p id="dopingLanguage" class="gray"></p>
             </div>
             <div class="info-block">
                 <h3>Версия</h3>
@@ -102,11 +107,7 @@
             </div>
         </div>
     </div>
-    
-    
-    
-    
-    
+
     <div class="container2">
         <div id="mws">
             <br>
@@ -179,13 +180,13 @@
         </div>
 
 
-
         <br>
         <hr style="clear: both;">
         <br>
 
+        <h1 style="cursor: pointer; ">Конфиндециальность приложения</h1>
         <div id="configgg">
-            <h1 style="cursor: pointer; ">Конфиндециальность приложения</h1>
+            <p>Узнайте, какие данные может запросить разработчик проекта или к чему у него есть доступ</p>
 
             <div class="data-card" style="background-color: #2C3E50; box-shadow: 0 0 10px #000000; width: 100%; height: auto; justify-content: center; padding: 20px; border-radius: 30px; text-align: center;" >
                 <div style="display: flex; flex-direction: column; align-items: center;">
@@ -229,11 +230,9 @@
                     </div>
                 </div>
             </div>
-            <p>Политика конфиндециальности может различаться в зависимости от возраста или используемых функций</p>
         </div>
 
         <div id="Neurconfiggg">
-            <h1 style="cursor: pointer; ">Конфиндециальность приложения</h1>
 
             <div class="data-card" style="background-color: #2C3E50; box-shadow: 0 0 10px #000000; width: 100%; height: auto; justify-content: center; padding: 20px; border-radius: 30px; text-align: center;" >
                 <div style="display: flex; flex-direction: column; align-items: center;">
@@ -243,7 +242,6 @@
 
                 </div>
             </div>
-            <p>Политика конфиндециальности может различаться в зависимости от возраста или используемых функций</p>
         </div>
 
 
@@ -254,26 +252,39 @@
         <div class="infofo">
             <div style="display: flex; justify-content: space-between; gap: 10px;"><h3>Издатель</h3> <h3 id="developerDublicate2" class="value">???</h3></div>
             <hr>
+            <div style="display: flex; justify-content: space-between;"><h3>Категория</h3> <h3 id="tipok" class="value">???</h3></div>
+            <hr>
             <div style="display: flex; justify-content: space-between;"><h3>Жанр</h3> <h3 id="category" class="value">???</h3></div>
+            <hr>
+            <div style="display: flex; justify-content: space-between;"><h3>Интернет</h3> <h3 id="inet" class="value">???</h3></div>
+            <!-- <hr>
+            <div style="display: flex; justify-content: space-between;"><h3>Дата выхода</h3> <h3 id="category" class="value">???</h3></div>! -->
             <hr>
             <div style="display: flex; justify-content: space-between;"><h3>Совместимость</h3> <h3 id="deviTY" class="value">???</h3></div>
             <hr>
             <div style="display: flex; justify-content: space-between;"><h3>Языки</h3> <h3 id="lana" class="value">???</h3></div>
             <hr>
-            <div style="display: flex; justify-content: space-between;"><h3>Приблизительный объем</h3> <h3 id="obj" class="value">???</h3></div>
+            <div style="display: flex; justify-content: space-between;"><h3>ID приложения</h3> <h3 id="idApp" class="value">???</h3></div>
             <hr>
+            <div id="objem1" style="display: flex; justify-content: space-between;"><h3>Приблизительный объем</h3> <h3 id="obj" class="value">???</h3></div>
+            <hr id="objem2">
             <div style="display: flex; justify-content: space-between;"><h3>Сертификаты защиты</h3> <h3 id="sertificate" class="value">???</h3></div>
             <hr>
             <a id="selfDeveloopDublicate1" style="display: flex; justify-content: space-between; text-decoration: none; align-items: center;"><h3>Сайт разработчика</h3> <img src="server/yandexIcon.png" alt="" width="40px" height="40px"></a>
             <hr>
-            <a id="polyci" style="display: flex; justify-content: space-between; text-decoration: none; align-items: center;"><h3>Политика конфиндециальности</h3> <img src="server/privacyIcon.png" alt="" width="40px" height="40px"></a>
+            <a id="polyci" style="display: flex; justify-content: space-between; text-decoration: none; align-items: center;"><h3>Документы</h3> <img src="server/privacyIcon.png" alt="" width="40px" height="40px"></a>
             <hr>
             <a id="problems" style="display: flex; justify-content: space-between; text-decoration: none; align-items: center;"><h3>Сообщить о проблеме</h3> <img src="server/warningIcon.png" alt="" width="40px" height="40px"></a>
             
             <hr>
             <a style="display: flex; justify-content: space-between; text-decoration: none; align-items: center;" id="support"><h3>Поддержка</h3> <img src="server\supportIcon.png" alt="" width="40px" height="40px"></a>
-        
-        
+        </div>
+
+
+        <div style="margin: 20px;">
+            <h1 style="cursor: pointer;">Вам может понравиться ></h1>
+            <div id="recommendationsBox" class="recommendations-container">
+                </div>
         </div>
 
     <br>
@@ -338,402 +349,8 @@
   </form>
 </div>
 
-
-
-
-
-
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
-    let menuState = 'close';
-    let ptc = 0;
-    let imgPatch = [];
-
-    // --- Подгрузка Json ---
-    const params = new URLSearchParams(window.location.search);
-    const project = params.get("project");
-
-    let name = null;
-    let idi = null;
-
-    if (project) {
-    const parts = project.split("%");
-    name = parts[0] || null;
-    idi = parts[1] || null;
-    }
-
-    // --- Загружаем JSON ---
-    fetch("app.json")
-        .then(res => res.json())
-        .then(data => {
-            const app = data.find(a => a.idi === idi);
-
-            if (!app) {
-                window.location.href = "404.html";
-                return;
-            }
-
-
-            const ua = navigator.userAgent;
-            if (app) {
-                imgPatch = app.imgScreen.split(",").map(item => item.trim());
-
-
-
-
-                document.getElementById("nameApp").textContent = app.name;
-                document.getElementById("nameAppDublicate").textContent = app.name;
-                document.getElementById("contents").textContent = `ABartaj || ${app.name}`;
-                document.getElementById("buttonType").textContent = app.buttonType;
-                document.getElementById("IconApp").src = app.icon;
-                document.getElementById("kalivanRaitingDublicate1").textContent = `${app.otziv} отзывов`;
-                document.getElementById("starKalivanDublicate1").textContent = `${app.star}`;
-
-
-                document.getElementById("raiting").style.display = 'block';
-                document.getElementById("ageKalivan").textContent = app.age;
-                document.getElementById("developer").textContent = app.developer;
-                document.getElementById("developerDublicate1").textContent = app.developer;
-                document.getElementById("developerDublicate2").textContent = app.developer;
-                document.getElementById("defoultLanguage").textContent = app.language;
-                document.getElementById("dopingLanguage").textContent = app.languageKalivan;
-                document.getElementById("getVersionApp").textContent = app.version;
-                document.getElementById("sizess").textContent = app.size;
-                document.getElementById("descryMAX").textContent = app.description;
-                document.getElementById("category").textContent = app.kategory;
-                document.getElementById("deviTY").textContent = app.deviceTy;
-                document.getElementById("obj").textContent = app.size;
-                document.getElementById("sertificate").textContent = app.sertificate;
-                document.getElementById("lana").textContent = `${app.language} ${app.languageKalivan}`;
-                document.getElementById("selfDeveloop").href = app.siteDeveloper;
-                document.getElementById("selfDeveloopDublicate1").href = app.siteDeveloper;
-                document.getElementById("developerDublicate3").href = app.siteDeveloper;
-                document.getElementById("polyci").href = app.policy;
-                document.getElementById("ICONMR").href = app.icon;
-
-                document.getElementById("problems").href = `GrandAlert.html?project=${encodeURIComponent(app.name + '%' + app.idi)}`;
-
-                const updatesElement = document.getElementById("contentUpdates");
-                const mwsBlock = document.getElementById("mws");
-                const supportBlock = document.getElementById("support");
-                const btnCode = document.getElementById("IICode");
-
-
-                paintStars(app.star);
-
-
-                if (!("supported" in app)) {
-                    supportBlock.style.display = "none";
-                }else{
-                    document.getElementById("support").href = app.supported;
-                }
-
-
-
-
-                if (app.updateText && app.updateText.trim() !== "") {
-                    updatesElement.textContent = app.updateText;
-                    mwsBlock.style.display = "block";
-                } else {
-                    mwsBlock.style.display = "none";
-                }
-
-
-                if (app.allCode && app.allCode.trim() !== ""){
-                    btnCode.style.display = 'block';
-                    document.getElementById("IICode").href = app.allCode;
-                }else{
-                    btnCode.style.display = 'none';
-                }
-
-                setimg(imgPatch[ptc]);
-
-
-                if (app.fava.trim() !== "") {
-                    const allowed = app.fava.split(",");
-                    document.querySelectorAll(".block").forEach(el => {
-                        if (!allowed.includes(el.classList[1])) {
-                            el.style.display = "none";
-                        }
-                        document.getElementById("Neurconfiggg").style.display = "none";
-                    });
-                }else{
-                    document.getElementById("configgg").style.display = "none";
-                    document.getElementById("Neurconfiggg").style.display = "block";
-                }
-            
-                // --- Логика кнопки с учётом anonsy ---
-                const btn = document.getElementById("contentButton");
-
-                if (app.anonsy && app.anonsy !== "no") {
-                    // если есть анонс
-                    btn.href = app.anonsy;
-                    btn.style.display = "block";
-                    document.getElementById("buttonType").textContent = 'Скоро';
-                } else {
-                    btn.style.display = "block";
-                    // обычное поведение
-                    if (app.buttonType === "Открыть") {
-                        btn.href = app.content;
-                        btn.addEventListener("click", () => {
-                            window.location.href = app.content;
-                        });
-                    } else if (app.buttonType === "Скачать") {
-                        btn.href = "#"; // чтобы не переходил сразу
-                        btn.addEventListener("click", (e) => {
-                            e.preventDefault();
-                            showDownloadModal(app);
-                        });
-                    }
-                }
-                if (app.buttonType.trim()==''){
-                    document.getElementById("contentButton").style.display = "none";
-                }
-            }
-        });
-
-
-    function paintStars(ratingStr) {
-        try{
-            let normalized = ratingStr.replace(',', '.');
-            let starsValue = parseFloat(normalized);
-            const stars = document.querySelectorAll('.star');
-            stars.forEach((star, idx) => {
-                const starIndex = idx + 1;
-                let rawFill = starsValue - starIndex + 1;
-                let clamped = Math.min(Math.max(rawFill, 0), 1);
-                let fillPercent = clamped * 100;
-                star.style.setProperty('--fill', fillPercent + '%');
-            });
-        }catch(err){
-            //типо заглушка
-        }
-    }
-
-
-
-
-
-
-
-
-    function showDownloadModal(app) {
-        const devices = app.device && Array.isArray(app.device) && app.device.length > 0
-            ? app.device
-            : app.links ? Object.keys(app.links).map(k => {
-                if (k.toLowerCase() === "windows") return "Windows";
-                if (k.toLowerCase() === "mac") return "Mac";
-                if (k.toLowerCase() === "linux") return "Linux";
-                if (k.toLowerCase() === "android") return "Android";
-                if (k.toLowerCase() === "ios") return "iOS";
-                if (k.toLowerCase() === "xbox") return "Xbox";
-                if (k.toLowerCase() === "playstation") return "PlayStation";
-                if (k.toLowerCase() === "nintendo") return "Nintendo";
-                if (k.toLowerCase() === "oculus") return "Oculus";
-                return k;
-            }) : [];
-
-        if (devices.length === 0) {
-            alert("Не нашлось доступных платформ");
-            return;
-        }
-
-        const modal = document.getElementById("downloadModal");
-        const list = document.getElementById("downloadList");
-        list.innerHTML = "";
-
-        devices.forEach(dev => {
-            const link = app.links?.[dev.toLowerCase()] || app.content;
-
-            let iconSrc = "";
-            if (dev === "Windows") iconSrc = "server/windows.png";
-            else if (dev === "Mac") iconSrc = "server/apple.png";
-            else if (dev === "Linux") iconSrc = "server/unix.png";
-            else if (dev === "Android") iconSrc = "server/android.png";
-            else if (dev === "iOS") iconSrc = "server/apple.png";
-            else if (dev === "Xbox") iconSrc = "https://cdn-icons-png.flaticon.com/512/1/1321.png";
-            else if (dev === "PlayStation") iconSrc = "https://cdn-icons-png.flaticon.com/512/1/1443.png";
-            else if (dev === "Nintendo") iconSrc = "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/video-games/nintendo-switch-h21td98cj5k8f88b5fif6.png/nintendo-switch-mkvu6y3jqk26e9b502u9b.png?_a=DATAg1AAZAA0";
-            else if (dev === "Oculus") iconSrc = "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/meta-black-icon.png";
-
-            const item = document.createElement("div");
-            item.classList.add("download-item");
-            item.innerHTML = `<span><img src="${iconSrc}" alt="${dev}"><p style="color:#000";>${dev}</p></span>`;
-
-            item.addEventListener("click", () => {
-                window.location.href = link;
-            });
-
-            list.appendChild(item);
-        });
-
-        modal.style.display = "flex";
-    }
-
-    document.getElementById("closeDownloadModal").addEventListener("click", () => {
-        document.getElementById("downloadModal").style.display = "none";
-    });
-
-
-
-
-
-    // --- Картинки ---
-    const modal = document.getElementById("zoomModal");
-    const modalImg = document.getElementById("zoomImage");
-
-    function openZoom(src) {
-    modalImg.src = src;
-    modal.classList.add("show");
-    document.body.style.overflow = "hidden";
-    }
-
-    function closeZoom() {
-    modal.classList.remove("show");
-    setTimeout(() => {
-        modalImg.src = "";
-        document.body.style.overflow = "auto";
-    }, 300);
-    }
-
-    modal.addEventListener("click", (e) => {
-    if (e.target === modal || e.target === modalImg) closeZoom();
-    });
-
-
-    function setimg(src){
-        const container = document.getElementById("imaga");
-        container.innerHTML = '';
-        container.classList.remove('video-bg');
-
-        const isYouTube = src.includes("youtube.com") || src.includes("youtu.be");
-        const isVK = src.includes("vk.com/video");
-
-        if(isYouTube || isVK){
-            container.classList.add('video-bg');
-            container.innerHTML = '';
-
-            let iframe = document.createElement("iframe");
-            iframe.src = src;
-            iframe.frameBorder = "0";
-            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-            iframe.allowFullscreen = true;
-
-            iframe.style.width = "470px";
-            iframe.style.height = "auto";
-
-            container.appendChild(iframe);
-        } else {
-            container.classList.remove('video-bg');
-
-            let newImg = document.createElement("img");
-            newImg.alt = "Превью";
-            newImg.style.opacity = "0";
-            newImg.style.transform = "scale(0.8)";
-            newImg.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-            newImg.classList.add('zoomable');
-            newImg.style.cursor = 'pointer';
-            newImg.addEventListener('click', () => openZoom(newImg.src));
-            container.appendChild(newImg);
-
-            let loader = document.createElement("div");
-            loader.classList.add("loader");
-            container.appendChild(loader);
-
-            newImg.src = src;
-            newImg.onload = () => {
-                loader.remove();
-                requestAnimationFrame(() => {
-                    newImg.style.opacity = "1";
-                    newImg.style.transform = "scale(1)";
-                });
-            };
-        }
-    }
-
-
-    function nxt() {
-        ptc = (ptc + 1) % imgPatch.length;
-        setimg(imgPatch[ptc]);
-    }
-
-    function bck() {
-        ptc = (ptc - 1 + imgPatch.length) % imgPatch.length;
-        setimg(imgPatch[ptc]);
-    }
-
-    function cickc(indi) {
-        const stars = [
-            document.getElementById('star1'),
-            document.getElementById('star2'),
-            document.getElementById('star3'),
-            document.getElementById('star4'),
-            document.getElementById('star5')
-        ];
-        stars.forEach(star => star.textContent = '☆');
-        for (let i = 0; i < indi; i++) stars[i].textContent = '★';
-    }
-
-
-
-
-    document.querySelectorAll(".review-card").forEach(card => {
-        card.addEventListener("click", () => {
-            card.classList.toggle("expanded");
-        });
-    });
-
-    function alertErrors(){
-        alert('Прстите, вы пока не можете оставлять отзывы')
-    }
-
-
-    let scale = 1;
-    let startDistance = 0;
-
-    modalImg.addEventListener("wheel", (e) => {
-    e.preventDefault();
-    scale += e.deltaY * -0.001;
-    scale = Math.min(Math.max(1, scale), 4);
-    modalImg.style.transform = `scale(${scale})`;
-    });
-
-    modalImg.addEventListener("touchstart", (e) => {
-    if (e.touches.length === 2) {
-        const dx = e.touches[0].pageX - e.touches[1].pageX;
-        const dy = e.touches[0].pageY - e.touches[1].pageY;
-        startDistance = Math.hypot(dx, dy);
-    }
-    }, { passive: false });
-
-    modalImg.addEventListener("touchmove", (e) => {
-    if (e.touches.length === 2) {
-        e.preventDefault();
-        const dx = e.touches[0].pageX - e.touches[1].pageX;
-        const dy = e.touches[0].pageY - e.touches[1].pageY;
-        const newDistance = Math.hypot(dx, dy);
-        const diff = newDistance - startDistance;
-
-        scale += diff * 0.005;
-        scale = Math.min(Math.max(1, scale), 4);
-        modalImg.style.transform = `scale(${scale})`;
-
-        startDistance = newDistance;
-    }
-    }, { passive: false });
 
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -750,52 +367,14 @@
     });
 
 
-
-    const openBtn = document.getElementById('openBubble');
-    const closeBtn = document.getElementById('closeBubble');
-    const bubble = document.getElementById('bubbleForm');
-
-    openBtn.addEventListener('click', () => {
-        bubble.classList.add('active');
-    });
-
-    closeBtn.addEventListener('click', () => {
-        bubble.classList.remove('active');
-    });
-
-    window.addEventListener('click', (e) => {
-        if (e.target === bubble) {
-        bubble.classList.remove('active');
-        }
-    });
-
-    document.getElementById('reviewForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert("Спасибо за отзыв!");
-        bubble.classList.remove('active');
-        e.target.reset();
-    });
-
-
-    function copyLink() {
-        const url = window.location.href;
-        const tempInput = document.createElement("textarea");
-        tempInput.value = url;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        try {
-            document.execCommand("copy");
-            const toast = document.getElementById("copyToast");
-            toast.classList.add("show");
-            setTimeout(() => toast.classList.remove("show"), 2500);
-        } catch (err) {
-            alert("Не удалось скопировать ссылку :(");
-        }
-        document.body.removeChild(tempInput);
-        }
-
-
 </script>
 
+
+<script src="js/creatorContent.js"></script>
+<script src="js/favoriteFunction.js"></script>
+<script src="js/systemRecomendation.js"></script>
+<script src="js/raitingSystem.js"></script>
+<script src="js/systemOtziv.js"></script>
+<script src="js/sysCopyPaste.js"></script>
 
 </html>

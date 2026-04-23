@@ -1,0 +1,40 @@
+.access-banner {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: #7331ff;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px 20px;
+  user-select: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.access-banner .more-link {
+  color: #ffde59;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.access-banner .close-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  user-select: none;
+}

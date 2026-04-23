@@ -1,0 +1,37 @@
+{
+    "idi": "pWFMDi87Tko3DeS3Ldu6",
+    "name": "GoodbyeDPI",
+    "description": "Легендарная утилита, которая модифицирует пакеты данных так, что провайдер (DPI) перестает их узнавать. Идеально для возвращения скорости YouTube и доступа к сайтам без использования сторонних серверов (VPN). Не снижает скорость интернета!",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/8/87/RKN_goatse.svg",
+    "imgScreen": [
+        "https://habrastorage.org/getpro/habr/upload_files/e83/d49/35d/e83d4935d2f5e941d15526b96e37dd93.png",
+        "https://habrastorage.org/getpro/habr/upload_files/009/ebf/e3f/009ebfe3f603b337f50eb22da253178b.jpg"
+    ],
+    "buttonType": "Скачать",
+    "otziv": "0",
+    "star": "0",
+    "age": "0+",
+    "language": "Английский",
+    "version": "0.2.3rc3",
+    "sertificate": "Да",
+    "siteDeveloper": "https://github.com/ValdikSS",
+    "policy": "https://github.com/ValdikSS",
+    "supported": "https://github.com/ValdikSS",
+    "inet": "yes",
+    "alternatives": "GoodbyeDPI скачать, обход блокировок, починить ютуб, DPI фильтр",
+    "searchKategory": "program",
+    "tip": "Программы",
+    "developer": "ValdikSS",
+    "size": "1-5MB",
+    "deviceTy": "Windows 7, Windows 8, Windows 10, Windows 11, GitHub, Android",
+    "links": {
+        "windows7": "https://github.com/p1ratrulezzz/GoodbyeDPI-Launcher/releases",
+        "windows8": "https://github.com/p1ratrulezzz/GoodbyeDPI-Launcher/releases",
+        "windows10": "https://github.com/p1ratrulezzz/GoodbyeDPI-Launcher/releases",
+        "windows11": "https://github.com/p1ratrulezzz/GoodbyeDPI-Launcher/releases",
+        "github": "https://github.com/ValdikSS/GoodbyeDPI/releases/latest",
+        "android": "https://github.com/the-mikhail/ByeDPIAndroid"
+    },
+    "kategory": "Инструменты",
+    "allCode": "https://github.com/ValdikSS/GoodbyeDPI"
+}
